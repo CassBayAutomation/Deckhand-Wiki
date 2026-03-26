@@ -1,0 +1,155 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { artefacts } from '../../data/artefacts';
+import { linkKeywords } from '../../utils/linkKeywords';
+
+export function getStaticPaths() {
+  return artefacts.map(a => ({ params: { slug: a.slug }, props: { artefact: a } }));
+}
+
+const { artefact } = Astro.props;
+const index = artefacts.findIndex(a => a.slug === artefact.slug);
+const prev = index > 0 ? artefacts[index - 1] : artefacts[artefacts.length - 1];
+const next = index < artefacts.length - 1 ? artefacts[index + 1] : artefacts[0];
+const description = `${artefact.name} — artefact in Davy Jones' Deckhand. Effect: ${artefact.effect} Upgraded: ${artefact.upgradedEffect}`;
+---
+<WikiLayout title={artefact.name} section="artefacts" ogImage={artefact.image} description={description}>
+  <div class="wiki-content">
+    <div class="infobox">
+      <div class="infobox-title">{artefact.name}</div>
+      {artefact.image
+        ? <img src={artefact.image} alt={artefact.name} class="infobox-artefact-img" />
+        : <div class="infobox-image-placeholder">⚱</div>
+      }
+      <table>
+        <tr><td>Effect</td><td set:html={linkKeywords(artefact.effect)} /></tr>
+        <tr><td>Upgraded</td><td set:html={linkKeywords(artefact.upgradedEffect)} /></tr>
+      </table>
+    </div>
+
+    <h1>{artefact.name}</h1>
+    <div class="stub-notice">More detail about this artefact will be added as the game develops.</div>
+
+    <div class="artefact-nav">
+      <a href={`/artefacts/${prev.slug}`} class="artefact-nav-card">
+        {prev.image && <img src={prev.image} alt={prev.name} />}
+        <span class="artefact-nav-label">← {prev.name}</span>
+      </a>
+      <a href="/artefacts" class="artefact-nav-all">All Artefacts</a>
+      <a href={`/artefacts/${next.slug}`} class="artefact-nav-card artefact-nav-card--next">
+        {next.image && <img src={next.image} alt={next.name} />}
+        <span class="artefact-nav-label">{next.name} →</span>
+      </a>
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  @media (min-width: 901px) {
+    .infobox {
+      width: 380px;
+    }
+  }
+
+  .infobox td:first-child {
+    width: 25%;
+    white-space: nowrap;
+  }
+
+  .infobox-artefact-img {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin: 1rem auto;
+  }
+
+  .artefact-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .artefact-nav-card {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s;
+    max-width: 200px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .artefact-nav-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .artefact-nav-card:hover {
+    border-color: var(--gold);
+    background: rgba(240, 168, 0, 0.06);
+  }
+
+  .artefact-nav-card img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .artefact-nav-card--next {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .artefact-nav-all {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .artefact-nav-all:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    .artefact-nav {
+      flex-wrap: wrap;
+    }
+
+    .artefact-nav-all {
+      order: -1;
+      width: 100%;
+      text-align: center;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem;
+    }
+
+    .artefact-nav-card {
+      flex: 1;
+      max-width: 100%;
+    }
+
+    .artefact-nav-card--next {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+</style>

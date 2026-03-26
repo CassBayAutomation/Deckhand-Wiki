@@ -1,0 +1,550 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { sections, getSectionBySlug } from '../data/sections';
+
+interface Props {
+  title: string;
+  section: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, section: sectionSlug, description, ogImage } = Astro.props;
+const section = getSectionBySlug(sectionSlug);
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout title={title} description={description} ogImage={ogImage}>
+  <div class="wiki-page">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Wiki Home</a>
+          <span class="breadcrumb-sep">›</span>
+          <a href={`/${sectionSlug}`}>{section?.name ?? sectionSlug}</a>
+          {title !== section?.name && (
+            <>
+              <span class="breadcrumb-sep">›</span>
+              <span class="breadcrumb-current">{title}</span>
+            </>
+          )}
+        </nav>
+      </div>
+    </div>
+
+    <div class="wiki-layout container">
+      <!-- Sidebar -->
+      <aside class="wiki-sidebar">
+        <div class="sidebar-section">
+          <p class="sidebar-title">{section?.name}</p>
+          {section?.subsections?.map(sub => (
+            <a
+              href={sub.href}
+              class:list={['sidebar-link', { active: currentPath === sub.href, 'desktop-only': sub.mobileHide }]}
+            >
+              {sub.label}
+            </a>
+          ))}
+        </div>
+        <div class="sidebar-section sidebar-all-sections">
+          <button class="sidebar-toggle" id="sections-toggle" aria-expanded="false">
+            <span>All Sections</span>
+            <span class="toggle-arrow">▼</span>
+          </button>
+          <div class="sidebar-collapsible" id="sections-collapsible">
+            {sections.map(s => (
+              <a
+                href={`/${s.slug}`}
+                class:list={['sidebar-link', { active: s.slug === sectionSlug && currentPath === `/${sectionSlug}` }]}
+              >
+                <span class="sidebar-icon">{s.icon}</span> {s.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <article class="wiki-main">
+        <slot />
+      </article>
+    </div>
+  </div>
+<div class="lightbox-overlay" id="lightbox" aria-hidden="true">
+  <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+</div>
+
+<script>
+  // Restore scroll position after a swipe navigation
+  const savedScroll = sessionStorage.getItem('swipe-scroll');
+  if (savedScroll !== null) {
+    sessionStorage.removeItem('swipe-scroll');
+    window.scrollTo({ top: parseInt(savedScroll, 10), behavior: 'instant' });
+  }
+
+  const toggle = document.getElementById('sections-toggle');
+  const collapsible = document.getElementById('sections-collapsible');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    collapsible?.classList.toggle('open');
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox') as HTMLElement;
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+
+  document.querySelectorAll<HTMLImageElement>('.card-img, .enemy-infobox-img, .infobox-artefact-img').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  lightbox?.addEventListener('click', (e) => {
+    if (!lbWasDragged) closeLightbox();
+    lbWasDragged = false;
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  function closeLightbox() {
+    lightboxImg.style.transition = '';
+    lightboxImg.style.transform = '';
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Lightbox touch — image follows finger in all directions, fast swipe closes
+  let lbStartX = 0, lbStartY = 0, lbTracking = false, lbWasDragged = false;
+  const LB_VELOCITY = 0.35;
+  let lbMoves: Array<{ x: number; y: number; t: number }> = [];
+
+  lightbox.addEventListener('touchstart', (e) => {
+    lbStartX = e.touches[0].clientX;
+    lbStartY = e.touches[0].clientY;
+    lbTracking = false;
+    lbWasDragged = false;
+    lbMoves = [];
+    lightboxImg.style.transition = 'none';
+  }, { passive: true });
+
+  lightbox.addEventListener('touchmove', (e) => {
+    const dx = e.touches[0].clientX - lbStartX;
+    const dy = e.touches[0].clientY - lbStartY;
+    if (!lbTracking) {
+      if (Math.sqrt(dx * dx + dy * dy) < 6) return;
+      lbTracking = true;
+    }
+    e.preventDefault();
+    lbWasDragged = true;
+    lbMoves.push({ x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() });
+    lbMoves = lbMoves.filter(m => m.t >= Date.now() - 120);
+    // Rotation follows horizontal drag; slight extra tilt from vertical for a natural feel
+    const rot = dx * 0.018 + dy * 0.004;
+    lightboxImg.style.transform = `translateX(${dx}px) translateY(${dy}px) rotate(${rot}deg)`;
+  }, { passive: false });
+
+  lightbox.addEventListener('touchend', () => {
+    if (!lbTracking) return;
+    let vx = 0, vy = 0;
+    if (lbMoves.length >= 2) {
+      const first = lbMoves[0], last = lbMoves[lbMoves.length - 1];
+      const dt = last.t - first.t;
+      if (dt > 0) { vx = (last.x - first.x) / dt; vy = (last.y - first.y) / dt; }
+    }
+    const speed = Math.sqrt(vx * vx + vy * vy);
+    if (speed >= LB_VELOCITY) {
+      // Fly off in the direction of the throw
+      const scale = 160 / (speed || 1);
+      lightboxImg.style.transition = 'transform 0.22s ease-in';
+      lightboxImg.style.transform = `translateX(${vx * scale}px) translateY(${vy * scale}px) rotate(${vx * 0.4}deg)`;
+      setTimeout(closeLightbox, 200);
+    } else {
+      lightboxImg.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      lightboxImg.style.transform = '';
+    }
+  }, { passive: true });
+
+  // Swipe navigation (mobile) — covers all prev/next nav patterns on the site
+  const navSelectors = [
+    { container: '.card-nav',     prev: '.card-nav-item:not(.card-nav-item--next)',         next: '.card-nav-item--next' },
+    { container: '.artefact-nav', prev: '.artefact-nav-card:not(.artefact-nav-card--next)', next: '.artefact-nav-card--next' },
+    { container: '.enemy-nav',    prev: '.enemy-nav-card:not(.enemy-nav-card--next)',        next: '.enemy-nav-card--next' },
+    { container: '.char-nav',     prev: '.char-nav-card:not(.char-nav-card--next)',          next: '.char-nav-card--next' },
+  ];
+
+  function findVisibleEl(selector: string): HTMLElement | null {
+    return [...document.querySelectorAll<HTMLElement>(selector)]
+      .find(el => getComputedStyle(el).display !== 'none') ?? null;
+  }
+
+  const activeNav = navSelectors.find(n => findVisibleEl(n.container));
+
+  if (activeNav) {
+    // Disable browser swipe-back only on pages with custom swipe nav
+    document.documentElement.style.overscrollBehaviorX = 'none';
+
+    const navEl = findVisibleEl(activeNav.container)!;
+
+    // Card pages: drag the card art. Artefact/other pages: drag the whole infobox.
+    const dragImg = document.querySelector<HTMLElement>('.card-img')
+      ?? document.querySelector<HTMLElement>('.infobox');
+
+    // Build hint badges — use nav item images if available, else fall back to arrows
+    const wikiMain = document.querySelector<HTMLElement>('.wiki-main');
+    const hintPrev = document.createElement('div');
+    hintPrev.className = 'swipe-hint swipe-hint--prev';
+    const hintNext = document.createElement('div');
+    hintNext.className = 'swipe-hint swipe-hint--next';
+
+    function buildHintContent(navSelector: string, fallback: string): string {
+      const link = navEl.querySelector<HTMLAnchorElement>(navSelector);
+      const img = link?.querySelector<HTMLImageElement>('img');
+      if (img?.src) {
+        return `<img src="${img.src}" alt="" class="swipe-hint-img" />`;
+      }
+      return fallback;
+    }
+
+    hintPrev.innerHTML = buildHintContent(activeNav.prev, '←');
+    hintNext.innerHTML = buildHintContent(activeNav.next, '→');
+
+    wikiMain?.appendChild(hintPrev);
+    wikiMain?.appendChild(hintNext);
+
+    // Position hints vertically centred on the card image
+    function positionHints() {
+      if (!dragImg || !wikiMain) return;
+      const imgTop = dragImg.offsetTop + dragImg.offsetHeight / 2;
+      hintPrev.style.top = `${imgTop}px`;
+      hintNext.style.top = `${imgTop}px`;
+    }
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchActive = false;
+    let tracking = false;
+    let recentMoves: Array<{ x: number; t: number }> = [];
+    let navTimeout: number | null = null;
+
+    const VELOCITY_THRESHOLD = 0.35; // px/ms — must flick to navigate
+
+    // Cancel any pending navigation when the page is suspended (bfcache)
+    window.addEventListener('pagehide', () => {
+      if (navTimeout !== null) { clearTimeout(navTimeout); navTimeout = null; }
+    });
+
+    // Reset all drag state when restored from bfcache so input isn't frozen
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) {
+        touchActive = false;
+        tracking = false;
+        recentMoves = [];
+        if (dragImg) { dragImg.style.transition = ''; dragImg.style.transform = ''; }
+        hintPrev.style.opacity = '0';
+        hintNext.style.opacity = '0';
+      }
+    });
+
+    function snapBack() {
+      if (dragImg) {
+        dragImg.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        dragImg.style.transform = '';
+      }
+      hintPrev.style.opacity = '0';
+      hintNext.style.opacity = '0';
+    }
+
+    // Only initiate drag when touch starts on the card image (if present),
+    // otherwise track from anywhere for pages without a drag image.
+    const touchTarget = dragImg ?? document;
+
+    touchTarget.addEventListener('touchstart', (e: Event) => {
+      if (lightbox.classList.contains('open')) return;
+      const touch = (e as TouchEvent).touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      touchActive = true;
+      tracking = false;
+      recentMoves = [];
+      positionHints();
+      if (dragImg) dragImg.style.transition = 'none';
+    }, { passive: true });
+
+    // Also reset touchActive on any touchstart that didn't hit the drag target
+    document.addEventListener('touchstart', (e) => {
+      if (dragImg && !dragImg.contains(e.target as Node)) {
+        touchActive = false;
+      }
+    }, { passive: true });
+
+    // Non-passive listener so we can preventDefault to lock vertical scroll
+    document.addEventListener('touchmove', (e) => {
+      if (lightbox.classList.contains('open')) return;
+      if (!touchActive) return; // ignore touches that didn't start on drag target
+
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+
+      if (!tracking) {
+        if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+        if (Math.abs(dx) <= Math.abs(dy) * 1.2) return; // bail on vertical
+        tracking = true;
+      }
+
+      // Lock scroll once we've confirmed a horizontal gesture
+      e.preventDefault();
+
+      // Record recent moves for velocity
+      recentMoves.push({ x: e.touches[0].clientX, t: Date.now() });
+      const cutoff = Date.now() - 120;
+      recentMoves = recentMoves.filter(m => m.t >= cutoff);
+
+      if (dragImg) {
+        dragImg.style.transition = 'none';
+        dragImg.style.transform = `translateX(${dx}px) rotate(${dx * 0.025}deg)`;
+      }
+
+      const progress = Math.min(Math.abs(dx) / 80, 1);
+      const prevLink = navEl.querySelector(activeNav.prev);
+      const nextLink = navEl.querySelector(activeNav.next);
+      if (dx > 0 && prevLink) {
+        hintPrev.style.opacity = String(progress);
+        hintNext.style.opacity = '0';
+      } else if (dx < 0 && nextLink) {
+        hintNext.style.opacity = String(progress);
+        hintPrev.style.opacity = '0';
+      } else {
+        hintPrev.style.opacity = '0';
+        hintNext.style.opacity = '0';
+      }
+    }, { passive: false });
+
+    document.addEventListener('touchend', () => { touchActive = false; }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      if (lightbox.classList.contains('open')) return;
+      if (!tracking) return;
+
+      // Calculate velocity from last 120ms of moves
+      let velocity = 0;
+      if (recentMoves.length >= 2) {
+        const first = recentMoves[0];
+        const last = recentMoves[recentMoves.length - 1];
+        const dt = last.t - first.t;
+        if (dt > 0) velocity = (last.x - first.x) / dt;
+      }
+
+      if (Math.abs(velocity) < VELOCITY_THRESHOLD) {
+        snapBack();
+        return;
+      }
+
+      const prevLink = navEl.querySelector<HTMLAnchorElement>(activeNav.prev);
+      const nextLink = navEl.querySelector<HTMLAnchorElement>(activeNav.next);
+
+      if (velocity > 0 && prevLink) {
+        if (dragImg) {
+          dragImg.style.transition = 'transform 0.22s ease-in';
+          dragImg.style.transform = 'translateX(160%) rotate(20deg)';
+        }
+        hintPrev.style.opacity = '0';
+        sessionStorage.setItem('swipe-scroll', String(window.scrollY));
+        navTimeout = window.setTimeout(() => { navTimeout = null; window.location.href = prevLink.href; }, 200);
+      } else if (velocity < 0 && nextLink) {
+        if (dragImg) {
+          dragImg.style.transition = 'transform 0.22s ease-in';
+          dragImg.style.transform = 'translateX(-160%) rotate(-20deg)';
+        }
+        hintNext.style.opacity = '0';
+        sessionStorage.setItem('swipe-scroll', String(window.scrollY));
+        navTimeout = window.setTimeout(() => { navTimeout = null; window.location.href = nextLink.href; }, 200);
+      } else {
+        snapBack();
+      }
+    }, { passive: true });
+  }
+</script>
+
+</BaseLayout>
+
+<style>
+  .wiki-page {
+    min-height: calc(100vh - var(--header-height));
+  }
+
+  .breadcrumb-bar {
+    background: var(--navy);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  .breadcrumb a {
+    color: rgba(255,255,255,0.6);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--gold);
+  }
+
+  .breadcrumb-sep {
+    color: rgba(255,255,255,0.3);
+  }
+
+  .breadcrumb-current {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .wiki-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    gap: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    align-items: start;
+  }
+
+  .wiki-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + 1rem);
+    background: var(--sidebar-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .sidebar-section {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .sidebar-section:last-child {
+    border-bottom: none;
+  }
+
+  .sidebar-title {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0.75rem 1rem 0.3rem;
+    margin: 0;
+  }
+
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    color: rgba(255,255,255,0.65);
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: background 0.15s, color 0.15s;
+    text-decoration: none;
+  }
+
+  .sidebar-link:hover {
+    background: rgba(255,255,255,0.06);
+    color: var(--white);
+  }
+
+  .sidebar-link.active {
+    background: rgba(240,168,0,0.15);
+    color: var(--gold);
+  }
+
+  .sidebar-icon {
+    font-size: 0.9rem;
+    width: 1.2rem;
+    text-align: center;
+  }
+
+  .sidebar-all-sections {
+    display: none;
+  }
+
+  .sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.75rem 1rem 0.3rem;
+    color: var(--gold);
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .toggle-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+  }
+
+  .sidebar-toggle[aria-expanded="true"] .toggle-arrow {
+    transform: rotate(180deg);
+  }
+
+  .sidebar-collapsible {
+    display: none;
+  }
+
+  .sidebar-collapsible.open {
+    display: block;
+  }
+
+  .wiki-main {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2rem 2.5rem;
+    border: 1px solid var(--border);
+    min-height: 400px;
+  }
+
+  @media (max-width: 900px) {
+    .wiki-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .wiki-sidebar {
+      position: static;
+    }
+
+    .sidebar-all-sections {
+      display: block;
+    }
+
+    .desktop-only {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wiki-main {
+      padding: 1.25rem 1rem;
+    }
+  }
+
+  /* wiki-main needs position:relative for absolutely-positioned swipe hints */
+  .wiki-main {
+    position: relative;
+  }
+</style>

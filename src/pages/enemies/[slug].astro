@@ -1,0 +1,161 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { enemies } from '../../data/enemies';
+
+export function getStaticPaths() {
+  return enemies.map(e => ({ params: { slug: e.slug }, props: { enemy: e } }));
+}
+
+const { enemy } = Astro.props;
+const index = enemies.findIndex(e => e.slug === enemy.slug);
+const prev = index > 0 ? enemies[index - 1] : enemies[enemies.length - 1];
+const next = index < enemies.length - 1 ? enemies[index + 1] : enemies[0];
+const metaDescription = `${enemy.name} is ${enemy.boss ? 'a boss enemy' : 'an enemy'} in Davy Jones' Deckhand. Learn their attack patterns and how to survive this encounter in the pirate roguelike deckbuilder.`;
+---
+<WikiLayout title={enemy.name} section="enemies" description={metaDescription} ogImage={enemy.image}>
+  <div class="wiki-content">
+    <div class="infobox">
+      <div class="infobox-title">{enemy.name}</div>
+      {enemy.boss && <div class="boss-badge">Boss</div>}
+      {enemy.images
+        ? <div class="enemy-infobox-imgs">{enemy.images.map(img => <img src={img} alt={enemy.name} class="enemy-infobox-img" />)}</div>
+        : enemy.image
+          ? <img src={enemy.image} alt={enemy.name} class="enemy-infobox-img" />
+          : <div class="infobox-image-placeholder">⚔</div>
+      }
+      <table>
+        {enemy.hp && <tr><td>HP</td><td>{enemy.hp}</td></tr>}
+      </table>
+    </div>
+
+    <h1>{enemy.name}</h1>
+    <div class="stub-notice">More detail about this enemy will be added as the game develops.</div>
+
+    <div class="enemy-nav">
+      <a href={`/enemies/${prev.slug}`} class="enemy-nav-card">
+        {prev.image && <img src={prev.image} alt={prev.name} />}
+        <span>← {prev.name}</span>
+      </a>
+      <a href="/enemies" class="enemy-nav-all">All Enemies</a>
+      <a href={`/enemies/${next.slug}`} class="enemy-nav-card enemy-nav-card--next">
+        {next.image && <img src={next.image} alt={next.name} />}
+        <span>{next.name} →</span>
+      </a>
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  .boss-badge {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    margin: 0.25rem auto 0;
+    text-align: center;
+  }
+
+  .enemy-infobox-img {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin: 1rem auto;
+  }
+
+  .enemy-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    clear: both;
+  }
+
+  .enemy-nav-card {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s;
+    max-width: 220px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .enemy-nav-card span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .enemy-nav-card:hover {
+    border-color: var(--gold);
+    background: rgba(240, 168, 0, 0.06);
+    color: var(--text);
+  }
+
+  .enemy-nav-card img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .enemy-nav-card--next {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .enemy-nav-all {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .enemy-nav-all:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    .enemy-nav {
+      flex-wrap: wrap;
+    }
+
+    .enemy-nav-all {
+      order: -1;
+      width: 100%;
+      text-align: center;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem;
+    }
+
+    .enemy-nav-card {
+      flex: 1;
+      max-width: 100%;
+    }
+
+    .enemy-nav-card--next {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+</style>

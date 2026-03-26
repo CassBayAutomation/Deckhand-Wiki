@@ -1,0 +1,20 @@
+[
+  ["Asset index", "Title", "Stamina Cost", "Counter-attack Damage", "Max Parry", "Attack Damage", "Description", "Counter-Attack Type"],
+  ["47", "Cavalry", "2", "18", "6", "8", "PIERCING PARRY", "Piercing"],
+  ["48", "Sloppy Joe", "0", "16", "6", "5", "", "Standard"],
+  ["49", "The Crane", "1", "18", "8", "3", "Starts with 50% of MAX PARRY applied", "Standard"],
+  ["50", "The Emu", "3", "15", "4", "8", "STEADY PARRY", "Steady"],
+  ["51", "Wet Rag", "0", "16", "10", "4", "+3 HP when played", "Steady"],
+  ["52", "Cavalry", "2", "18", "6", "8", "PIERCING PARRY", "Piercing"],
+  ["53", "Sloppy Joe", "0", "16", "6", "5", "", "Standard"],
+  ["54", "The Crane", "1", "18", "8", "3", "Starts with 50% of MAX PARRY applied", "Standard"],
+  ["55", "The Emu", "3", "15", "4", "8", "STEADY PARRY", "Steady"],
+  ["56", "Wet Rag", "0", "16", "10", "4", "+3 HP when played", "Steady"],
+  ["57", "The Bastion", "2", "14", "7", "7", "Apply 1 OPEN to all enemies when played\nand 2 when stance BREAK's", "Standard"],
+  ["58", "Iaidō", "3", "24", "5", "3", "Gains LEEWAY when played\nand STRENGTH on counter-attack", "Piercing"],
+  ["59", "Middle Guard", "0", "16", "9", "6", "", "Standard"],
+  ["60", "The Crane", "1", "20", "8", "5", "Starts with 50% of MAX PARRY applied", "Standard"],
+  ["61", "The Rooster", "0", "18", "8", "5", "Gain 1 STAMINA when played", "Standard"],
+  ["62", "The Viper", "2", "18", "8", "6", "While PARRY meter is at or below 50% of max, all attacks bypass armor", "Piercing"],
+  ["63", "Vom Tag", "1", "18", "5", "2", "Starts with 3 STRENGTH", "Steady"]
+]

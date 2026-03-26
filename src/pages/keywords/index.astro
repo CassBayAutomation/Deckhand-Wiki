@@ -1,0 +1,95 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { keywords } from '../../data/keywords';
+import { linkKeywords } from '../../utils/linkKeywords';
+---
+<WikiLayout title="Keywords" section="keywords" description="Glossary of keywords in Davy Jones' Deckhand. Learn what Parry, Exhaust, Combo, Poise, and every other card and combat term means in this pirate roguelike deckbuilder.">
+  <div class="wiki-content">
+    <h1>Keywords</h1>
+    <p>Keywords are terms that appear throughout the game — on cards, status effects, artefacts, and elsewhere — to describe special rules and mechanics. Each keyword has a consistent meaning wherever it appears.</p>
+    <div class="stub-notice">More keywords will be documented as the game develops.</div>
+
+    <table class="keywords-table icon-list-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Keyword</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {keywords.map(kw => (
+          <tr>
+            <td class="keyword-icon-cell">
+              {kw.image && <img src={kw.image} alt={kw.name} />}
+            </td>
+            <td class="keyword-name-cell">
+              <span id={kw.slug} class="keyword-anchor"></span>
+              <strong>{kw.name}</strong>
+              {kw.variant && <span class="keyword-variant">{kw.variant}</span>}
+              {kw.statusEffect && <span class="keyword-status-tag">Status Effect</span>}
+            </td>
+            <td set:html={linkKeywords(kw.description, kw.slug)} />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</WikiLayout>
+
+<style>
+  .keywords-table .keyword-icon-cell {
+    width: 48px;
+    padding: 4px 8px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .keywords-table .keyword-icon-cell img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .keyword-name-cell {
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .keyword-anchor {
+    display: block;
+    visibility: hidden;
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
+
+  .keyword-variant {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--border);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+  }
+
+  .keyword-status-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--sky);
+    background: rgba(75, 184, 232, 0.15);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+  }
+
+</style>

@@ -1,0 +1,88 @@
+---
+import { devlogEntries } from '../data/devlog';
+
+interface Props {
+  currentSlug: string;
+}
+
+const { currentSlug } = Astro.props;
+const idx = devlogEntries.findIndex(e => e.slug === currentSlug);
+const prev = idx > 0 ? devlogEntries[idx - 1] : null;
+const next = idx < devlogEntries.length - 1 ? devlogEntries[idx + 1] : null;
+---
+
+{(prev || next) && (
+  <nav class="devlog-nav">
+    <div class="devlog-nav-item devlog-nav-prev">
+      {prev && (
+        <a href={`/devlog/${prev.slug}`}>
+          <span class="nav-dir">← Previous</span>
+          <span class="nav-title">{prev.date}: {prev.title}</span>
+        </a>
+      )}
+    </div>
+    <div class="devlog-nav-item devlog-nav-next">
+      {next && (
+        <a href={`/devlog/${next.slug}`}>
+          <span class="nav-dir">Next →</span>
+          <span class="nav-title">{next.date}: {next.title}</span>
+        </a>
+      )}
+    </div>
+  </nav>
+)}
+
+<style>
+  .devlog-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .devlog-nav-item {
+    flex: 1;
+  }
+
+  .devlog-nav-next {
+    text-align: right;
+  }
+
+  .devlog-nav-item a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    color: var(--text);
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .devlog-nav-item a:hover {
+    border-color: var(--gold);
+    background: rgba(240, 168, 0, 0.04);
+    color: var(--text);
+  }
+
+  .nav-dir {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+
+  .nav-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .devlog-nav-next a {
+    align-items: flex-end;
+  }
+</style>

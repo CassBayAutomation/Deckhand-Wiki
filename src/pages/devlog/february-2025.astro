@@ -1,0 +1,125 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — February 2025"
+  section="devlog"
+  description="A huge update is coming — path finding, wave-based encounters, artefacts, card removal, a new HUD, and a combat screen glow-up."
+  ogImage="/images/devlog/february-2025/thumbnail.jpg"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">February 2025</span>
+    </div>
+
+    <h1>A huge update is coming! 🎮</h1>
+
+    <h2>Voyage overhaul</h2>
+    <p>We have been hunkering down over the past month. Usually we have multiple new internal builds circulating every week, but this month Ben has been buried in one of those programming refactors that feels like a heart surgery, or like you're digging the foundation right out from under the house and replacing it. There's this awful period where EVERYTHING is broken until the job is complete. Well, it's complete! And we've emerged with some major updates which we look forward to sharing with play testers soon.</p>
+
+    <ul>
+      <li>✅ Path finding (pick your next encounter through your telescope)</li>
+      <li>✅ Wave-based encounters (choose a ship, clear a ship, choose the next!)</li>
+      <li>✅ Weapon and cargo selection (this influences your starter deck and starter relics)</li>
+      <li>✅ Artefacts (relics!) These totally change the game!</li>
+      <li>✅ Card removal</li>
+      <li>✅ New player HUD</li>
+      <li>✅ Seeded randomization</li>
+    </ul>
+
+    <img src="/images/devlog/february-2025/chose-path-telescope.jpg" alt="Choose your path based on enemy faction, combat count and major rewards" class="devlog-img" />
+    <p class="img-caption">Choose your path based on enemy faction, combat count and major rewards.</p>
+
+    <img src="/images/devlog/february-2025/inventory.jpg" alt="Cargo and loadout selection screen" class="devlog-img" />
+    <p class="img-caption">Before setting sail you can fill cargo slots with consumables and artefacts from your permanent inventory to access during your run. Choose wisely as there's no changing these mid-voyage!</p>
+
+    <h2>Combat screen glow-up!</h2>
+    <p>Tepene has been hard at work replacing the player dashboard elements with closer-to-final artwork and it looks stunning. He's also created a huge amount of artefact and consumable designs, new ship backgrounds, the entire telescope scene, and yet-to-be-implemented buttons and panels.</p>
+
+    <img src="/images/devlog/february-2025/before-after.jpg" alt="New combat screen artwork by Tepene" class="devlog-img" />
+
+    <h2>New characters and weapons</h2>
+    <p>Nik has been smashing out some amazing characters. Here's a taste of what's new!</p>
+
+    <img src="/images/devlog/february-2025/new-characters.jpg" alt="New character art by Nik Scarr" class="devlog-img" />
+
+    <p><strong>And check out this timelapse Nik made</strong> of his process creating weapons for the selection screen. This clip also features an exciting new piece of the original soundtrack by composer Ewan Clark.</p>
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/eO8LngFiITY" title="Weapon Selection Screen — Art process timelapse — Davy Jones Deckhand" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <h2>What's next?</h2>
+    <p>We're gearing up to launch our Steam page in 4–6 weeks, along with an announcement trailer! We are also working hard to get a playtest update tested and ready, so that players can try out all the new changes.</p>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="february-2025" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .img-caption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: -0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin: 1.25rem 0;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

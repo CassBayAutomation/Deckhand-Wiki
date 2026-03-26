@@ -1,0 +1,166 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { linkKeywords } from '../../utils/linkKeywords';
+import { getAllCards } from '../../lib/cards.js';
+
+const { attack, technique, advantage, curse, stances } = getAllCards();
+const allCards = [
+  ...attack.map(c => ({ ...c, type: 'attack',    href: `/cards/attack/${c.slug}` })),
+  ...technique.map(c => ({ ...c, type: 'technique', href: `/cards/technique/${c.slug}` })),
+  ...advantage.map(c => ({ ...c, type: 'advantage', href: `/cards/advantage/${c.slug}` })),
+  ...curse.map(c => ({ ...c, type: 'curse',     href: `/cards/curse/${c.slug}` })),
+  ...stances.map(c => ({ ...c, type: 'stance',   href: `/cards/stances/${c.slug}` })),
+].sort((a, b) => a.title.localeCompare(b.title));
+---
+
+<WikiLayout title="Cards" section="cards" description="Every card type in Davy Jones' Deckhand explained — Attacks, Techniques, Advantages, and Curses. Build the perfect deck in this pirate roguelike deckbuilder.">
+  <div class="wiki-content">
+    <h1>Cards</h1>
+    <p>
+      Cards are the core of Davy Jones' Deckhand's combat system. During each voyage you'll build a deck
+      by collecting cards from combat rewards, shops, and special events. Your starting deck is defined
+      by your chosen weapon.
+    </p>
+    <p>Cards are divided into five types:</p>
+    <div class="card-types">
+      <div class="card-type-item">
+        <a href="/cards/attack" class="card-type-link" aria-label="Attack cards"></a>
+        <span class="tag tag-attack">Attack</span>
+        <p>These target enemies and trigger the attacks of your active stances.</p>
+      </div>
+      <div class="card-type-item">
+        <a href="/cards/technique" class="card-type-link" aria-label="Technique cards"></a>
+        <span class="tag tag-technique">Technique</span>
+        <p set:html={linkKeywords('Apply parry points and other effects to your active stances.')} />
+      </div>
+      <div class="card-type-item">
+        <a href="/cards/advantage" class="card-type-link" aria-label="Advantage cards"></a>
+        <span class="tag tag-advantage">Advantage</span>
+        <p>Turn the tides of battle by inflicting status effects on enemies and other combat-altering actions.</p>
+      </div>
+      <div class="card-type-item">
+        <a href="/cards/curse" class="card-type-link" aria-label="Curse cards"></a>
+        <span class="tag tag-curse">Curse</span>
+        <p>Negative cards forced into your deck — including The Black Spot.</p>
+      </div>
+      <div class="card-type-item">
+        <a href="/cards/stances" class="card-type-link" aria-label="Stance cards"></a>
+        <span class="tag tag-stance">Stance</span>
+        <p>Played to your stance slots — each defines your parry pool, attack damage, and counter-attack behaviour.</p>
+      </div>
+    </div>
+    <p>See also: <a href="/keywords">Keywords</a> for a full glossary of terms like <span set:html={linkKeywords('EXHAUST')} />.</p>
+
+    <h2>All Cards</h2>
+    <p class="all-cards-count">{allCards.length} cards, sorted alphabetically.</p>
+    <div class="all-cards-grid">
+      {allCards.map(card => (
+        <a href={card.href} class="all-cards-item">
+          <img src={card.image} alt={card.title} />
+          <span class="all-cards-name">{card.title}</span>
+          <span class={`tag tag-${card.type}`}>{card.type === 'stance' ? 'Stance' : card.type.charAt(0).toUpperCase() + card.type.slice(1)}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  .card-types {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .card-type-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 0.2s;
+  }
+
+  .card-type-item:hover {
+    border-color: var(--gold);
+  }
+
+  .card-type-link {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .card-type-item .keyword-tip {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-type-item p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .card-types { grid-template-columns: 1fr; }
+  }
+
+  .all-cards-count {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .all-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .all-cards-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--text);
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+    text-align: center;
+  }
+
+  .all-cards-item:hover {
+    border-color: var(--gold);
+    background: rgba(240, 168, 0, 0.05);
+  }
+
+  .all-cards-item img {
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  .all-cards-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .all-cards-item .tag {
+    font-size: 0.65rem;
+    padding: 0.1rem 0.4rem;
+    margin-top: auto;
+  }
+</style>

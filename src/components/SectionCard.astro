@@ -1,0 +1,84 @@
+---
+interface Props {
+  name: string;
+  slug: string;
+  description: string;
+  icon: string;
+}
+const { name, slug, description, icon } = Astro.props;
+---
+
+<a href={`/${slug}`} class="section-card">
+  <div class="card-icon">{icon}</div>
+  <div class="card-body">
+    <h3 class="card-name">{name}</h3>
+    <p class="card-desc">{description}</p>
+  </div>
+  <span class="card-arrow">→</span>
+</a>
+
+<style>
+  .section-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+
+  .section-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(240, 168, 0, 0.15);
+    color: var(--text);
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy);
+    border-radius: 6px;
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .card-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-name {
+    font-size: 1.35rem;
+    color: var(--navy);
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.04em;
+  }
+
+  .card-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .card-arrow {
+    font-size: 1.4rem;
+    color: var(--border);
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .section-card:hover .card-arrow {
+    color: var(--gold);
+    transform: translateX(3px);
+  }
+</style>

@@ -1,0 +1,118 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+
+<WikiLayout title="Characters" section="characters" description="Meet the characters of Davy Jones' Deckhand — Thomas Essex, Davy Jones, Mary Read, and the full cast of this pirate roguelike deckbuilder. Backstories, lore, and key relationships.">
+  <div class="wiki-content">
+    <h1>Characters</h1>
+    <p class="lead">
+      Davy Jones' Deckhand is driven by a cast of richly detailed characters — the reluctant hero,
+      the cursed immortal, the pirate queen who never stopped running, and the girl who saw Tom
+      when no one else did.
+    </p>
+
+    <div class="character-grid">
+      <a href="/characters/thomas-essex" class="character-card">
+        <img src="/images/characters/thomas-essex-thumb.png" alt="Thomas Essex" class="char-img" />
+        <div class="char-info">
+          <h3>Thomas Essex</h3>
+          <p>A 17-year-old Portsmouth deckhand murdered by pirates, resurrected as Davy Jones' agent. Relentlessly optimistic, desperately hungry to be seen.</p>
+          <span class="char-role">Protagonist</span>
+        </div>
+      </a>
+      <a href="/characters/davy-jones" class="character-card">
+        <img src="/images/characters/davy-jones.png" alt="Davy Jones" class="char-img" />
+        <div class="char-info">
+          <h3>Davy Jones</h3>
+          <p>A centuries-old immortal captain bound to the ocean depths, burning with stolen whale-oil fire. Ancient, terrible, and still desperately in love.</p>
+          <span class="char-role">Antagonist / Employer</span>
+        </div>
+      </a>
+      <a href="/characters/mary-read" class="character-card">
+        <img src="/images/characters/mary-read.png" alt="Mary Read" class="char-img" />
+        <div class="char-info">
+          <h3>Mary Read</h3>
+          <p>Born Grace O'Malley, the Irish Pirate Queen. Around 190 years old, perpetually young, and still running from what she did to Davy Jones.</p>
+          <span class="char-role">Antagonist</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  .lead {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .character-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .character-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    background: var(--off-white);
+    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+
+  .character-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(240,168,0,0.15);
+    color: var(--text);
+  }
+
+  .char-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .char-info h3 {
+    font-size: 1.2rem;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .char-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .char-role {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  .character-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 600px) {
+    .character-grid { grid-template-columns: 1fr; }
+  }
+</style>

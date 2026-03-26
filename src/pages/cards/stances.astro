@@ -1,0 +1,67 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { getStanceCards } from '../../lib/cards.js';
+
+const cards = getStanceCards();
+---
+<WikiLayout title="Stance Cards" section="cards" description="Browse all stance cards in Davy Jones' Deckhand, grouped by weapon. Each stance defines your parry pool, counter-attack type, and combat posture.">
+  <div class="wiki-content">
+    <h1>Stance Cards</h1>
+    <p>Stance cards are played to your stance slots, defining your defensive and offensive posture in combat. Each stance has its own parry pool, attack damage, and counter-attack behaviour.</p>
+
+    <div class="card-grid">
+      {cards.map(card => (
+        <a href={`/cards/stances/${card.slug}?from=stances`} class="card-thumb">
+          <img src={card.image} alt={card.title} loading="lazy" />
+          <span class="card-thumb-name">{card.title}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .card-thumb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .card-thumb img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .card-thumb:hover img {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .card-thumb-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 600px) {
+    .card-grid {
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 0.75rem;
+    }
+  }
+</style>

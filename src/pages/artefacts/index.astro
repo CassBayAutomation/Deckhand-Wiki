@@ -1,0 +1,81 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { artefacts } from '../../data/artefacts';
+import { linkKeywords } from '../../utils/linkKeywords';
+---
+<WikiLayout title="Artefacts" section="artefacts" ogImage="/images/artefacts/lantern.png" description="Complete artefact list for Davy Jones' Deckhand. Every passive item with base and upgraded effects — find the best artefact synergies to power your pirate roguelike deckbuilder run.">
+  <div class="wiki-content">
+    <h1>Artefacts</h1>
+    <p>
+      Artefacts are powerful items that apply passive buffs for the duration of a voyage. They are collected
+      as rewards during voyages or purchased at island vendors, and stored in your permanent inventory.
+    </p>
+    <p>
+      Before each voyage you select which artefacts to bring in your limited <strong>cargo slots</strong>.
+      Choosing the right artefacts and finding synergies with your planned deck strategy is a major part
+      of the game's meta-progression.
+    </p>
+
+    <table class="artefacts-table icon-list-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Effect</th>
+          <th>Upgraded Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        {artefacts.map(a => (
+          <tr>
+            <td class="artefact-img-cell">
+              {a.image && <img src={a.image} alt={a.name} />}
+            </td>
+            <td><span id={a.slug} class="artefact-anchor"></span><a href={`/artefacts/${a.slug}`}>{a.name}</a></td>
+            <td set:html={linkKeywords(a.effect)} />
+            <td set:html={linkKeywords(a.upgradedEffect)} />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <p>See also: <a href="/weapons">Weapons</a> | <a href="/cards">Cards</a></p>
+  </div>
+</WikiLayout>
+
+<style>
+  .artefacts-table .artefact-img-cell {
+    width: 48px;
+    padding: 4px 8px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .artefacts-table .artefact-img-cell img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .artefact-anchor {
+    display: block;
+    visibility: hidden;
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
+
+  @media (max-width: 640px) {
+    .artefacts-table td:nth-child(3)::before {
+      content: 'Effect: ';
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .artefacts-table td:nth-child(4)::before {
+      content: 'Upgraded: ';
+      font-weight: 700;
+      color: var(--text);
+    }
+  }
+</style>

@@ -1,0 +1,183 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+
+const links = [
+  {
+    label: 'Join our Discord',
+    description: 'Chat with the devs and fellow pirates.',
+    href: 'https://discord.com/invite/Es3BsqFHxH',
+    icon: '💬',
+    style: 'discord',
+  },
+  {
+    label: 'Playtest Sign-up',
+    description: 'Get early access and help shape the game.',
+    href: 'https://forms.gle/4RetBqykPNTjbVRU9',
+    icon: '🎮',
+    style: 'primary',
+  },
+  {
+    label: 'Wishlist on Steam',
+    description: 'Support the game by wishlisting on Steam.',
+    href: 'https://store.steampowered.com/app/3544900/Davy_Jones_Deckhand/?utm_source=wiki&utm_medium=website&utm_campaign=about',
+    icon: '☆',
+    style: 'steam',
+  },
+  {
+    label: 'Newsletter',
+    description: 'Stay up to date with development news.',
+    href: 'https://cassbaygames.m-pages.com/newsletter',
+    icon: '✉',
+    style: 'secondary',
+  },
+  {
+    label: 'Press Kit',
+    description: 'Assets and info for press and content creators.',
+    href: 'https://drive.google.com/drive/folders/1XmoALRW9qLpJQT5jtyRO8pzWFnz0K7Fm?usp=sharing',
+    icon: '📰',
+    style: 'secondary',
+  },
+];
+---
+
+<WikiLayout title="About" section="about">
+  <div class="wiki-content">
+    <h1>Davy Jones' Deckhand</h1>
+    <p class="lead">
+      A swashbuckling pirate roguelike deckbuilder by <a href="https://www.cassbaygames.com" target="_blank" rel="noopener">Cass Bay Games</a>.
+    </p>
+
+    <p>
+      Break free from Davy Jones' Locker in this wild adventure where every voyage is a fresh challenge.
+      Craft the perfect deck, strategically fill your ship's cargo, and master the stance system to survive
+      voyages and hunt mythical beasts.
+    </p>
+
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/9CN9Q1Ha3Tk"
+        title="Davy Jones' Deckhand — trailer"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <h2>About the Game</h2>
+    <p>
+      Davy Jones' Deckhand is a deckbuilding roguelike with a counter-attack system that turns the genre
+      on its head — promoting precision and careful management of your character's fighting stance.
+    </p>
+    <ul>
+      <li><strong>Fresh spin on card combat</strong> — counter-attacks reward risky last-minute parries over tanky defence</li>
+      <li><strong>Game-changing loot</strong> — plunder powerful artefacts that synergise with your custom deck</li>
+      <li><strong>Discover new weapons</strong> — each weapon comes with its own starter deck and unique stances</li>
+      <li><strong>Endlessly replayable</strong> — procedurally generated voyages, NPC quests, and gauntlet challenges</li>
+    </ul>
+
+    <h2 id="get-involved">Get Involved</h2>
+    <div class="cta-grid">
+      {links.map(link => (
+        <a href={link.href} class={`cta-card cta-${link.style}`} target="_blank" rel="noopener">
+          <span class="cta-icon">{link.icon}</span>
+          <div>
+            <p class="cta-label">{link.label}</p>
+            <p class="cta-desc">{link.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <h2>About Cass Bay Games</h2>
+    <p>
+      Cass Bay Games is an indie game studio passionate about emergent gameplay combined with a playful spirit of adventure.
+      Visit <a href="https://www.cassbaygames.com" target="_blank" rel="noopener">cassbaygames.com</a> to learn more.
+    </p>
+  </div>
+</WikiLayout>
+
+<style>
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    margin: 1.5rem 0 2rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .cta-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.2s;
+    color: var(--white);
+  }
+
+  .cta-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    color: var(--white);
+  }
+
+  .cta-primary { background: var(--gold); color: var(--navy); }
+  .cta-primary:hover { color: var(--navy); }
+  .cta-steam { background: #1b2838; }
+  .cta-discord { background: #5865f2; }
+  .cta-secondary { background: var(--navy); }
+
+  .cta-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 2.5rem;
+    text-align: center;
+  }
+
+  .cta-label {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    margin: 0 0 0.1rem;
+    color: var(--white);
+  }
+
+  .cta-desc {
+    font-size: 0.8rem;
+    opacity: 0.75;
+    margin: 0;
+    color: var(--white);
+  }
+
+  .cta-primary .cta-label,
+  .cta-primary .cta-desc {
+    color: var(--navy);
+  }
+
+  @media (max-width: 600px) {
+    .cta-grid { grid-template-columns: 1fr; }
+  }
+</style>

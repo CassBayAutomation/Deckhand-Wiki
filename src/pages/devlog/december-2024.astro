@@ -1,0 +1,110 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — December 2024"
+  section="devlog"
+  description="Sign up to beta test Davy Jones' Deckhand, meet the sound and music crew, and a look back at a big first year for Cass Bay Games."
+  ogImage="/images/devlog/december-2024/thumbnail.jpg"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">December 2024</span>
+    </div>
+
+    <h1>Become a beta tester!</h1>
+
+    <h2>A great start to our maiden voyage</h2>
+    <p>Since we started development of <em>Davy Jones Deckhand</em> in late August we have playtested at two public gaming events, received a $40,000 CODE grant, and built over 80 versions of the game. Things are moving fast. In this newsletter you'll be able to check out some incredible work by the artists, meet our sound team, and register as a playtester!</p>
+    <p><em>Check out the process timelapse of our new main menu art below, and find more like this on our <a href="https://www.youtube.com/@CassBayGames" target="_blank" rel="noopener noreferrer">YouTube channel</a>...</em></p>
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/83_ooCU8AUQ" title="First look at dynamic music for Davy Jones Deckhand" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <h2>Our second public outing — The Canterbury Game Dev and Creative Tech Day 2024</h2>
+    <p>At the start of December the team showcased another early build of Davy Jones Deckhand at the wonderful new event co-organised by the Christchurch Game Developers Association. It was a lot of fun hanging out as an in-person team, meeting other local developers and sharing our game with players.</p>
+
+    <img src="/images/devlog/december-2024/canterbury-dev-day.jpg" alt="Cass Bay Games at Canterbury Game Dev and Creative Tech Day 2024" class="devlog-img" />
+
+    <h2>Register as a playtester now to access our beta!</h2>
+    <p>The game is feeling really fun, and we're almost ready to start official beta testing with players. If you are interested in joining the playtesting crew then you can sign up now via <a href="https://forms.gle/4RetBqykPNTjbVRU9" target="_blank" rel="noopener noreferrer">this Google form</a>.</p>
+
+    <a href="https://forms.gle/4RetBqykPNTjbVRU9" target="_blank" rel="noopener noreferrer">
+      <img src="/images/devlog/december-2024/playtest-beta.png" alt="Sign up to be a beta tester for Davy Jones Deckhand" class="devlog-img" />
+    </a>
+
+    <h2>Meet the sound and music crew</h2>
+    <p><em>Davy Jones Deckhand</em> will feature an incredible dynamic music score by award winning film composer, <a href="https://www.ewanclarkmusic.com/" target="_blank" rel="noopener noreferrer">Dr Ewan Clark</a>. Working closely with Ewan is sound designer <a href="https://www.rocomtt.com/" target="_blank" rel="noopener noreferrer">Roco Moroi Thorn</a>, a former masters student of Ewan's who is responsible for all our sound effects. Roco is also handling the technical implementation of Ewan's score, ensuring it is truly adaptive and responding to the player's actions.</p>
+
+    <img src="/images/devlog/december-2024/sound-and-music-crew.jpg" alt="The Davy Jones Deckhand sound and music team" class="devlog-img" />
+
+    <h2>A brief history of our team</h2>
+    <p>I'd like to take the opportunity of this final 'Below Deck' of the year to express how grateful I am to be working with such an incredible team of people. Tepene was the first official addition to the studio, introduced to me by Roger Heal of <a href="https://whistlingwizard.co.nz/" target="_blank" rel="noopener noreferrer">Whistling Wizard</a> when I was searching for artists. It turns out Tep and I went to school together, but that's another story! I knew he was the perfect fit the minute he referenced Muppet's Treasure Island. Tep has established a stunning aesthetic for the game. However, early on Tep was very clear that the art he loves to produce is environments, backgrounds and UI, so I started to hunt for a character artist that would compliment the work Tep was doing. Enter Nik Scarr.</p>
+    <p>Nik's portfolio of line-art and visual novels immediately stood out to us. The trouble was we'd simply discovered his work online and had no idea if he'd be interested or not. Thankfully Nik was totally into it, and so it was no surprise that he slotted perfectly into the studio. Seeing Nik and Tep's work come together has been an absolute highlight of the journey so far. Nik has proved himself to be extremely creative, but also amazingly efficient; since our official kickoff he has been churning out awesome characters at flank speed!</p>
+    <p>I'd also like to shout out the rest of our team: Dr Ewan Clark on original music, Roco Moroi Thorn on sound design, and our generous advisors Roger Heal, David Withington and Josh Flash. Thank you for joining me on this adventure!</p>
+    <p>— Ben Childs (Programmer / Creative Director)</p>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="december-2024" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin: 1.25rem 0;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

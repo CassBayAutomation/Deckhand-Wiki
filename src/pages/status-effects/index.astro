@@ -1,0 +1,87 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { statusEffects } from '../../data/status-effects';
+import { linkKeywords } from '../../utils/linkKeywords';
+---
+<WikiLayout title="Status Effects" section="status-effects" description="All status effects in Davy Jones' Deckhand — Poise, Parry, Weak, Open, Combo, and more. Master every buff and debuff to dominate combat in this pirate roguelike deckbuilder.">
+  <div class="wiki-content">
+    <h1>Status Effects</h1>
+    <p>
+      Status effects are buffs and debuffs applied to player stances or enemies during combat. They can be
+      inflicted by cards, artefacts, or enemy attacks, and last for a set number of turns unless otherwise specified.
+    </p>
+
+    <table class="status-effects-table icon-list-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Applied To</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {statusEffects.map(effect => (
+          <tr>
+            <td class="status-icon-cell">
+              {effect.image && <img src={effect.image} alt={effect.name} />}
+            </td>
+            <td>
+              <span id={effect.slug} class="status-anchor"></span>
+              <strong>{effect.name}</strong>
+              {effect.variant && <span class="status-variant">{effect.variant}</span>}
+            </td>
+            <td class="applied-to">{effect.appliedTo}</td>
+            <td set:html={linkKeywords(effect.description)} />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <div class="stub-notice">Sprites and additional status effects will be added as the game develops.</div>
+  </div>
+</WikiLayout>
+
+<style>
+  .status-icon-cell {
+    width: 48px;
+    padding: 4px 8px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .status-icon-cell img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .applied-to {
+    white-space: nowrap;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .status-anchor {
+    display: block;
+    visibility: hidden;
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+  }
+
+  .status-variant {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--border);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+  }
+</style>

@@ -1,0 +1,317 @@
+---
+import WikiLayout from '../layouts/WikiLayout.astro';
+import { linkKeywords } from '../utils/linkKeywords';
+import { keywords } from '../data/keywords';
+
+const craneImage = '/images/cards/The%20Crane_54.png';
+
+const counterAttackTypes = [
+  keywords.find(k => k.slug === 'counter-attack')!,
+  keywords.find(k => k.slug === 'counter-attack-piercing-parry')!,
+  keywords.find(k => k.slug === 'counter-attack-steady-parry')!,
+];
+
+function kwImage(slug: string): string | undefined {
+  return keywords.find(k => k.slug === slug)?.image;
+}
+
+function kwTipHtml(slug: string): string {
+  const kw = keywords.find(k => k.slug === slug);
+  if (!kw) return slug;
+  const imgHtml = kw.image ? `<img src="${kw.image}" alt="${kw.name}" class="keyword-tip-img" />` : '';
+  const variantHtml = kw.variant ? `<span class="keyword-tip-variant">${kw.variant}</span>` : '';
+  const descHtml = `<span class="keyword-tip-desc">${kw.description}</span>`;
+  return `<a href="/keywords#${kw.slug}" class="keyword-tip">${kw.name}<span class="keyword-tip-popup">${imgHtml}${variantHtml}${descHtml}</span></a>`;
+}
+---
+<WikiLayout
+  title="How to Play"
+  section="tutorial"
+  description="Learn the stance and counter-attack system at the heart of Davy Jones' Deckhand — a pirate roguelike deckbuilder where timing your parry perfectly is more powerful than brute defence."
+>
+  <div class="wiki-content">
+    <h1>How to Play</h1>
+
+    <p>
+      Learn about the unique combat system in Davy Jones' Deckhand, centred around stances and
+      counter-attacks. It's a system where <strong>getting hit right is better than not getting
+      hit at all</strong>. Unlike other deckbuilders where you might focus on stacking up as much
+      defense as possible, in Deckhand you're rewarded for holding off, seeing what the enemy is
+      doing, and then adding just the right amount of defense at the last second to pull off
+      devastating counter-attacks. If you're familiar with souls-likes, you can picture this like
+      the difference between holding up your shield to tank hits, or waiting to raise your shield
+      at the last second and parry — which staggers the enemy and opens them up to a powerful
+      (often lethal) counter.
+    </p>
+
+    <h2 id="the-stance-system">The Stance System</h2>
+
+    <h3>Applying stances</h3>
+
+    <video autoplay loop muted playsinline class="tutorial-video">
+      <source src="/images/tutorial/stance-demo.webm" type="video/webm" />
+      <source src="/images/tutorial/stance-demo.mp4" type="video/mp4" />
+    </video>
+
+    <p>
+      In Davy Jones' Deckhand, you must manage Tom's fighting stance. You do this by playing
+      <a href="/cards/stances">stance cards</a>. Your ability to attack and defend varies depending
+      on your current stance.
+    </p>
+
+    <p>
+      Here is an example stance card. Beside the image of the stance you can see the stance's
+      core stats: Attack Damage, Max Parry, and Counter-attack Damage.
+    </p>
+
+    <div class="stance-example">
+      <div class="stance-example-img">
+        <img src={craneImage} alt="The Crane — example stance card" />
+        <span class="stance-example-caption">The Crane (Mop)</span>
+      </div>
+      <div class="stance-example-desc">
+        <table class="stat-table">
+          <tbody>
+            <tr>
+              <td class="stat-icon-cell">{kwImage('counter-attack-damage') && <img src={kwImage('counter-attack-damage')} alt="" class="stat-icon" />}</td>
+              <td class="stat-name" set:html={kwTipHtml('counter-attack-damage')} />
+              <td set:html={linkKeywords("This is the base damage of the stance's counter-attack, which triggers if its Parry points perfectly match the Attack Force of an incoming enemy attack.")} />
+            </tr>
+            <tr>
+              <td class="stat-icon-cell">{kwImage('max-parry') && <img src={kwImage('max-parry')} alt="" class="stat-icon" />}</td>
+              <td class="stat-name" set:html={kwTipHtml('max-parry')} />
+              <td>This is the maximum amount of Parry points that can be applied.</td>
+            </tr>
+            <tr>
+              <td class="stat-icon-cell">{kwImage('attack-damage-stance') && <img src={kwImage('attack-damage-stance')} alt="" class="stat-icon" />}</td>
+              <td class="stat-name" set:html={kwTipHtml('attack-damage-stance')} />
+              <td>This is the base damage of the stance that triggers when you play attack cards while it is active.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3>Primary and secondary stance slots</h3>
+
+    <video autoplay loop muted playsinline class="tutorial-video">
+      <source src="/images/tutorial/applying-secondary.webm" type="video/webm" />
+      <source src="/images/tutorial/applying-secondary.mp4" type="video/mp4" />
+    </video>
+
+    <p set:html={linkKeywords("You can also apply a secondary stance, which you can swap into the primary slot by playing cards that trigger a SWITCH.")} />
+
+    <h2 id="defending-against-attacks">Defending against attacks</h2>
+
+    <h3>The parry meter</h3>
+
+    <div class="stance-example">
+      <div class="stance-example-img">
+        <video autoplay loop muted playsinline class="tutorial-video-inline">
+          <source src="/images/tutorial/applying-parry-points.webm" type="video/webm" />
+          <source src="/images/tutorial/applying-parry-points.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="stance-example-desc">
+        <p set:html={linkKeywords("Once you have an active stance in the primary position, you can now apply Parry points by dragging technique cards onto the stance. Parry points protect your stance from breaking under the force of enemy attacks. You can only apply Parry points up to the stance's Max Parry. The parry meter shows you how full it is. Unlike some other popular roguelike deckbuilders, this defensive stat persists between turns.")} />
+      </div>
+    </div>
+
+    <h3>Enemy attacks</h3>
+
+    <p set:html={linkKeywords("Enemy attacks have two figures to pay attention to: Attack Force and Attack Damage.")} />
+
+    <div class="stance-example">
+      <div class="stance-example-img">
+        <img src="/images/tutorial/enemy-attack-values.png" alt="Enemy attack values" />
+      </div>
+      <div class="stance-example-desc">
+        <table class="stat-table">
+          <tbody>
+            <tr>
+              <td class="stat-icon-cell">{kwImage('attack-force') && <img src={kwImage('attack-force')} alt="" class="stat-icon" />}</td>
+              <td class="stat-name" set:html={kwTipHtml('attack-force')} />
+              <td set:html={linkKeywords(keywords.find(k => k.slug === 'attack-force')?.description ?? '')} />
+            </tr>
+            <tr>
+              <td class="stat-icon-cell">{kwImage('attack-damage') && <img src={kwImage('attack-damage')} alt="" class="stat-icon" />}</td>
+              <td class="stat-name" set:html={kwTipHtml('attack-damage')} />
+              <td set:html={linkKeywords(keywords.find(k => k.slug === 'attack-damage')?.description ?? '')} />
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p set:html={linkKeywords("Enemies always attack your primary stance. Attack Force will reduce your stance's Parry points, and if your stance runs out it will break.")} />
+
+    <h3>Broken stances and taking damage</h3>
+
+    <p set:html={linkKeywords("If an enemy's Attack Force exceeds your Parry points, your stance will break and its stance card will return to your discard pile to be drawn again later. If this happens, you take HP damage equal to the Attack Damage. If you have a secondary stance active it will automatically switch into the primary position; if not, you'll be stanceless and vulnerable to any further attacks during the enemy's turn. If however your Parry points match or exceed the incoming Attack Force then you take no damage at all, but will lose Parry.")} />
+
+    <h2 id="how-to-counter-attack">How to counter-attack</h2>
+
+    <p>What if you could deal more damage during the enemy's turn than your own? In Davy Jones' Deckhand this is often the case.</p>
+
+    <p set:html={linkKeywords("By now you've learned that you're safe from damage so long as your Parry points exceed the incoming Attack Force, but what if you can match it exactly? That's called a perfect parry.")} />
+
+    <img src="/images/tutorial/perfect-parry-diagram.png" alt="Perfect parry diagram" class="tutorial-img" />
+
+    <p set:html={linkKeywords("If you can perfectly match the incoming Attack Force with your primary stance's Parry, instead of taking damage when the enemy attacks, you'll hit back with a high-damage counter-attack.")} />
+
+    <video autoplay loop muted playsinline class="tutorial-video">
+      <source src="/images/tutorial/perfect-parry.webm" type="video/webm" />
+      <source src="/images/tutorial/perfect-parry.mp4" type="video/mp4" />
+    </video>
+
+    <h3>Counter-attack types</h3>
+
+    <p>There are currently 3 different counter-attack types that stances can have.</p>
+
+    <table>
+      <thead>
+        <tr><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        {counterAttackTypes.map(kw => (
+          <tr>
+            <td><a href={`/keywords#${kw.slug}`} class="keyword-tip">{kw.name}<span class="keyword-tip-popup">{kw.image && <img src={kw.image} alt={kw.name} class="keyword-tip-img" />}{kw.variant && <span class="keyword-tip-variant">{kw.variant}</span>}<span class="keyword-tip-desc">{kw.description}</span></span></a></td>
+            <td set:html={linkKeywords(kw.description)} />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <h3>Lining up multiple counter-attacks</h3>
+
+    <p set:html={linkKeywords("If that's not enough, as you master the system you'll also learn to line up multiple counter-attacks. Because standard counter-attacks will automatically trigger a Switch, you can line up your secondary stance to counter the second enemy's attack. Even more counter-attacks can be lined up with advanced methods utilising things such as Steady Parry and Leeway.")} />
+
+    <video autoplay loop muted playsinline class="tutorial-video">
+      <source src="/images/tutorial/triple-counter.webm" type="video/webm" />
+      <source src="/images/tutorial/triple-counter.mp4" type="video/mp4" />
+    </video>
+  </div>
+</WikiLayout>
+
+<style>
+  .tutorial-video {
+    width: 100%;
+    max-width: 560px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.5rem 0;
+    display: block;
+  }
+
+  .tutorial-img {
+    width: 100%;
+    max-width: 560px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.5rem 0;
+    display: block;
+    background: var(--navy);
+  }
+
+  .tutorial-video-inline {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: block;
+  }
+
+  .stance-example {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .stance-example-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .img-placeholder {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background: var(--navy-mid);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .stance-example-img img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+  }
+
+  .stance-example-caption {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .stat-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.92rem;
+  }
+
+  .stat-table td {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .stat-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .stat-name {
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+    width: 1%;
+  }
+
+  .stat-icon-cell {
+    width: 1%;
+    padding-right: 0.25rem;
+    vertical-align: middle;
+  }
+
+  .stat-icon {
+    width: 28px;
+    height: 28px;
+    max-width: none;
+    object-fit: contain;
+    display: block;
+  }
+
+  @media (max-width: 640px) {
+    .stance-example {
+      grid-template-columns: 1fr;
+    }
+
+    .stance-example-img img {
+      width: 160px;
+      margin: 0 auto;
+    }
+
+    .stat-table .stat-name {
+      white-space: normal;
+    }
+  }
+</style>

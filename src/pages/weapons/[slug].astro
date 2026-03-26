@@ -1,0 +1,28 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+
+const weapons = [
+  { slug: 'broken-mop', name: 'Broken Mop' },
+  { slug: 'the-claw',   name: 'The Claw' },
+  { slug: 'rapier',     name: 'Rapier' },
+  { slug: 'dual-buckets', name: 'Dual Buckets' },
+];
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'broken-mop' } },
+    { params: { slug: 'the-claw' } },
+    { params: { slug: 'rapier' } },
+    { params: { slug: 'dual-buckets' } },
+  ];
+}
+
+const { slug } = Astro.params;
+const weapon = weapons.find(w => w.slug === slug)!;
+---
+<WikiLayout title={weapon.name} section="weapons" description={`${weapon.name} is a weapon in Davy Jones' Deckhand.`}>
+  <div class="wiki-content">
+    <h1>{weapon.name}</h1>
+    <div class="stub-notice">More detail on this weapon will be added as the game progresses.</div>
+  </div>
+</WikiLayout>

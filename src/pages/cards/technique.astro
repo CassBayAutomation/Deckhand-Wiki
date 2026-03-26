@@ -1,0 +1,67 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { getTechniqueCards } from '../../lib/cards.js';
+
+const cards = getTechniqueCards();
+---
+<WikiLayout title="Technique Cards" section="cards">
+  <div class="wiki-content">
+    <h1>Technique Cards</h1>
+    <p>Technique cards apply parry points and other effects to your active stances, bolstering your defences and positioning in combat.</p>
+
+    <div class="card-grid">
+      {cards.map(card => (
+        <a href={`/cards/technique/${card.slug}?from=technique`} class="card-thumb">
+          <img src={card.image} alt={card.title} loading="lazy" />
+          <span class="card-thumb-name">{card.title}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .card-thumb {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .card-thumb img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .card-thumb:hover img {
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .card-thumb-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 600px) {
+    .card-grid {
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 0.75rem;
+    }
+  }
+</style>

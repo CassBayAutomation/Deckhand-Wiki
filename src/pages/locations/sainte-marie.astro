@@ -1,0 +1,107 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+<WikiLayout title="Sainte Marie" section="locations" description="Sainte Marie in Davy Jones' Deckhand — a bustling trading port.">
+  <div class="wiki-content">
+    <h1>Sainte Marie</h1>
+    <img src="/images/locations/sainte-marie.jpg" alt="Sainte Marie" class="location-hero" />
+    <div class="stub-notice">More location detail coming soon.</div>
+    <p>A bustling trading port.</p>
+
+    <div class="location-nav">
+      <a href="/locations/the-locker" class="location-nav-card">
+        <img src="/images/locations/locker.png" alt="The Locker" />
+        <span class="location-nav-label">← The Locker</span>
+      </a>
+      <a href="/locations" class="location-nav-all">All Locations</a>
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  .location-hero {
+    width: 100%;
+    max-width: 720px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .location-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .location-nav-card {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s;
+    max-width: 200px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .location-nav-card img {
+    width: 48px;
+    height: 27px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+    max-width: none;
+  }
+
+  .location-nav-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .location-nav-card:hover {
+    border-color: var(--gold);
+    background: rgba(240, 168, 0, 0.06);
+  }
+
+  .location-nav-card--next {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .location-nav-all {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .location-nav-all:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    .location-nav {
+      flex-wrap: wrap;
+    }
+
+    .location-nav-all {
+      order: -1;
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>

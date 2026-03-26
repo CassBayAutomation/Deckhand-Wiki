@@ -1,0 +1,200 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+
+<WikiLayout title="Davy Jones" section="characters">
+  <div class="wiki-content">
+    <div class="infobox">
+      <div class="infobox-title">Davy Jones</div>
+      <img src="/images/characters/davy-jones.png" alt="Davy Jones" class="infobox-image" />
+      <table>
+        <tr><td>Age</td><td>~190 years old</td></tr>
+        <tr><td>Born</td><td>~1525</td></tr>
+        <tr><td>Origin</td><td>Red Sea region</td></tr>
+        <tr><td>Status</td><td>Immortal (cursed)</td></tr>
+        <tr><td>Ship</td><td>The Tarshish</td></tr>
+        <tr><td>Role</td><td>Antagonist / Employer</td></tr>
+      </table>
+    </div>
+
+    <h1>Davy Jones</h1>
+    <p>
+      Davy Jones is the immortal captain of the sunken ship <em>The Tarshish</em>, bound to the ocean depths
+      by a stolen flame that grants eternal life but burns only underwater. He commands the souls of the
+      drowned, collects the dying, and has spent over a century in furious, heartbroken darkness, all
+      because of <a href="/characters/mary-read">Grace O'Malley</a>.
+    </p>
+
+    <div class="stub-notice">
+      <p>More information about Davy Jones will be added as the game develops.</p>
+    </div>
+
+    <!--
+    <h2>Origin</h2>
+    <p>
+      Born near the Red Sea in the early 16th century, Davy was the finest navigator in the Red Sea and
+      Indian Ocean by his fifties, a merchant captain with ancient charts and astronomical knowledge that
+      predated European empires. Obsessed with old stories of immortality, he partnered with Grace O'Malley
+      to find the Fountain of Youth.
+    </p>
+
+    <h2>The Betrayal & The Curse</h2>
+    <p>
+      They found it: a day-spa on the back of a primordial turtle. The membership pass required a sacrifice
+      of "someone who loves you." Grace used Davy's love as payment. The Leviathan swallowed him whole.
+    </p>
+    <p>
+      Rather than accept death, Davy fought through the creature's innards, discovered reservoirs of its
+      immortal whale oil, and consumed it, setting it aflame within his own chest. He sailed <em>The Tarshish</em>
+      back out through the Leviathan's throat, leaving the beast wounded and himself transformed. The flame
+      keeps him alive but binds him to the deep. Sunlight would consume him entirely.
+    </p>
+
+    <h2>Current Existence</h2>
+    <p>
+      Davy drags <em>The Tarshish</em> endlessly along the ocean floor, pulled by chains hauled by the
+      souls of drowned sailors. He offers the dying a choice: dissolution or service. He never stops moving,
+      terrified the Leviathan is still hunting him.
+    </p>
+    <p>
+      Once per year he senses Grace visiting the spa. Once per year he sends her a message through a dying
+      sailor or the pattern of a shipwreck: threats that read like love letters, curses that are really pleas.
+      She keeps every one. She never responds.
+    </p>
+
+    <h2>Personality</h2>
+    <ul>
+      <li><strong>Brooding and capricious:</strong> merciful or cruel depending on which memory of Grace is haunting him</li>
+      <li><strong>Impossibly contradictory:</strong> centuries of accumulated philosophy that collapses into nonsense</li>
+      <li><strong>Darkly comic:</strong> the absurdity of his situation (traded for a spa membership) breaks through his defences</li>
+      <li><strong>Still in love:</strong> beneath everything, he just wants to be with Grace again</li>
+    </ul>
+
+    <h2>Abilities</h2>
+    <ul>
+      <li>Immortality through the stolen whale-oil flame</li>
+      <li>Command over the souls of drowned sailors</li>
+      <li>Supernatural strength from the Leviathan's essence</li>
+      <li>Can sense death at sea and the turtle-island's location</li>
+      <li>Creates binding contracts with the dying</li>
+    </ul>
+
+    <h2>Weaknesses</h2>
+    <ul>
+      <li>Cannot surface. Sunlight would consume him.</li>
+      <li>Psychologically broken where Grace is concerned</li>
+      <li>Perpetually hunted (or so he fears) by the Leviathan</li>
+    </ul>
+
+    <h2>Relationships</h2>
+    <ul>
+      <li><strong><a href="/characters/thomas-essex">Thomas Essex</a>:</strong> his resurrected agent; sees something of himself in Tom</li>
+      <li><strong><a href="/characters/mary-read">Mary Read / Grace O'Malley</a>:</strong> the love of his life and the architect of his ruin</li>
+    </ul>
+    -->
+
+    <div class="char-nav">
+      <a href="/characters/thomas-essex" class="char-nav-card">
+        <img src="/images/characters/thomas-essex-thumb.png" alt="Thomas Essex" />
+        <span>← Thomas Essex</span>
+      </a>
+      <a href="/characters" class="char-nav-all">All Characters</a>
+      <a href="/characters/mary-read" class="char-nav-card char-nav-card--next">
+        <img src="/images/characters/mary-read.png" alt="Mary Read" />
+        <span>Mary Read →</span>
+      </a>
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  .char-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .char-nav-card {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .char-nav-card span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .char-nav-card:hover {
+    border-color: var(--gold);
+    background: rgba(240, 168, 0, 0.06);
+    color: var(--text);
+  }
+
+  .char-nav-card img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .char-nav-card--next {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .char-nav-all {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .char-nav-all:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    .char-nav {
+      flex-wrap: wrap;
+    }
+
+    .char-nav-all {
+      order: -1;
+      width: 100%;
+      text-align: center;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem;
+    }
+
+    .char-nav-card {
+      flex: 1;
+    }
+
+    .char-nav-card--next {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+</style>

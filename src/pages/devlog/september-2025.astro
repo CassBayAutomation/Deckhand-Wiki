@@ -1,0 +1,112 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — September 2025"
+  section="devlog"
+  description="PAX Australia is coming, we're polishing our demo, and Davy Jones' Deckhand will be featured in the Games Made in NZ Steam event."
+  ogImage="/images/devlog/september-2025/thumbnail.jpg"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">September 2025</span>
+    </div>
+
+    <h1>PAX Aus, Games Made in NZ &amp; our upcoming demo</h1>
+
+    <p>Ahoy mateys, welcome Below Deck!</p>
+    <p>Things are cooling off from Gamescom in Germany, and heating up for PAX! We're just a few weeks away from our second business trip of the year, this time to Melbourne, Australia. Tep and I are rather relieved it's just "across the ditch" and not another epic 30-hour journey this time.</p>
+    <p>We are approaching the end of our CODE KickStart funded phase of development and now looking ahead to what's next. Securing more investment is high on our list of priorities, but before that we'll be aiming to make a great impression at PAX and promote our upcoming Steam demo. We've worked very hard over the past year and it's time to share our efforts wider. There is no exact date set for the demo yet, but keep your eyes on our socials and upcoming newsletters for more info.</p>
+    <p>Yours piratically,<br />Ben</p>
+
+    <h2>Exclusive look at our upcoming PAX booth</h2>
+    <img src="/images/devlog/september-2025/pax-booth-design.jpg" alt="PAX Australia booth design concept" class="devlog-img" />
+    <img src="/images/devlog/september-2025/crab-t-shirt.png" alt="Crab t-shirt" class="devlog-img" />
+    <p>Keep your eyes peeled for a pirate and a crab if you happen to be in Melbourne!</p>
+
+    <h2>Polishing our demo</h2>
+    <p>Thanks to our amazing playtesting community (<a href="https://forms.gle/4RetBqykPNTjbVRU9" target="_blank" rel="noopener noreferrer">join them here</a>), we're constantly refining our demo of <em>Davy Jones' Deckhand</em>. It's starting to feel really great, and we're enjoying adding some extra layers of polish to the current gameplay loop before we expand the game with a new set of features.</p>
+    <p>This polish pass consists of things like bug fixing, balancing improvements, richer sound and music design, and lovely little touches like these dolphins that Tepene recently animated. We also plan on a few more quality of life improvements, and details such as bespoke artwork on all curse cards.</p>
+    <img src="/images/devlog/september-2025/dolphins.gif" alt="Beautifully hand-animated dolphins by Tepene" class="devlog-img" />
+    <p class="img-caption">Keep your eyes peeled for DOLPHINS! Beautifully hand-animated by Tepene.</p>
+
+    <h2>Games Made in NZ — Steam event!</h2>
+    <p>Did you know there is an annual Steam frontpage take-over by little old Aotearoa, New Zealand? Our game will be featured in the upcoming games and strategy sections. Make sure you jump onto the page and check out some awesome Kiwi-made games — you might be surprised to learn what games are coming to you from New Zealand.</p>
+    <div class="info-block">
+      <p><a href="https://store.steampowered.com/curator/10060090/sale/NZGames2025" target="_blank" rel="noopener noreferrer">Check out the Games Made in NZ Steam page.</a></p>
+    </div>
+    <p>Also, just for fun, we'll be broadcasting our favourite <em>Davy Jones' Deckhand</em> gameplay streams and videos on our <a href="https://store.steampowered.com/app/3544900/Davy_Jones_Deckhand/" target="_blank" rel="noopener noreferrer">Steam page</a> for the duration of the event.</p>
+
+    <h2>Celebrating the amazing work of Nik Scarr</h2>
+    <p>We've been working with Nik for almost a year and wanted to take a moment to appreciate the outrageous suite of characters he has created for the game so far! (Tom is screwed.)</p>
+    <img src="/images/devlog/september-2025/nik-characters.png" alt="Character art by Nik Scarr — Tom is screwed!" class="devlog-img" />
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="september-2025" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .img-caption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: -0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .info-block {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+  }
+
+  .info-block p {
+    margin-bottom: 0;
+    color: rgba(185, 216, 227, 0.9);
+  }
+
+  .info-block a {
+    color: var(--gold);
+  }
+</style>

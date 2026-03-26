@@ -1,0 +1,67 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+<WikiLayout title="Locations" section="locations" description="Explore the world of Davy Jones' Deckhand — islands, voyage routes, and key locations in this pirate roguelike deckbuilder. Each island unlocks new encounters, vendors, and progression.">
+  <div class="wiki-content">
+    <h1>Locations</h1>
+    <p>
+      Davy Jones' Deckhand takes place across a freely explorable world map. Islands serve as progression
+      hubs — places to explore, spend coin, meet NPCs, upgrade your ship, and plan the next voyage.
+    </p>
+    <p>
+      Voyages between islands are procedurally generated based on the distance between origin and destination,
+      the biomes you'll travel through, and your chosen weapon. Longer voyages mean more encounters… and harder bosses at the end.
+    </p>
+    <div class="stub-notice">Location data will be added as the game develops.</div>
+
+    <h2>Notable Locations</h2>
+    <table class="locations-table">
+      <thead><tr><th></th><th>Location</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="location-img-cell"><a href="/locations/the-locker"><img src="/images/locations/locker.png" alt="The Locker" class="location-img" /></a></td>
+          <td class="location-name"><a href="/locations/the-locker">The Locker</a></td>
+          <td>Where Tom wakes after each death. Site of narrative cutscenes and home to you-know-who.</td>
+        </tr>
+        <tr>
+          <td class="location-img-cell"></td>
+          <td class="location-name">The Turtle-Island Spa</td>
+          <td>The Fountain of Youth day-spa on the back of a primordial turtle. Grace O'Malley's annual destination.</td>
+        </tr>
+        <tr>
+          <td class="location-img-cell"></td>
+          <td class="location-name">Nosy Bugle</td>
+          <td>An all-but-abandoned outpost where Tom washes up after his first resurrection.</td>
+        </tr>
+        <tr>
+          <td class="location-img-cell"><a href="/locations/sainte-marie"><img src="/images/locations/sainte-marie.jpg" alt="Sainte Marie" class="location-img" /></a></td>
+          <td class="location-name"><a href="/locations/sainte-marie">Sainte Marie</a></td>
+          <td>A bustling trading port.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</WikiLayout>
+
+<style>
+  .location-img-cell {
+    width: 160px;
+    padding: 0.4rem 0.75rem 0.4rem 0;
+    vertical-align: middle;
+  }
+
+  .location-img {
+    width: 160px;
+    max-width: none;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius);
+    display: block;
+  }
+
+  .location-name {
+    font-weight: 700;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+</style>

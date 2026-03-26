@@ -1,0 +1,118 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — March 2025"
+  section="devlog"
+  description="Playtest date announced! Plus a new logo, Steam page development, and a fresh batch of enemies from Nik Scarr."
+  ogImage="/images/devlog/march-2025/thumbnail.png"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">March 2025</span>
+    </div>
+
+    <h1>Playtest date announcement</h1>
+
+    <p>We've got exciting news. We're currently putting together our very first gameplay trailer, which has meant a massive visual overhaul of the game. We plan to release the first big update to our playtest build along with our Steam page!</p>
+
+    <img src="/images/devlog/march-2025/playtest.png" alt="Visual overhaul preview" class="devlog-img" />
+
+
+    <h2>Date set for our next playtest</h2>
+    <p><strong>Finally! When?</strong></p>
+
+    <div class="info-block">
+      <p class="info-label">Playtest start date:</p>
+      <p>EST – Thursday 10th April<br />NZT – Friday 11th April</p>
+      <p class="info-label" style="margin-top: 1rem;">What will be in the new build?</p>
+      <p>✅ 3 playable weapons</p>
+      <p>✅ Save system with item discovery</p>
+      <p>✅ 15+ unique enemy types</p>
+      <p>✅ 15+ game changing artefacts</p>
+      <p>✅ New features: path selection, card removal, custom seeds</p>
+    </div>
+
+    <p>If you haven't signed up to be a playtester yet, you can do so here: <a href="https://forms.gle/4RetBqykPNTjbVRU9" target="_blank" rel="noopener">Playtest sign-up form</a></p>
+
+
+    <h2>New logo and Steam page development</h2>
+    <p>Tepene has been working on a new logo along with the multitude of assets and layouts required for releasing our Steam page. While our original logo was exciting, it was very difficult to use at small scales. This new look is simpler, but we're excited about how well it captures the bright, adventurous tone of the game.</p>
+
+    <img src="/images/devlog/march-2025/steam-mock-ups.png" alt="New logo and Steam library assets by Tepene" class="devlog-img" />
+
+
+    <h2>More dastardly foes!</h2>
+    <p>Here is yet another batch of Nik's exciting enemy characters, some of which you may be unfortunate enough to meet during the playtest!</p>
+
+    <img src="/images/devlog/march-2025/new-enemies.png" alt="New enemy characters by Nik Scarr" class="devlog-img" />
+
+
+    <h2>Community events and developer live sessions</h2>
+    <p>Keep an eye out for more announcements on our <a href="https://t.co/sBqCnmZi9T" target="_blank" rel="noopener">Discord</a>! We're looking into fun ways to enjoy the playtest with the community by doing live let's plays and AMA sessions.</p>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="march-2025" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .info-block {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .info-block p {
+    margin-bottom: 0.4rem;
+    color: rgba(185, 216, 227, 0.9);
+  }
+
+  .info-label {
+    color: var(--off-white) !important;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem !important;
+  }
+</style>

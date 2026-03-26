@@ -1,0 +1,144 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — October 2024"
+  section="devlog"
+  description="Our first ever public playtest at the Christchurch Game Developers Association — plus a look at hero character development by Nik Scarr."
+  ogImage="/images/devlog/october-2024/thumbnail.jpg"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">October 2024</span>
+    </div>
+
+    <h1>Our first public playtest</h1>
+
+    <p>Welcome to the second issue of Below Deck!</p>
+
+    <h2>October playtest event</h2>
+    <p>It has been a big month for Cass Bay Games, culminating in our first ever public playtest of Davy Jones Deckhand at an event run by the Christchurch Game Developers Association. Ben, Tepene and Nik were all there to represent Cass Bay Games and observe how people were interacting with the game.</p>
+    <p>We hadn't planned to be putting a build into player's hands so soon, but the progress over the last three months has been smoother sailing than expected...</p>
+    <p>At this early stage, what we were looking out for at the playtest was whether or not players would understand and pick up the core "poise and parry" mechanic of the game, without any external help or coaching. The fun really depends on this fundamental understanding.</p>
+    <p>So we sat back nervously and watched, and were pleasantly surprised to see people "click" and start to really enjoy themselves. We even saw one player beat the demo on his first run, and learned after chatting to him that he wasn't experienced in the genre at all, which was encouraging from a design point of view.</p>
+    <p>A lot of wishlists/requests we received on the written feedback forms turned out to be things already on our roadmap. Players were hoping for narrative, upgrades for your character, and information about how many more combat encounters until you reach your destination. We came away feeling like we are moving in the right general direction, and that we should just keep sailing the course. So to sum up our experience: it was validating!</p>
+
+    <img src="/images/devlog/october-2024/playtest-images.png" alt="Photos from the October playtest event" class="devlog-img" />
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/MjLzTiOyVUc" title="Davy Jones Deckhand — playtest highlights" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <h2>What's the current state of the game?</h2>
+    <p>We are roughly 5% done with about 70% of the game 🤣</p>
+    <p>In all seriousness though, we are just a fraction of the way through implementing the core roguelike loop, and that's not taking into account our ambitious designs for immersive roguelite elements or the narrative! However, it's already a fun and replayable experience which makes us that much more excited for the future and seeing the rest of our ideas come to life. Below is a list of current features in the build we playtested in October.</p>
+
+    <ul>
+      <li>A challenging 12 encounter voyage with simple procedural generation of enemies and rewards</li>
+      <li>Combat encounters only</li>
+      <li>One weapon to play (yes, a mop!)</li>
+      <li>Card rewards at the end of every fight</li>
+      <li>Unique "poise" and "parry" system is working</li>
+      <li>60+ cards for testing</li>
+      <li>Simplified tutorial</li>
+      <li>Full mouse, keyboard and gamepad support</li>
+      <li>User settings for game speed, volumes and gamepad rumble</li>
+      <li>Custom character art for 5 player stances and some enemies</li>
+    </ul>
+
+    <h2>So what's next?</h2>
+    <p>We're looking forward to taking on board the feedback from the recent playtest event to hone the design. The focus remains on the core voyage loop which will account for the vast majority of playtime. There are many new voyage features we will begin to implement over the coming months...</p>
+
+    <ul>
+      <li>Coin/currency and mid-run merchant encounters</li>
+      <li>Path choice (an "exit door" system inspired by Hades)</li>
+      <li>Status effects that can be applied to stances and enemies</li>
+      <li>Artefacts that apply permanent run modifications and player boosts</li>
+    </ul>
+
+    <h2>Developing our hero character</h2>
+
+    <img src="/images/devlog/october-2024/hero-character.jpg" alt="Hero character concept art by Nik Scarr" class="devlog-img" />
+
+    <p><em>Hi all, I'm Nik, character artist for Cass Bay Games!</em> Here is a sneak peak at some initial character concepts for the hero of Davy Jones Deckhand, a big dreamer who starts out as very inexperienced/naive. Our character style takes lots of influence from Herge's Tintin, Disney's Aladdin and Hercules, and Guybrush Threepwood of the Monkey Island series.</p>
+
+    <img src="/images/devlog/october-2024/hairstyles.png" alt="Hero character hairstyle explorations by Nik Scarr" class="devlog-img" />
+
+    <p>We explored a variety of hairstyles and colour palettes, and really wanted to ensure the character design remained simple and uncluttered, and futureproof him for animation at various scales.</p>
+    <p>Further development involved incorporating more story elements — for the majority of the game he will be undead and under contract with Davy Jones, shown by the black spot on his shirt and his more pallid skin tone and sunken features.</p>
+    <p>I look forward to sharing more of my work with you as we continue to develop the look and feel of <em>Davy Jones Deckhand!</em></p>
+    <p>— Nik Scarr (Character artist)</p>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="october-2024" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  ul li {
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+  }
+
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin: 1.25rem 0;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

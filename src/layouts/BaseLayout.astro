@@ -1,0 +1,122 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description = "The official wiki for Davy Jones' Deckhand — the swashbuckling pirate roguelike deckbuilder by Cass Bay Games.", ogImage } = Astro.props;
+const siteUrl = 'https://davyjonesdeckhand.wiki';
+const resolvedOgImage = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/images/capsule-main.png`;
+const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={`${title} | Davy Jones' Deckhand Wiki`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={resolvedOgImage} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/png" href="/images/logo-color.png" />
+    <title>{title} | Davy Jones' Deckhand Wiki</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1T03BPCSCV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1T03BPCSCV');
+    </script>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <div id="kw-tooltip" aria-hidden="true"></div>
+    <script>
+      const tooltip = document.getElementById('kw-tooltip')!;
+      const MARGIN = 8;
+
+      function showTooltip(anchor: Element) {
+        const popup = anchor.querySelector('.keyword-tip-popup');
+        if (!popup) return;
+        tooltip.innerHTML = popup.innerHTML;
+        tooltip.classList.add('visible');
+        positionTooltip(anchor);
+      }
+
+      function positionTooltip(anchor: Element) {
+        const rect = anchor.getBoundingClientRect();
+        tooltip.style.left = '0';
+        tooltip.style.top = '0';
+        const tw = tooltip.offsetWidth;
+        const th = tooltip.offsetHeight;
+        const vw = window.innerWidth;
+
+        // Prefer above; fall back to below if not enough room
+        let top = rect.top - th - MARGIN;
+        if (top < MARGIN) top = rect.bottom + MARGIN;
+
+        // Centre horizontally on the anchor, clamped to viewport
+        let left = rect.left + rect.width / 2 - tw / 2;
+        left = Math.max(MARGIN, Math.min(left, vw - tw - MARGIN));
+
+        tooltip.style.top = `${top + window.scrollY}px`;
+        tooltip.style.left = `${left}px`;
+      }
+
+      function hideTooltip() {
+        tooltip.classList.remove('visible');
+      }
+
+      // Desktop hover
+      document.addEventListener('mouseover', (e) => {
+        const tip = (e.target as Element).closest('.keyword-tip');
+        if (tip) showTooltip(tip);
+      });
+      document.addEventListener('mouseout', (e) => {
+        const tip = (e.target as Element).closest('.keyword-tip');
+        if (tip && !tip.contains(e.relatedTarget as Node)) hideTooltip();
+      });
+
+      // Touch: first tap shows, second tap navigates, tap elsewhere closes
+      document.addEventListener('click', (e) => {
+        const isTouchPrimary = window.matchMedia('(hover: none)').matches;
+        const tip = (e.target as Element).closest('.keyword-tip');
+
+        if (!isTouchPrimary) {
+          if (!tip) hideTooltip();
+          return;
+        }
+
+        if (tip) {
+          if (!tip.classList.contains('active')) {
+            e.preventDefault();
+            document.querySelectorAll('.keyword-tip.active').forEach(t => t.classList.remove('active'));
+            tip.classList.add('active');
+            showTooltip(tip);
+          }
+        } else {
+          const wasActive = document.querySelector('.keyword-tip.active');
+          document.querySelectorAll('.keyword-tip.active').forEach(t => t.classList.remove('active'));
+          hideTooltip();
+          // Consume the tap that closed the tooltip — don't also trigger whatever was tapped
+          if (wasActive) e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>

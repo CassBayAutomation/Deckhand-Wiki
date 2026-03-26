@@ -1,0 +1,180 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+
+<WikiLayout title="Thomas Essex" section="characters">
+  <div class="wiki-content">
+    <div class="infobox">
+      <div class="infobox-title">Thomas Essex</div>
+      <img src="/images/characters/thomas-essex.gif" alt="Thomas Essex" class="infobox-image" />
+      <table>
+        <tr><td>Age</td><td>17</td></tr>
+        <tr><td>Origin</td><td>Portsmouth, England</td></tr>
+        <tr><td>Era</td><td>Golden Age of Piracy (~1715–1720)</td></tr>
+        <tr><td>Class</td><td>Working class</td></tr>
+        <tr><td>Status</td><td>Undead (resurrected by Davy Jones)</td></tr>
+        <tr><td>Role</td><td>Protagonist</td></tr>
+      </table>
+    </div>
+
+    <h1>Thomas Essex</h1>
+    <p>
+      Thomas "Tom" Essex is the protagonist of Davy Jones' Deckhand: a relentlessly optimistic 17-year-old
+      Portsmouth deckhand who, after being unceremoniously murdered by pirates during his very first naval engagement,
+      is resurrected by Davy Jones to serve as his agent aboard the high seas.
+    </p>
+
+    <div class="stub-notice">
+      <p>More information about Thomas Essex will be added as the game develops.</p>
+    </div>
+
+    <!--
+    <h2>Background</h2>
+    <p>
+      Tom grew up in the narrow, crowded streets near Portsmouth's harbour during the Golden Age of Piracy.
+      His father William was a skilled sailmaker who disappeared at sea when Tom was fourteen, vanishing
+      without investigation or consequence, erased as completely in death as he had been rendered invisible in life.
+    </p>
+    <p>
+      This double erasure (his father treated as invisible while alive, then disappearing without the world
+      noticing) planted in Tom a desperate, almost frantic need to be seen. To matter. To become somebody
+      undeniable enough that, if he died, at least someone would notice.
+    </p>
+
+    <h2>The Mission</h2>
+    <p>
+      Tom signs on as a deckhand aboard HMS <em>Thrust of Fortune</em>, hoping to earn prize money and naval
+      promotion. He is killed during a pirate ambush on October 8th. His final battle is fought with a bucket
+      on his head and a mop in his hands. He descends to Davy Jones' Locker, where Jones offers him a contract:
+      resurrection in exchange for service, sealed with <strong>The Black Spot</strong>.
+    </p>
+
+    <h2>Personality</h2>
+    <ul>
+      <li><strong>Relentlessly optimistic:</strong> a defiant hopefulness that refuses erasure</li>
+      <li><strong>Persistent to the point of recklessness:</strong> sets his mind to something and doesn't let go</li>
+      <li><strong>Earnest and unguarded:</strong> wears his heart openly in a world that rewards cynicism</li>
+      <li><strong>Haunted by urgency:</strong> racing against time, his mother's failing health, and his father's ghost</li>
+    </ul>
+
+    <h2>The Black Spot</h2>
+    <p>
+      As part of his contract with Davy Jones, Tom carries The Black Spot, a curse card permanently embedded
+      in his deck. It serves as Davy's mark, a reminder of borrowed time, and a constant mechanical pressure
+      on Tom's deckbuilding throughout every voyage.
+    </p>
+
+    <h2>Relationships</h2>
+    <ul>
+      <li><strong><a href="/characters/davy-jones">Davy Jones</a>:</strong> employer, resurrector, and reluctant mentor</li>
+      <li><strong>Rosalind Aldworth:</strong> Tom's love; the first person from her world to truly see him</li>
+      <li><strong>William Essex</strong> (father, missing/presumed dead): the wound at the centre of everything Tom does</li>
+      <li><strong>Catherine Essex</strong> (mother): Tom left to save her; her welfare drives his urgency</li>
+    </ul>
+    -->
+
+    <div class="char-nav">
+      <a href="/characters/mary-read" class="char-nav-card">
+        <img src="/images/characters/mary-read.png" alt="Mary Read" />
+        <span>← Mary Read</span>
+      </a>
+      <a href="/characters" class="char-nav-all">All Characters</a>
+      <a href="/characters/davy-jones" class="char-nav-card char-nav-card--next">
+        <img src="/images/characters/davy-jones.png" alt="Davy Jones" />
+        <span>Davy Jones →</span>
+      </a>
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  .char-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .char-nav-card {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .char-nav-card span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .char-nav-card:hover {
+    border-color: var(--gold);
+    background: rgba(240, 168, 0, 0.06);
+    color: var(--text);
+  }
+
+  .char-nav-card img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .char-nav-card--next {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .char-nav-all {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .char-nav-all:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    .char-nav {
+      flex-wrap: wrap;
+    }
+
+    .char-nav-all {
+      order: -1;
+      width: 100%;
+      text-align: center;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem;
+    }
+
+    .char-nav-card {
+      flex: 1;
+    }
+
+    .char-nav-card--next {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+</style>

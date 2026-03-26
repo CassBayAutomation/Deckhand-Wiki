@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionCard from '../components/SectionCard.astro';
+import { sections } from '../data/sections';
+---
+
+<BaseLayout title="Wiki Home" description="The complete wiki for Davy Jones's Deckhand — a pirate roguelike deckbuilder by Cass Bay Games. Browse artefacts, cards, stances, keywords, and more.">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <img src="/images/logo-color.png" alt="Davy Jones' Deckhand" class="hero-logo" />
+      <p class="hero-tagline">The swashbuckling pirate roguelike deckbuilder</p>
+      <p class="hero-subtitle">Your complete guide to voyages, cards, stances, and the secrets of Davy Jones' Locker</p>
+      <div class="hero-actions">
+        <a href="/cards" class="btn-primary">Browse Cards</a>
+        <a href="/characters" class="btn-secondary">Meet the Characters</a>
+        <a href="https://store.steampowered.com/app/3544900/Davy_Jones_Deckhand/?utm_source=wiki&utm_medium=website&utm_campaign=wishlist" class="btn-wishlist" target="_blank" rel="noopener">☆ Wishlist on Steam</a>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+
+  <!-- About strip -->
+  <section class="about-strip">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-item">
+          <span class="about-icon">⚔</span>
+          <h3>Master the Stance System</h3>
+          <p>Match your parry points perfectly to counter incoming attacks for devastating combos.</p>
+        </div>
+        <div class="about-item">
+          <span class="about-icon">⚓</span>
+          <h3>Choose Your Voyage</h3>
+          <p>Chart your own route through procedurally generated encounters across the high seas.</p>
+        </div>
+        <div class="about-item">
+          <span class="about-icon">☠</span>
+          <h3>Hunt the Leviathan</h3>
+          <p>Davy's contract is sealed with the Black Spot. Survive the deep and slay the beast.</p>
+        </div>
+        <div class="about-item">
+          <span class="about-icon">♠</span>
+          <h3>Build Your Deck</h3>
+          <p>Hundreds of cards and artefacts create endless synergies across every voyage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wiki sections -->
+  <section class="wiki-sections">
+    <div class="container">
+      <p class="section-label">Browse the Wiki</p>
+      <h2 class="sections-heading">What are you looking for?</h2>
+      <div class="sections-grid">
+        {sections.map(section => (
+          <SectionCard
+            name={section.name}
+            slug={section.slug}
+            description={section.description}
+            icon={section.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Ocean divider -->
+  <div class="ocean-divider"></div>
+</BaseLayout>
+
+<style>
+  /* Hero */
+  .hero {
+    position: relative;
+    background: var(--navy);
+    background-image:
+      radial-gradient(ellipse at 30% 50%, rgba(14, 107, 138, 0.4) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 50%, rgba(27, 158, 192, 0.2) 0%, transparent 50%);
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--navy), var(--gold), var(--ocean-light), var(--gold), var(--navy));
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 4rem 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .hero-logo {
+    max-width: 420px;
+    width: 90%;
+    margin: 0 auto 1.5rem;
+  }
+
+  .hero-tagline {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  .hero-subtitle {
+    color: rgba(255,255,255,0.75);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    padding: 0.65rem 2rem;
+    border-radius: 6px;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    color: var(--navy);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    padding: 0.65rem 2rem;
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .btn-wishlist {
+    background: #1b2838;
+    color: rgba(255,255,255,0.85);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.06em;
+    padding: 0.65rem 2rem;
+    border-radius: 6px;
+    border: 2px solid #2a475e;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-wishlist:hover {
+    background: #2a475e;
+    border-color: #66c0f4;
+    color: #66c0f4;
+    transform: translateY(-2px);
+  }
+
+  /* About strip */
+  .about-strip {
+    background: var(--navy-mid);
+    padding: 3rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .about-item {
+    text-align: center;
+  }
+
+  .about-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--gold);
+  }
+
+  .about-item h3 {
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .about-item p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Wiki sections */
+  .wiki-sections {
+    padding: 4rem 0;
+  }
+
+  .sections-heading {
+    font-size: 2.4rem;
+    color: var(--navy);
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .sections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  /* Ocean divider */
+  .ocean-divider {
+    height: 8px;
+    background: linear-gradient(90deg, var(--navy), var(--ocean), var(--sky), var(--ocean), var(--navy));
+  }
+
+  @media (max-width: 1024px) {
+    .sections-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sections-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-logo {
+      max-width: 300px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

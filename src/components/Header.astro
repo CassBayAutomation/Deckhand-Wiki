@@ -1,0 +1,176 @@
+---
+import { sections } from '../data/sections';
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="header-top container">
+    <a href="/" class="logo-link">
+      <img src="/images/logo-white.png" alt="Davy Jones' Deckhand" class="header-logo" />
+    </a>
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="header-nav-bar">
+    <nav class="main-nav container" aria-label="Main navigation">
+      {sections.map(section => (
+        <a
+          href={`/${section.slug}`}
+          class:list={['nav-link', { active: currentPath.startsWith(`/${section.slug}`) }]}
+        >
+          {section.name}
+        </a>
+      ))}
+    </nav>
+  </div>
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    {sections.map(section => (
+      <a href={`/${section.slug}`} class="mobile-nav-link">
+        <span class="mobile-nav-icon">{section.icon}</span>
+        {section.name}
+      </a>
+    ))}
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const nav = document.getElementById('mobile-nav');
+  btn?.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    nav?.classList.toggle('open');
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    border-bottom: 3px solid var(--gold);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  }
+
+  /* ── Logo row ── */
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 54px;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-logo {
+    height: 38px;
+    width: auto;
+  }
+
+  /* ── Nav row ── */
+  .header-nav-bar {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.1rem;
+    padding: 0.25rem 0;
+  }
+
+  .nav-link {
+    color: rgba(255,255,255,0.8);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.55rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--gold);
+    background: rgba(240, 168, 0, 0.1);
+  }
+
+  /* ── Mobile hamburger ── */
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  /* ── Mobile nav drawer ── */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .mobile-nav.open {
+    max-height: calc(100vh - 54px);
+    overflow-y: auto;
+    padding-bottom: env(safe-area-inset-bottom, 80px);
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.5rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .mobile-nav-link:hover {
+    background: rgba(240,168,0,0.1);
+    color: var(--gold);
+  }
+
+  .mobile-nav-icon {
+    font-size: 1.1rem;
+    width: 1.5rem;
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .header-nav-bar { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .mobile-nav { display: flex; }
+  }
+</style>

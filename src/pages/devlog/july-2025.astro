@@ -1,0 +1,109 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — July 2025"
+  section="devlog"
+  description="A dedicated insult button, PAX Australia, a new website, and a playtest update packed with new bosses, cutscenes and the COMBO status."
+  ogImage="/images/devlog/july-2025/thumbnail.png"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">July 2025</span>
+    </div>
+
+    <h1>A dedicated insult button ☠️</h1>
+
+    <p>Ahoy crew, welcome Below Deck!</p>
+    <p>As we look ahead to Gamescom next month, we've been keeping priorities in order and adding a much anticipated feature to our demo: insults.</p>
+
+    <img src="/images/devlog/july-2025/monkey-island-insults.jpg" alt="Secret of Monkey Island (1990) — insult sword fighting" class="devlog-img" />
+    <p class="img-caption">The legendary insult sword fights of <em>Secret of Monkey Island</em> (1990) — a major inspiration.</p>
+
+    <p>What's a pirate sword fight without a few sizzling roasts? We're excited to offer players a <strong>dedicated insult button</strong> with contextual insults and humiliating comebacks. Press F during your turn to yell abuse at your opponents, or press it while they insult you to retort with a relevant zinger. The feature is as pointless as a blunt mop, and just as fun.</p>
+
+    <img src="/images/devlog/july-2025/branching-insults.png" alt="Left: branching insults dialogue tree. Right: a zinger." class="devlog-img" />
+    <p class="img-caption">Left: the start of our branching "insults" dialogue tree. Right: a zinger.</p>
+
+    <h2>More distant ports to explore: PAX AU</h2>
+    <p>We're looking forward to yet another international outing for the studio. In October we will be showcasing <em>Davy Jones' Deckhand</em> at PAX Australia, thanks to support from <a href="https://www.nz-code.nz/" target="_blank" rel="noopener">CODE NZ</a>.</p>
+
+    <img src="/images/devlog/july-2025/pax-booth-concept.png" alt="Concept for this year's CODE booth at PAX AU" class="devlog-img" />
+    <p class="img-caption">Concept for this year's CODE booth at PAX AU.</p>
+
+    <p>Once again, Ben and Tepene will be setting sail to promote the game and pillage the industry of all its valuables. We're really looking forward to sharing our hard work with the media, creators and players!</p>
+
+    <h2>Our new website (hello there fancy-pants)</h2>
+    <img src="/images/devlog/july-2025/website-demo.gif" alt="New Cass Bay Games website — touch the cards!" class="devlog-img" />
+    <p>Our new and improved website lets you touch the cards! Go check it out at <a href="https://www.cassbaygames.com" target="_blank" rel="noopener">www.cassbaygames.com</a>.</p>
+
+    <h2>Playtest update?</h2>
+    <p>Yes. We're working on it. Here's a few things to look forward to:</p>
+    <ul>
+      <li>2 new bosses!</li>
+      <li>Tutorial cutscene</li>
+      <li>Tutorial death scene (sign Davy's contract)</li>
+      <li>Destination selection (choose voyages of different lengths and travel between 3 locations)</li>
+      <li>The aforementioned insult system</li>
+      <li>Enemy "Combo" status — counter-attack fast… or else!</li>
+    </ul>
+
+    <img src="/images/devlog/july-2025/contract.png" alt="Davy's contract — sign if you dare!" class="devlog-img" />
+    <p class="img-caption">Davy's contract… sign if you dare!</p>
+
+    <img src="/images/devlog/july-2025/combo.png" alt="The new COMBO status" class="devlog-img" />
+    <p class="img-caption">The new COMBO status.</p>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="july-2025" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .img-caption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: -0.75rem;
+    margin-bottom: 1.25rem;
+  }
+</style>

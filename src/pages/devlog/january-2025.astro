@@ -1,0 +1,126 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — January 2025"
+  section="devlog"
+  description="Eyes on the horizon! Playtest results, a new mermaid enemy, and what's coming next for Davy Jones' Deckhand."
+  ogImage="/images/devlog/january-2025/thumbnail.jpg"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">January 2025</span>
+    </div>
+
+    <h1>Eyes on the horizon! What's next for our game? 🎮</h1>
+
+    <p>Here's to an epic 2025! 🍻</p>
+    <p>Keep your eye on the horizon, because big things are coming! Having just run our first online playtest, we're all feeling inspired to work even harder to truly deliver the next big thing in roguelike deckbuilding. The recent playtest taught us many lessons about what we need to improve on, but most of all it taught us (if general buzz and play duration are anything to go by) that there is truly something special about Davy Jones Deckhand.</p>
+
+
+    <h2>Results from the playtest</h2>
+    <p>We had 30 people sign up for our January playtest. The valuable feedback, strategic discussions on Discord, and good vibes have made the process an absolute blast! We were so happy to see players truly enjoying it and engaging for many hours and many voyages. We even had our first streamer play the game:</p>
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/OCo36aKJvT0" title="Dead3y3 streaming the January playtest" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+
+    <h2>A sneak peek at a new enemy type</h2>
+    <p>Check out character artist Nik Scarr's latest enemy creation. These morphing mermaids will catch you off guard and feature two unique phases, forcing the player to alter their approach.</p>
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/po8hdOwqzh8" title="Mermaid character timelapse by Nik Scarr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <img src="/images/devlog/january-2025/mermaid.jpg" alt="New mermaid enemy character art by Nik Scarr" class="devlog-img" />
+
+
+    <h2>The next phase</h2>
+    <p>We are busy iterating on some of our designs based on learnings from our first playtest. We are also excited to be starting on the next phase of the combat loop which will introduce exciting new features, such as:</p>
+    <ul>
+      <li>A sexy new HUD 🔥</li>
+      <li>Card removal 🃏</li>
+      <li>Artefacts / Relics 🗝️</li>
+      <li>Consumables 🧪</li>
+      <li>Currency 🪙</li>
+      <li>Save system 💾</li>
+    </ul>
+    <p>We can't wait to share the next iteration with players.</p>
+
+
+    <h2>Personal highlight: Tep's new arrival 🐣</h2>
+    <p>We have our first studio baby! Congratulations to Cass Bay Games' environment artist/UI designer Tep and his wife on the birth of their second child over the holidays. If Tep wasn't busy enough before, we are sure he will be now.</p>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="january-2025" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin: 1.25rem 0;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  ul li {
+    margin-bottom: 0.4rem;
+  }
+</style>

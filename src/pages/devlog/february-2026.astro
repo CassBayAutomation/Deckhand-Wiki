@@ -1,0 +1,128 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — February 2026"
+  section="devlog"
+  description="Demo strategy on a budget — new bosses, artefact upgrades, and a new team member. February 2026 development update from Cass Bay Games."
+  ogImage="/images/devlog/february-2026/thumbnail.png"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">February 2026</span>
+    </div>
+
+    <h1>Demo strategy on a budget 💰🏴‍☠️</h1>
+
+    <p>Ahoy crew!</p>
+    <p>Below Deck, our monthly development newsletter, is back for 2026. This month I'm going to open up about some of the big challenges ahead, and strategic decisions we're currently making at Cass Bay Games. You'll also get an early look at some new bosses and gameplay updates.</p>
+    <p>Yours piratically,<br /><strong>Ben</strong></p>
+
+
+    <h2>Demo strategy and development update</h2>
+    <p>Last year was an adventure. We stretched our CODE KickStart grant very thin, working evenings and weekends on the game in order to also work full time jobs. With an environment/UI artist role to fill and no cash, my plans for a public Steam demo that showed a slice of our ambitious meta game have been shaken. Our demo <em>is</em> going to happen this May at the Steam Roguelike Deckbuilder festival, but we've adjusted our strategy.</p>
+    <p>It's my first time doing this indie-game-entrepreneur thing, and I've been finding I get contrary advice. Some say don't delay and get your demo out as soon as you've got something fun, and others say it's best to wait until you can at least hint at everything the game will have to offer. It's hard to market a game without a demo, especially when so much of indie marketing seems to come down to getting the game in the hands of streamers and creators who love it. My conundrum is I know we need a demo to get some traction, but our demo doesn't yet showcase the full vision of what <em>Davy Jones' Deckhand</em> will be. I believe it's already really fun, our playtests have shown good numbers behind the scenes, but it's only a fraction of the game.</p>
+    <p>Lately I had started working towards the incorporation of our full point-and-click outer gameplay loop. However, without some serious art resourcing, it's unrealistic to think we'll have a release-quality demo with those elements ready for the May launch. So now I've pivoted my focus to improving the existing combat loop to include a scaled-down meta game. The demo will have features that might not end up in the full game (they're more "traditional" roguelike deckbuilder), but they work, and they give the player visibility of long-term goals. It's really nice to have stuff to work towards beyond just the survival of voyages.</p>
+    <p>The demo will include a new system to unlock and then upgrade your artefacts, and mid-voyage shops to purchase items from your hard-earned booty. There will be 2 new bosses, a bunch of new artefacts, and it <em>will</em> feature one small point-and-click environment.</p>
+    <p>As we develop this demo, we will also be preparing our application for the next round of <a href="https://www.nz-code.nz/" target="_blank" rel="noopener">CODE NZ StartUp grants</a>. This is going to be a big deal and a lot of work. Success there will see me going full time on the game, which is a scary milestone but also a dream come true.</p>
+
+
+    <h2>Ready for another boss fight?</h2>
+    <p>Nik Scarr has been cooking up some brilliantly grotesque bosses that you can look forward to facing in an upcoming playtest and in our Steam demo in May.</p>
+
+    <h3>Sea Swine</h3>
+    <p>Meet the hog-fish boss that poisons you with every bite! The sea swine (<em>Porcus Marinus</em>) has a loveable Kunekune face, but it's not to be trifled with.</p>
+    <p>See a timelapse of Nik's art process creating this big cutey:</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/j80dXvzUSiY" title="Sea Swine timelapse" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <img src="/images/devlog/february-2026/sea-swine.png" alt="Sea Swine boss art" class="devlog-img" />
+
+    <h3>Thessaly, The Sea Witch</h3>
+    <p>Found in a ship graveyard where time flies by and yet feels stagnant, this awful sea witch once traded Davy Jones an eight pointed compass that points to a moving island. Sometimes known as The Carapace Compass or Crawling Star, Davy desperately needs Thessaly to forge another. And who better to send than his newly enslaved undead deckhand?</p>
+    <img src="/images/devlog/february-2026/thessaly.png" alt="Early sketches of Thessaly by Nik Scarr" class="devlog-img" />
+
+
+    <h2>A sneak peek at our new artefact upgrading system</h2>
+    <p>We want to encourage players to experiment with new artefacts, so our new systems for unlocking and upgrading artefacts are tied to actually utilising them in-game.</p>
+    <p>To permanently unlock an artefact, you need to acquire it during a run and trigger its effect a set number of times. This utilisation-counter persists across voyages, so you can continue to progress an artefact on your next run if you don't finish the unlock. Once you've met the utilisation target, you'll now <em>own</em> that artefact and can choose to start your next voyage with it in your cargo by selecting it from your inventory.</p>
+    <img src="/images/devlog/february-2026/artefact-upgrade-1.png" alt="Artefact unlocking system" class="devlog-img" />
+    <p>And that's where upgrades come in. Once you own an artefact, you can now progress it toward its upgraded state by further utilisation. However the catch here is that upgrades only progress on your cargo artefacts, and not those you pick up during a voyage. So to progress different items, you'll need to change up your starting strategy.</p>
+    <img src="/images/devlog/february-2026/artefact-upgrade-2.png" alt="Artefact upgrading screenshot" class="devlog-img" />
+    <p>You can view your progress towards these goals at any time from the menu, and see the new effect your artefacts will get once upgraded. You also get a handy overview at the end of each voyage that displays any new progress you made.</p>
+    <img src="/images/devlog/february-2026/artefact-upgrade-3.png" alt="End of voyage progress overview" class="devlog-img" />
+
+
+    <h2>Welcome to the crew, Simon!</h2>
+    <img src="/images/devlog/february-2026/simon.jpg" alt="Simon Mackmurdie" class="devlog-img devlog-img--portrait" />
+    <p>I'm excited to announce that Simon Mackmurdie has joined Cass Bay Games as our new Environments/UI artist. Straight away I was impressed by his technical experience and his passion for games and art, so much so that I was secretly rooting for his art test to be great… which it was! Phew!</p>
+    <p>We're stoked to have Simon onboard and can't wait to get stuck into the next phase of <em>Deckhand</em> development with him on the team.</p>
+    <p>You can check out some of his work that first caught my eye here: <a href="https://www.artstation.com/simonmackmurdie" target="_blank" rel="noopener">artstation.com/simonmackmurdie</a></p>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="february-2026" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .devlog-img--portrait {
+    max-width: 360px;
+  }
+
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin: 1.25rem 0;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

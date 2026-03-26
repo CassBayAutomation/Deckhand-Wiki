@@ -1,0 +1,95 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { linkKeywords } from '../../utils/linkKeywords';
+---
+<WikiLayout title="Weapons" section="weapons" description="Every weapon in Davy Jones' Deckhand — Mop, Saber, Rapier, Claw, and more. Each weapon defines your starting deck and stances. Pick the right one to power your roguelike deckbuilder run.">
+  <div class="wiki-content">
+    <h1>Weapons</h1>
+    <p>
+      Your choice of weapon defines your starting deck and unlocks a unique set of stances for the voyage.
+      Weapons are selected at port before setting sail and cannot be changed mid-voyage.
+    </p>
+    <div class="stub-notice">Full weapon data will be added as the game develops.</div>
+
+    <h2>Known Weapons</h2>
+    <table class="weapons-table">
+      <thead>
+        <tr><th>Weapon</th><th>Notes</th><th class="demo-col">Available in Demo</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="weapon-name">Mop</td><td class="weapon-notes" set:html={linkKeywords("Tom's first weapon. The tutorial is fought with a mop. A fully viable playstyle.")} /><td class="demo-cell demo-yes">✓</td></tr>
+        <tr><td class="weapon-name">Saber</td><td class="weapon-notes" set:html={linkKeywords("A balanced weapon that comes with the Ring of Return starter artefact.")} /><td class="demo-cell demo-yes">✓</td></tr>
+        <tr><td class="weapon-name">Broken Mop</td><td class="weapon-notes" set:html={linkKeywords("Available after Tom's (first) death. This weapon features low stamina, high health, the Tentacle starter artefact, and a starter deck full of sacrificial cards.")} /><td class="demo-cell demo-yes">✓</td></tr>
+        <tr><td class="weapon-name">The Claw</td><td class="weapon-notes" set:html={linkKeywords("A battle-axe crafted from a stick and the claw of a giant crab. This weapon features low base stamina but powerful stances with extremely high damage, and a unique RAGE card that gives a large stamina boost once per combat.")} /><td class="demo-cell demo-no">✗</td></tr>
+        <tr><td class="weapon-name">Rapier</td><td class="weapon-notes" set:html={linkKeywords("Weak damage but very strong counter-attack damage. Comes with a leeway focused starter deck and the Sharpening Stone.", undefined, ['WEAK', 'ATTACK DAMAGE'])} /><td class="demo-cell demo-no">✗</td></tr>
+        <tr><td class="weapon-name">Dual Buckets</td><td class="weapon-notes" set:html={linkKeywords("A bucket on each fist. The Broken Mirror. This weapon starts with low damage but scales surprisingly well.")} /><td class="demo-cell demo-no">✗</td></tr>
+      </tbody>
+    </table>
+    <p>See also: <a href="/stances">Stances</a> for weapon-specific stance cards.</p>
+  </div>
+</WikiLayout>
+
+<style>
+  .demo-col {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .demo-cell {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .demo-yes { color: #3a9e5f; }
+  .demo-no  { color: #b94040; }
+
+  @media (max-width: 640px) {
+    .weapons-table thead {
+      display: none;
+    }
+
+    .weapons-table tbody tr {
+      display: block;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .weapons-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .weapons-table td {
+      display: inline;
+      border: none;
+      padding: 0;
+      background: none;
+    }
+
+    .weapon-name {
+      display: inline !important;
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 1rem;
+    }
+
+    .demo-cell {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 0.3rem;
+      margin-left: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .demo-yes::after { content: ' Available in demo'; }
+    .demo-no::after  { content: ' Not in demo'; }
+
+    .weapon-notes {
+      display: block !important;
+      margin-top: 0.3rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+  }
+</style>

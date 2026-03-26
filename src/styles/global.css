@@ -1,0 +1,518 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Lexend:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --gold: #F0A800;
+  --gold-dark: #C68A00;
+  --gold-light: #FFD060;
+  --navy: #0D1B2A;
+  --navy-mid: #162840;
+  --navy-light: #1E3F65;
+  --ocean: #0E6B8A;
+  --ocean-light: #1B9EC0;
+  --sky: #4BB8E8;
+  --off-white: #FDF8F0;
+  --white: #FFFFFF;
+  --text: #1A1208;
+  --text-muted: #6B5840;
+  --border: #E2D0A8;
+  --card-bg: #FFFFFF;
+  --sidebar-bg: #162840;
+
+  --font-heading: 'Josefin Sans', sans-serif;
+  --font-body: 'Lexend', sans-serif;
+
+  --max-width: 1200px;
+  --header-height: 96px;
+  --sidebar-width: 220px;
+  --radius: 8px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text);
+  background: var(--off-white);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--ocean);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--gold-dark);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.3rem; }
+
+p { margin-bottom: 1rem; }
+p:last-child { margin-bottom: 0; }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* Utility */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Devlog entry heading — scale down to keep on one line */
+.devlog-entry h1 {
+  font-size: clamp(1.3rem, 3.5vw, 1.9rem);
+  margin-bottom: 1.25rem;
+}
+
+/* Devlog section headings — slightly smaller than the H1 */
+.devlog-entry h2 {
+  font-size: 1.5rem;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Wiki content styles */
+.wiki-content h2 {
+  font-size: 1.8rem;
+  color: var(--navy);
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--border);
+  clear: both;
+}
+
+.wiki-content h3 {
+  font-size: 1.4rem;
+  color: var(--navy-mid);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.wiki-content p {
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.wiki-content ul, .wiki-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.wiki-content li {
+  margin-bottom: 0.4rem;
+}
+
+.wiki-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.wiki-content th {
+  background: var(--navy);
+  color: var(--gold);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  padding: 0.6rem 1rem;
+  text-align: left;
+}
+
+.wiki-content td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.wiki-content tr:nth-child(even) td {
+  background: #f5f0e8;
+}
+
+.infobox tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Infobox */
+.infobox {
+  float: right;
+  margin: 0 0 1.5rem 2rem;
+  width: 260px;
+  max-width: 100%;
+  background: var(--navy);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.infobox-title {
+  background: var(--gold);
+  color: var(--navy);
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.infobox-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.infobox-image-placeholder {
+  width: 100%;
+  height: 180px;
+  background: var(--navy-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 3rem;
+}
+
+.infobox table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.infobox td {
+  padding: 0.4rem 0.75rem;
+  border-bottom: 1px solid var(--navy-light);
+  color: var(--white);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.infobox td:first-child {
+  font-weight: 700;
+  color: var(--gold);
+  width: 45%;
+}
+
+.infobox tr:last-child td {
+  border-bottom: none;
+}
+
+/* Stub notice */
+.stub-notice {
+  background: #fff8e1;
+  border: 2px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stub-notice::before {
+  content: '⚠';
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* Tag badges */
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tag-attack    { background: #3d0a0a; color: #ff4444; }
+.tag-technique { background: #0a1838; color: #4d94ff; }
+.tag-stance    { background: #2e2600; color: #ffdd22; }
+.tag-advantage { background: #1e0a38; color: #bb55ff; }
+.tag-curse     { background: #222222; color: #999999; }
+.tag-status    { background: #007a70; color: #ffffff; text-decoration: none; cursor: pointer; }
+.tag-status:hover  { background: #009688; }
+.tag.keyword-tip   { text-decoration: none; cursor: pointer; }
+.tag-counter   { background: #b34700; color: #ffffff; text-decoration: none; }
+.tag-counter:hover { background: #cc5200; }
+
+/* Restore tag colours when a tag is also a keyword-tip link —
+   .keyword-tip's color:inherit would otherwise override them */
+.tag-status.keyword-tip  { color: #ffffff; }
+.tag-counter.keyword-tip { color: #ffffff; }
+
+/* Keyword tooltips */
+.keyword-tip {
+  position: relative;
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  cursor: help;
+}
+
+/* Inline popup spans are data containers only — never shown directly */
+.keyword-tip-popup {
+  display: none !important;
+}
+
+/* Global fixed tooltip — escapes overflow:hidden on infoboxes */
+#kw-tooltip {
+  display: none;
+  position: absolute;
+  background: var(--navy);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.45;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  width: 220px;
+  text-align: left;
+  z-index: 9999;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: normal;
+  pointer-events: none;
+}
+
+#kw-tooltip.visible {
+  display: block;
+}
+
+.keyword-tip-img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin: 0 auto 0.4rem;
+}
+
+.keyword-tip-variant {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  background: rgba(255, 208, 96, 0.15);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  margin-bottom: 0.3rem;
+}
+
+.keyword-tip-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.keyword-tip-desc {
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.keyword-tip-tag--status {
+  color: #ffffff;
+  background: #007a70;
+}
+
+.keyword-tip-tag--artefact {
+  color: #ffffff;
+  background: #a06000;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-height: 54px;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.7rem; }
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .infobox {
+    float: none;
+    width: 100%;
+    margin: 0 0 1.5rem 0;
+  }
+
+  /* Card page title row: tags drop below the title on mobile */
+  .title-row {
+    flex-wrap: wrap;
+  }
+
+  .title-row h1 {
+    flex: 0 0 100%;
+    margin-bottom: 0.4rem;
+  }
+}
+
+/* Icon list tables — card layout on mobile */
+@media (max-width: 640px) {
+  .icon-list-table thead {
+    display: none;
+  }
+
+  .icon-list-table,
+  .icon-list-table tbody {
+    display: block;
+  }
+
+  .icon-list-table tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .icon-list-table td {
+    display: block;
+    border-bottom: none;
+    padding: 0;
+  }
+
+  /* Strip alternating row tint — card border handles separation */
+  .icon-list-table tr:nth-child(even) td {
+    background: transparent;
+  }
+
+  /* Icon cell — fixed width, vertically centred */
+  .icon-list-table td:first-child {
+    flex: 0 0 40px;
+    width: 40px;
+    text-align: center;
+  }
+
+  /* Name cell — fills remaining space on the first row */
+  .icon-list-table td:nth-child(2) {
+    flex: 1;
+    white-space: normal;
+    font-weight: 700;
+  }
+
+  /* Description cells — full width, indented to align under the name */
+  .icon-list-table td:nth-child(n+3) {
+    flex: 0 0 100%;
+    padding-left: calc(40px + 0.75rem);
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+}
+
+/* Swipe hint arrows (injected dynamically by JS — must be global, not scoped) */
+.swipe-hint {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s;
+  z-index: 10;
+  border: 2px solid var(--gold);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.swipe-hint--prev { left: 0.5rem; }
+.swipe-hint--next { right: 0.5rem; }
+
+.swipe-hint-img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+/* Lightbox */
+.card-img,
+.enemy-infobox-img,
+.infobox-artefact-img {
+  cursor: zoom-in;
+}
+
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  backdrop-filter: blur(6px);
+  animation: lightbox-fade 0.15s ease;
+}
+
+.lightbox-overlay.open {
+  display: flex;
+}
+
+.lightbox-img {
+  max-width: min(85vw, 360px);
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+@keyframes lightbox-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

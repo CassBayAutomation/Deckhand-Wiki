@@ -1,0 +1,223 @@
+---
+import WikiLayout from '../../../layouts/WikiLayout.astro';
+import { getAllCards } from '../../../lib/cards.js';
+import { linkKeywords, getStatusEffectTags } from '../../../utils/linkKeywords';
+
+export async function getStaticPaths() {
+  const { attack, technique, advantage, curse, stances } = getAllCards();
+  const allCards = [
+    ...attack.map(c => ({ ...c, type: 'attack', href: `/cards/attack/${c.slug}` })),
+    ...technique.map(c => ({ ...c, type: 'technique', href: `/cards/technique/${c.slug}` })),
+    ...advantage.map(c => ({ ...c, type: 'advantage', href: `/cards/advantage/${c.slug}` })),
+    ...curse.map(c => ({ ...c, type: 'curse', href: `/cards/curse/${c.slug}` })),
+    ...stances.map(c => ({ ...c, type: 'stance', href: `/cards/stances/${c.slug}` })),
+  ].sort((a, b) => a.title.localeCompare(b.title));
+
+  const typeCards = allCards.filter(c => c.type === 'technique');
+  return typeCards.map((card) => {
+    const idxAll = allCards.findIndex(c => c.href === card.href);
+    const prevAll = allCards[idxAll > 0 ? idxAll - 1 : allCards.length - 1];
+    const nextAll = allCards[idxAll < allCards.length - 1 ? idxAll + 1 : 0];
+    const idxType = typeCards.findIndex(c => c.href === card.href);
+    const prevType = typeCards[idxType > 0 ? idxType - 1 : typeCards.length - 1];
+    const nextType = typeCards[idxType < typeCards.length - 1 ? idxType + 1 : 0];
+    return { params: { slug: card.slug }, props: { card, prevAll, nextAll, prevType, nextType } };
+  });
+}
+
+const { card, prevAll, nextAll, prevType, nextType } = Astro.props;
+const statusTags = getStatusEffectTags(card.description || '');
+const metaDescription = `${card.title} is a Technique card in Davy Jones' Deckhand.${card.description ? ' ' + card.description.replace(/\n/g, ' ').slice(0, 120) : ''}`;
+---
+<WikiLayout title={card.title} section="cards" description={metaDescription} ogImage={card.image}>
+  <div class="wiki-content">
+    <div class="title-row">
+      <h1>{card.title}</h1>
+      <span class="tag tag-technique">Technique</span>
+      {statusTags.map(t => (
+        <a href={t.href} class="tag tag-status keyword-tip">
+          {t.name}
+          <span class="keyword-tip-popup">
+            {t.image && <img src={t.image} alt={t.name} class="keyword-tip-img" />}
+            <span class="keyword-tip-tag keyword-tip-tag--status">Status Effect</span>
+            <span class="keyword-tip-desc">{t.description}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <img src={card.image} alt={card.title} class="card-img" />
+    <div class="infobox">
+      <div class="infobox-title">{card.title}</div>
+      <table>
+        <tr><td>Stamina Cost</td><td>{card.staminaCost !== null ? card.staminaCost : '—'}</td></tr>
+        <tr><td>Effect</td><td class="desc-cell"><span set:html={linkKeywords(card.description || '')}></span></td></tr>
+      </table>
+    </div>
+
+    <div class="card-nav" id="card-nav-all">
+      <a href={prevAll.href} class="card-nav-item">
+        <img src={prevAll.image} alt={prevAll.title} />
+        <span>← {prevAll.title}</span>
+      </a>
+      <a href="/cards" class="card-nav-all">All Cards</a>
+      <a href={nextAll.href} class="card-nav-item card-nav-item--next">
+        <img src={nextAll.image} alt={nextAll.title} />
+        <span>{nextAll.title} →</span>
+      </a>
+    </div>
+    <div class="card-nav" id="card-nav-type" style="display:none">
+      <a href={`${prevType.href}?from=technique`} class="card-nav-item">
+        <img src={prevType.image} alt={prevType.title} />
+        <span>← {prevType.title}</span>
+      </a>
+      <a href="/cards/technique" class="card-nav-all">All Technique Cards</a>
+      <a href={`${nextType.href}?from=technique`} class="card-nav-item card-nav-item--next">
+        <img src={nextType.image} alt={nextType.title} />
+        <span>{nextType.title} →</span>
+      </a>
+    </div>
+    <script is:inline>
+      if (new URLSearchParams(window.location.search).get('from') === 'technique') {
+        document.getElementById('card-nav-all').style.display = 'none';
+        document.getElementById('card-nav-type').removeAttribute('style');
+      }
+    </script>
+  </div>
+</WikiLayout>
+
+<style>
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .title-row h1 {
+    margin: 0;
+  }
+
+  .tag {
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .card-img {
+    float: left;
+    width: 220px;
+    margin: 0 2rem 1.5rem 0;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+  }
+
+  .infobox {
+    width: 320px;
+  }
+
+  .desc-cell {
+    white-space: pre-line;
+  }
+
+  .card-nav {
+    clear: both;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .card-nav-item span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .card-nav-item img {
+    width: 28px;
+    height: 42px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .card-nav-item:hover {
+    border-color: var(--gold);
+    background: rgba(240, 168, 0, 0.06);
+  }
+
+  .card-nav-item--next {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .card-nav-all {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .card-nav-all:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    .card-img {
+      float: none;
+      display: block;
+      width: 180px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .infobox {
+      float: none;
+      width: 100%;
+    }
+
+    .card-nav {
+      flex-wrap: wrap;
+    }
+
+    .card-nav-all {
+      order: -1;
+      width: 100%;
+      text-align: center;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem;
+    }
+
+    .card-nav-item {
+      flex: 1;
+    }
+
+    .card-nav-item--next {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+</style>

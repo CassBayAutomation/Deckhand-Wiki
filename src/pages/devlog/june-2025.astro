@@ -1,0 +1,107 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — June 2025"
+  section="devlog"
+  description="Cass Bay Games are heading to Gamescom! Plus a sneak peek at the opening cutscene and the new voyage selection feature."
+  ogImage="/images/devlog/june-2025/thumbnail.jpg"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">June 2025</span>
+    </div>
+
+    <h1>We're off to Germany! 🎮</h1>
+
+    <p>Ahoy crew, welcome Below Deck!</p>
+    <p>We have exciting news to share this month. Cass Bay Games have received another grant from <a href="https://www.nz-code.nz/" target="_blank" rel="noopener">CODE NZ</a>, this time to fund a trip to Cologne, Germany to pitch <em>Davy Jones' Deckhand</em> at <a href="https://www.gamescom.global/en" target="_blank" rel="noopener">Gamescom</a>, the biggest games event in the world!</p>
+    <p>Ben and Tepene will be flying over in August with a pitch deck and a dream. We'll be attending the business area from Wednesday to Friday, hanging out in the CODE pavilion and meeting publishers.</p>
+
+    <img src="/images/devlog/june-2025/code-booth.jpg" alt="NZ CODE pavilion in Gamescom 2024 business area" class="devlog-img" />
+    <p class="img-caption">NZ CODE pavilion in Gamescom 2024 business area.</p>
+
+    <h2>What are we working on?</h2>
+    <p>Following our April playtest, we have been getting to work on our next set of updates. We've been making general bug fixes and some juicy improvements like additional sprites for our counter-attack animations. Plus the art team is now focusing on our first cut scene — the opening of the game, at least for our first public Steam demo! As a newsletter subscriber you get to have a sneak peek at our private pre-vis animation, voiced by our very own game director Ben!</p>
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/2mWJhsj0eUc" title="Sneak Peek: Davy Jones' Deckhand — Intro cut scene previs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <p>We've also started to build out a major new feature: voyage selection! In the full game, players will have the freedom to explore an open world map by completing voyages. The voyages are procedurally generated based on factors like distance from your current location, and the biomes you travel through along the way.</p>
+
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/NvP0JRrGBx0" title="Sneak Peek: Freely travel by roguelike in Davy Jones' Deckhand" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="june-2025" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .img-caption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: -0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin: 1.25rem 0;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

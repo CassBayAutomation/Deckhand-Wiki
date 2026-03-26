@@ -1,0 +1,183 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — March 2026"
+  section="devlog"
+  description="Demo on the horizon! Davy Jones' Deckhand is coming to Steam Deckbuilder Fest in May. Plus: behind the scenes of the new Davy Jones' Locker environment."
+  ogImage="/images/devlog/march-2026/thumbnail.png"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">March 2026</span>
+    </div>
+
+    <h1>Demo on the horizon 🎮🏴‍☠️</h1>
+
+    <p>Ahoy crew, welcome below deck!</p>
+    <p>We've got exciting news to share this month. Our first ever public Steam demo is coming in early May for Steam Deckbuilder Fest. We'll be officially announcing our participation on the 30th of April.</p>
+    <p>This is a big milestone for our game, and we'd love your wind in our sails as we launch the demo! <strong>The best way to support us is by playing the demo during its limited window.</strong> The demo will go live a few days before Deckbuilder Fest starts and run throughout the duration of the festival, 4th – 11th May PT.</p>
+
+    <img src="/images/devlog/march-2026/deckbuilder-fest-banner.png" alt="Steam Deckbuilder Fest" class="devlog-img" />
+
+    <p>The next best way to support us is to make sure you've <a href="https://store.steampowered.com/app/3544900/Davy_Jones_Deckhand/?utm_source=wiki&utm_medium=website&utm_campaign=devlog_march_2026" target="_blank" rel="noopener">wishlisted</a>. After that you could hold your friends and their families hostage until they wishlist too.</p>
+    <p>We're working very hard on making this a delicious, salty taster of our full vision for Davy Jones' Deckhand. It will feature some updates to the core combat loop, plus a first look at an explorable Davy Jones' Locker environment with new point-and-click controls, fancy animations by Nik, and glorious environment art by Simon. We can't wait for you to try it!</p>
+
+    <p>Yours piratically,<br />Ben</p>
+
+
+    <h2>Our next playtest!</h2>
+    <p>Ahead of the demo in May, we will be running another playtest. This will include a lot of updates from the last playtest and we're keen to get as much participation as possible!</p>
+
+    <div class="info-block">
+      <p class="info-label">Playtest start date:</p>
+      <p>EST – Monday 13th April</p>
+      <p>NZT – Tuesday 14th April</p>
+      <p>Follow the <a href="https://discord.com/events/1216908803841196092/1485402707094405120" target="_blank" rel="noopener">Discord event</a> to be reminded.</p>
+      <p>If you haven't signed up to get your playtest key and would like to participate, you can sign up here:</p>
+      <div class="info-block-cta">
+        <a href="https://forms.gle/4RetBqykPNTjbVRU9" target="_blank" rel="noopener" class="btn-signup">Playtest sign-up form</a>
+      </div>
+    </div>
+
+
+    <h2>Behind the scenes: Davy Jones' Locker environment</h2>
+    <p>It's all-hands-on-deck for the demo launch. I'd like to share some amazing work by our newest team member, Simon, who has been creating the game's first, fully-fledged point-and-click environment: <em>The Locker!</em></p>
+    <p>Simon started with doing thumbnail sketches of his ideas for how the locker could be laid out in terms of framing and composition. Eventually we landed on the tilted look, which reflects the specific nature of our Locker which is a sunken ship that's being dragged along the sea by a chain-gang of deceased sailors.</p>
+
+    <img src="/images/devlog/march-2026/locker-process-1.png" alt="Locker thumbnail sketches" class="devlog-img" />
+
+    <p>With the general framing locked, Simon started to work on details, including the placement of various interactable elements that will be present in the scene (seen in red).</p>
+
+    <img src="/images/devlog/march-2026/locker-process-2.png" alt="Locker sketch with interactable elements" class="devlog-img" />
+
+    <p>At this point Ben took the sketch into the game engine to test it out. This revealed some challenges with the perspective.</p>
+    <p>Here's an exclusive behind-the-scenes clip of Ben banging his head against a wall:</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/dDxOa8o6U-A" title="The problem — perspective challenge" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p>And then here is a clip of the solution we have gone with:</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/R2oYWs-MY-g" title="The solution — character scaling" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p>Instead of changing the perspective of the image (which we loved), we landed on a code solution that allows us to scale Tom as he walks through an environment. The interface is pretty simple, in that we now just set up scaling points in the scene and Tom will scale based on his position between those two points. For those interested in this sort of thing, here is a snapshot of the code:</p>
+
+    <img src="/images/devlog/march-2026/code-example.png" alt="Code snapshot — scaling solution" class="devlog-img" />
+
+    <p>Once we were happy that the image was going to work in-engine, it was time for color! This also went through several iterations.</p>
+
+    <img src="/images/devlog/march-2026/locker-process-3.png" alt="Colour iterations" class="devlog-img" />
+
+    <p>The final image here shows a sketch of further plans to bring this scene to life with animated elements that will help to sell the underwater feeling.</p>
+
+    <img src="/images/devlog/march-2026/locker-process-4.png" alt="Animated elements sketch" class="devlog-img" />
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="march-2026" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .info-block {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .info-block p {
+    margin-bottom: 0.4rem;
+    color: rgba(185, 216, 227, 0.9);
+  }
+
+  .info-label {
+    color: var(--off-white) !important;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .info-block a {
+    color: var(--gold);
+  }
+
+  .info-block-cta {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .btn-signup {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy) !important;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-signup:hover {
+    background: var(--gold-light);
+    color: var(--navy);
+  }
+
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin: 1.25rem 0;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

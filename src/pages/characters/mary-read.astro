@@ -1,0 +1,185 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+---
+
+<WikiLayout title="Mary Read" section="characters">
+  <div class="wiki-content">
+    <div class="infobox">
+      <div class="infobox-title">Mary Read</div>
+      <img src="/images/characters/mary-read.png" alt="Mary Read" class="infobox-image" />
+      <table>
+        <tr><td>Birth Name</td><td>Gráinne Ní Mháille</td></tr>
+        <tr><td>Also Known As</td><td>Grace O'Malley, Anne Bonny, Christina Skytte</td></tr>
+        <tr><td>Age</td><td>~190 years old</td></tr>
+        <tr><td>Born</td><td>~1530, Clew Bay, Ireland</td></tr>
+        <tr><td>Status</td><td>Immortal (annual spa membership)</td></tr>
+        <tr><td>Role</td><td>Antagonist</td></tr>
+      </table>
+    </div>
+
+    <h1>Mary Read</h1>
+    <p>
+      Mary Read is the current name of a woman born Gráinne Ní Mháille, Grace O'Malley, the legendary
+      Irish Pirate Queen. She is approximately 190 years old, perpetually young thanks to an annual
+      membership at the Fountain of Youth Day-Spa, and still running from what she did to
+      <a href="/characters/davy-jones">Davy Jones</a> over a century ago.
+    </p>
+
+    <div class="stub-notice">
+      <p>More information about Mary Read will be added as the game develops.</p>
+    </div>
+
+    <!--
+    <h2>Previous Identities</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Period</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Grace O'Malley</td><td>1530–1603+</td><td>Irish Pirate Queen, her original identity</td></tr>
+        <tr><td>Elizabetha Patrickson</td><td>1640s–1660s</td><td>Thames river pirate; briefly married</td></tr>
+        <tr><td>Christina Anna Skytte</td><td>1680s–1690s</td><td>Swedish noble, Baltic raider; broken engagement</td></tr>
+        <tr><td>Anne Bonny</td><td>1697–1720s</td><td>Caribbean pirate; identity abandoned after capture</td></tr>
+        <tr><td>Mary Read</td><td>1710s–Present</td><td>Her longest and most authentic identity</td></tr>
+      </tbody>
+    </table>
+
+    <h2>How She Got Immortality</h2>
+    <p>
+      After years searching with Davy Jones, Grace found the Fountain of Youth, absurdly housed in a
+      day-spa on the back of a primordial turtle. The membership pass required sacrificing "someone who
+      loves you." She used Davy's love as payment. She has visited annually for over a century, each
+      renewal another year of life, and another reminder of what she chose.
+    </p>
+
+    <h2>Personality</h2>
+    <ul>
+      <li><strong>Brilliant and calculating:</strong> five centuries of reading people and situations</li>
+      <li><strong>Fundamentally selfish:</strong> capable of love, but self-preservation always wins</li>
+      <li><strong>Guilty but not repentant enough:</strong> knows what she did was monstrous, keeps doing it anyway</li>
+      <li><strong>Existentially weary:</strong> she has outlived everything and everyone, multiple times over</li>
+    </ul>
+
+    <h2>Her Relationship with Davy</h2>
+    <p>
+      Davy has sent her messages for over a century, through dying sailors, shipwreck patterns, creatures
+      from the deep. Threats that read like love letters. She keeps every single one. She never responds.
+    </p>
+    <p>
+      She monitors his activities, tells herself it's self-preservation. But she has boxes of his messages,
+      sorted by year. Late at night, after enough whiskey, she reads them.
+    </p>
+    <p>
+      The question she won't answer: does she still love him? She suspects the answer is yes. Which makes
+      everything worse.
+    </p>
+
+    <h2>Relationships</h2>
+    <ul>
+      <li><strong><a href="/characters/davy-jones">Davy Jones</a>:</strong> the man she loved, betrayed, and cannot stop thinking about</li>
+    </ul>
+    -->
+
+    <div class="char-nav">
+      <a href="/characters/davy-jones" class="char-nav-card">
+        <img src="/images/characters/davy-jones.png" alt="Davy Jones" />
+        <span>← Davy Jones</span>
+      </a>
+      <a href="/characters" class="char-nav-all">All Characters</a>
+      <a href="/characters/thomas-essex" class="char-nav-card char-nav-card--next">
+        <img src="/images/characters/thomas-essex-thumb.png" alt="Thomas Essex" />
+        <span>Thomas Essex →</span>
+      </a>
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  .char-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .char-nav-card {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .char-nav-card span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .char-nav-card:hover {
+    border-color: var(--gold);
+    background: rgba(240, 168, 0, 0.06);
+    color: var(--text);
+  }
+
+  .char-nav-card img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .char-nav-card--next {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .char-nav-all {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .char-nav-all:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    .char-nav {
+      flex-wrap: wrap;
+    }
+
+    .char-nav-all {
+      order: -1;
+      width: 100%;
+      text-align: center;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem;
+    }
+
+    .char-nav-card {
+      flex: 1;
+    }
+
+    .char-nav-card--next {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+</style>

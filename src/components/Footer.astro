@@ -1,0 +1,252 @@
+---
+import { sections } from '../data/sections';
+---
+
+<div class="wishlist-cta">
+  <div class="container wishlist-cta-inner">
+    <a href="https://store.steampowered.com/app/3544900/Davy_Jones_Deckhand/?utm_source=wiki&utm_medium=website&utm_campaign=wishlist" target="_blank" rel="noopener" class="capsule-img">
+      <picture>
+        <source media="(max-width: 600px)" srcset="/images/capsule-small.png" />
+        <img src="/images/capsule-main.png" alt="Davy Jones' Deckhand" />
+      </picture>
+    </a>
+    <div class="wishlist-text">
+      <p class="wishlist-title">Davy Jones' Deckhand</p>
+      <p class="wishlist-subtitle">Coming to Steam — add it to your wishlist to support the game</p>
+      <div class="wishlist-btns">
+        <a
+          href="https://store.steampowered.com/app/3544900/Davy_Jones_Deckhand/?utm_source=wiki&utm_medium=website&utm_campaign=wishlist"
+          class="wishlist-btn"
+          target="_blank"
+          rel="noopener"
+        >
+          ☆ Wishlist on Steam
+        </a>
+        <a
+          href="https://discord.com/invite/Es3BsqFHxH"
+          class="wishlist-btn wishlist-btn--discord"
+          target="_blank"
+          rel="noopener"
+        >
+          Join Discord
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <div class="footer-logo-col">
+      <img src="/images/logo-white.png" alt="Davy Jones' Deckhand" class="footer-logo" />
+      <p class="footer-tagline">The official wiki for Davy Jones' Deckhand</p>
+      <p class="footer-credit">A game by <a href="https://www.cassbaygames.com" target="_blank" rel="noopener"><strong>Cass Bay Games</strong></a></p>
+    </div>
+    <div class="footer-nav">
+      <p class="footer-nav-title">Browse the Wiki</p>
+      <ul>
+        {sections.map(s => (
+          <li><a href={`/${s.slug}`}>{s.name}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <p>© Cass Bay Games. All rights reserved. Wiki content may contain spoilers.</p>
+  </div>
+</footer>
+
+<style>
+  .wishlist-cta {
+    background: var(--gold);
+    overflow: hidden;
+  }
+
+  .capsule-img {
+    display: none;
+    line-height: 0;
+    flex-shrink: 0;
+  }
+
+  .wishlist-cta-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .wishlist-text {
+    flex: 1;
+  }
+
+  .wishlist-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 0 0 0.3rem;
+    letter-spacing: 0.04em;
+  }
+
+  .wishlist-subtitle {
+    color: rgba(0,0,0,0.6);
+    font-size: 0.9rem;
+    margin: 0 0 1rem;
+  }
+
+  .wishlist-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .wishlist-btn {
+    display: inline-block;
+    background: #1b2838;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    padding: 0.65rem 1.75rem;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+
+  .wishlist-btn:hover {
+    background: #2a475e;
+    color: #66c0f4;
+    transform: translateY(-2px);
+  }
+
+  .wishlist-btn--discord {
+    background: #3d2d6e;
+  }
+
+  .wishlist-btn--discord:hover {
+    background: #4e3a8a;
+    color: #ffffff;
+  }
+
+  /* Desktop: capsule left, text right */
+  @media (min-width: 601px) {
+    .capsule-img {
+      display: block;
+      width: 320px;
+    }
+
+    .capsule-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  /* Mobile: capsule full-width above text */
+  @media (max-width: 600px) {
+    .wishlist-cta-inner {
+      flex-direction: column;
+      padding-top: 0;
+      padding-bottom: 1.25rem;
+      gap: 1.25rem;
+    }
+
+    .capsule-img {
+      display: block;
+      width: calc(100% + 3rem);
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+    }
+
+    .capsule-img picture,
+    .capsule-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  .site-footer {
+    background: var(--navy);
+    margin-top: 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    gap: 4rem;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-logo-col {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .footer-logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: 1rem;
+  }
+
+  .footer-tagline {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-credit {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .footer-credit strong {
+    color: var(--gold);
+  }
+
+  .footer-nav {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .footer-nav-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3rem 1.5rem;
+  }
+
+  .footer-nav a {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-nav a:hover {
+    color: var(--gold);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .footer-bottom p {
+    color: rgba(255,255,255,0.35);
+    font-size: 0.8rem;
+    margin: 0;
+  }
+</style>

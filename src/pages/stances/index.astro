@@ -1,0 +1,82 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { linkKeywords } from '../../utils/linkKeywords';
+import { keywords } from '../../data/keywords';
+
+const counterAttackTypes = [
+  keywords.find(k => k.slug === 'counter-attack')!,
+  keywords.find(k => k.slug === 'counter-attack-piercing-parry')!,
+  keywords.find(k => k.slug === 'counter-attack-steady-parry')!,
+];
+---
+
+<WikiLayout title="Stances" section="stances" description="Stances are the heart of Davy Jones' Deckhand combat. Master Parry points, counter-attacks, and stance-switching to build devastating combos in this pirate roguelike deckbuilder.">
+  <div class="wiki-content">
+    <h1>Stances</h1>
+    <p>
+      Stances are the heart of Davy Jones' Deckhand's combat system. Each weapon comes with its own set
+      of stances, and mastering them is the key to pulling off devastating counter-attacks.
+    </p>
+
+    <h2>How Stances Work</h2>
+    <p>
+      Play a <a href="/cards/stances"><strong>Stance Card</strong></a> to load it into your primary or secondary stance slot. A secondary
+      stance appears behind the primary like a shadow. Once a stance is active, you can load
+      <strong>Parry points</strong> onto it using Technique cards.
+    </p>
+    <p>
+      When an enemy attacks, compare your active stance's Parry points to the attack's
+      <strong>Break value</strong>. If they match exactly, you trigger a <strong>Counter-Attack</strong>.
+      Too many or too few Parry points and you miss the window — or take damage.
+    </p>
+
+    <h2>Stance Card Stats</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Stat</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Stamina Cost</td><td>Stamina spent to play the card (players start with 3 per turn)</td></tr>
+        <tr><td>Main Attack Damage</td><td>Damage dealt when using this stance's attack</td></tr>
+        <tr><td>Counter Attack Damage</td><td>Damage dealt on a successful counter</td></tr>
+        <tr><td>Counter Type</td><td>Which counter-attack variant is triggered (see below)</td></tr>
+        <tr><td>Max Parry</td><td>Maximum Parry points this stance can hold</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Counter-Attack Types</h2>
+    <table>
+      <thead>
+        <tr><th>Type</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        {counterAttackTypes.map(kw => (
+          <tr>
+            <td><a href={`/keywords#${kw.slug}`} class="keyword-tip">{kw.name}<span class="keyword-tip-popup">{kw.image && <img src={kw.image} alt={kw.name} class="keyword-tip-img" />}{kw.variant && <span class="keyword-tip-variant">{kw.variant}</span>}<span class="keyword-tip-desc">{kw.description}</span></span></a></td>
+            <td set:html={linkKeywords(kw.description)} />
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <h2 id="stances-by-weapon">Stances by Weapon</h2>
+    <ul>
+      <li><a href="/cards/stances#mop">Mop</a></li>
+      <li><a href="/cards/stances#saber">Saber</a></li>
+      <li>Broken Mop <span class="coming-soon">(coming soon)</span></li>
+      <li>The Claw <span class="coming-soon">(coming soon)</span></li>
+      <li>Rapier <span class="coming-soon">(coming soon)</span></li>
+      <li>Dual Buckets <span class="coming-soon">(coming soon)</span></li>
+    </ul>
+  </div>
+</WikiLayout>
+
+<style>
+  .coming-soon {
+    color: var(--text-muted);
+    font-size: 0.88em;
+  }
+</style>

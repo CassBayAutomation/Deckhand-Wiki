@@ -1,0 +1,88 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — November 2024"
+  section="devlog"
+  description="Davy Jones' Deckhand receives a $40,000 CODE grant, plus a first look at the character of Davy Jones himself."
+  ogImage="/images/devlog/november-2024/thumbnail.jpg"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">November 2024</span>
+    </div>
+
+    <h1>$40,000 raised for Davy Jones Deckhand</h1>
+
+    <h2>Davy Jones Deckhand receives $40,000 CODE grant</h2>
+    <p>I am more than a little excited to share this news! After months and months of hard work on our application, followed by several more months of waiting, we finally received a call from <a href="https://www.nz-code.nz/about" target="_blank" rel="noopener noreferrer">CODE (The New Zealand Centre of Digital Excellence)</a> to say that they will be funding the development of our publisher demo.</p>
+    <p><a href="https://www.nz-code.nz/post/808-341-boost-for-the-nz-game-dev-sector-in-code-s-2nd-national-funding-round" target="_blank" rel="noopener noreferrer"><strong>Read more about the funded projects here.</strong></a></p>
+    <p><em>Me telling the team:</em></p>
+
+    <img src="/images/devlog/november-2024/show-me.jpg" alt="Ben sharing the CODE grant news with the team" class="devlog-img" />
+
+    <p>It was a great moment for us all. I certainly breathed a huge sigh of relief knowing that all the hard work had paid off. I've spent the past few weeks sorting legal and financial bits and pieces, registering the company and making it possible to actually receive the funds. Now it's time to start officially moving forward as a team. I'm stoked to finally be able to pay our incredible people for their contributions.</p>
+    <p>In the rest of this newsletter you'll be able to read about a big event coming up in the next month, and get a sneak peak into the character of Davy Jones.</p>
+    <p>Thanks again for joining the crew!</p>
+    <p>— Ben Childs (Programmer / Creative Director)</p>
+
+    <h2>Meet us at Canterbury Game Dev &amp; Creative Tech Day</h2>
+    <p>The team will be bringing an early demo of Davy Jones Deckhand to this new event on the 7th December. So if you'd like to meet us and try it out, come on down to the Epic CHCH building between 9am–1pm.</p>
+
+    <a href="https://events.humanitix.com/canterbury-game-dev-and-creative-tech-day" target="_blank" rel="noopener noreferrer">
+      <img src="/images/devlog/november-2024/game-dev-tech-day.jpg" alt="Canterbury Game Dev and Creative Tech Day" class="devlog-img" />
+    </a>
+
+    <h2>It's time to talk about Davy…</h2>
+    <p>Central to the game's narrative, Davy Jones is an eccentric, cynical melting pot of ideas and styles. Immortality and time have made him a living encyclopaedia. His philosophy is as eclectic as his wardrobe.</p>
+
+    <img src="/images/devlog/november-2024/davy-jones-left.png" alt="Davy Jones character art" class="devlog-img" />
+    <img src="/images/devlog/november-2024/davy-jones-right.png" alt="Davy Jones character art" class="devlog-img" />
+
+    <p>Davy's power, and immortality, is tied to a mysterious inner flame that he hides beneath his clothes. This flame burns by mystical whale oil he stole from the leviathan itself. It only burns underwater, forcing Davy to remain beneath the surface.</p>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="november-2024" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+</style>

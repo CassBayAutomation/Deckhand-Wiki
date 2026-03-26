@@ -1,0 +1,62 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { enemies } from '../../data/enemies';
+---
+<WikiLayout title="Enemies" section="enemies" description="Every enemy in Davy Jones' Deckhand — pirates, sea creatures, mermaids, and bosses like Mary Read and the Massive Crab. Learn attack patterns and counter strategies for this pirate roguelike deckbuilder.">
+  <div class="wiki-content">
+    <h1>Enemies</h1>
+    <p>Enemies are the combatants you face during voyage encounters. Each enemy has its own attack patterns and health pool — understanding their moves is key to landing perfect counter-attacks.</p>
+    <div class="stub-notice">HP values and turn patterns will be added as the game develops.</div>
+
+    <table class="enemies-table icon-list-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {enemies.map(e => (
+          <tr>
+            <td class="enemy-img-cell">
+              {e.image && <img src={e.image} alt={e.name} />}
+            </td>
+            <td><a href={`/enemies/${e.slug}`}>{e.name}</a></td>
+            <td>{e.boss && <span class="boss-badge">Boss</span>}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</WikiLayout>
+
+<style>
+  .enemies-table .enemy-img-cell {
+    width: 48px;
+    padding: 4px 8px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .enemies-table .enemy-img-cell img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .boss-badge {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+</style>

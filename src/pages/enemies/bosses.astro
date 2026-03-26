@@ -1,0 +1,49 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { enemies } from '../../data/enemies';
+
+const bosses = enemies.filter(e => e.boss);
+---
+<WikiLayout title="Bosses" section="enemies" description="All boss enemies in Davy Jones' Deckhand — powerful foes that mark the end of each voyage.">
+  <div class="wiki-content">
+    <h1>Bosses</h1>
+    <p>Bosses are the powerful enemies that await at the end of each voyage. Prepare your deck carefully before facing them.</p>
+    <div class="stub-notice">HP values and turn patterns will be added as the game develops.</div>
+
+    <table class="enemies-table icon-list-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {bosses.map(e => (
+          <tr>
+            <td class="enemy-img-cell">
+              {e.image && <img src={e.image} alt={e.name} />}
+            </td>
+            <td><a href={`/enemies/${e.slug}`}>{e.name}</a></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</WikiLayout>
+
+<style>
+  .enemies-table .enemy-img-cell {
+    width: 48px;
+    padding: 4px 8px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .enemies-table .enemy-img-cell img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
