@@ -47,6 +47,15 @@ const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
     <Footer />
     <div id="kw-tooltip" aria-hidden="true"></div>
     <script>
+      // Strip UTM params from URL after GA has captured them
+      const _url = new URL(window.location.href);
+      const _utmKeys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+      if (_utmKeys.some(k => _url.searchParams.has(k))) {
+        _utmKeys.forEach(k => _url.searchParams.delete(k));
+        history.replaceState(null, '', _url.toString());
+      }
+    </script>
+    <script>
       const tooltip = document.getElementById('kw-tooltip')!;
       const MARGIN = 8;
 
