@@ -3,14 +3,27 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
 import { getStanceCards } from '../../lib/cards.js';
 
 const cards = getStanceCards();
+const mopCards = cards.filter(c => c.weapons.includes('Mop'));
+const saberCards = cards.filter(c => c.weapons.includes('Saber'));
 ---
 <WikiLayout title="Stance Cards" section="cards" description="Browse all stance cards in Davy Jones' Deckhand, grouped by weapon. Each stance defines your parry pool, counter-attack type, and combat posture.">
   <div class="wiki-content">
     <h1>Stance Cards</h1>
     <p>Stance cards are played to your stance slots, defining your defensive and offensive posture in combat. Each stance has its own parry pool, attack damage, and counter-attack behaviour.</p>
 
+    <h2>Mop</h2>
     <div class="card-grid">
-      {cards.map(card => (
+      {mopCards.map(card => (
+        <a href={`/cards/stances/${card.slug}?from=stances`} class="card-thumb">
+          <img src={card.image} alt={card.title} loading="lazy" />
+          <span class="card-thumb-name">{card.title}</span>
+        </a>
+      ))}
+    </div>
+
+    <h2>Saber</h2>
+    <div class="card-grid">
+      {saberCards.map(card => (
         <a href={`/cards/stances/${card.slug}?from=stances`} class="card-thumb">
           <img src={card.image} alt={card.title} loading="lazy" />
           <span class="card-thumb-name">{card.title}</span>
