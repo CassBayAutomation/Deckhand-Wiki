@@ -63,6 +63,7 @@ export function getStanceCards() {
     attackDamage: obj['Attack Damage'] || '',
     counterAttackType: obj['Counter-Attack Type'] || '',
     weapons: (obj['Weapon'] || '').split(',').map(w => w.trim()).filter(Boolean),
+    note: obj['Note'] || '',
   }));
 }
 

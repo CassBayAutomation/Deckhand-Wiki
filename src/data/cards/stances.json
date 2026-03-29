@@ -1,7 +1,7 @@
 [
-  ["Asset index", "Title", "Stamina Cost", "Counter-attack Damage", "Max Parry", "Attack Damage", "Description", "Counter-Attack Type", "Weapon"],
+  ["Asset index", "Title", "Stamina Cost", "Counter-attack Damage", "Max Parry", "Attack Damage", "Description", "Counter-Attack Type", "Weapon", "Note"],
   ["52", "Cavalry", "2", "18", "6", "8", "PIERCING PARRY", "Piercing", "Mop"],
-  ["53", "Sloppy Joe", "0", "16", "6", "5", "", "Standard", "Mop"],
+  ["53", "Sloppy Joe", "0", "16", "6", "5", "", "Standard", "Mop", "This card is the NATURAL stance card for the Mop and Broken Mop weapons."],
   ["54", "The Crane", "1", "18", "8", "3", "Starts with 50% of MAX PARRY applied", "Standard", "Mop"],
   ["55", "The Emu", "3", "15", "4", "8", "STEADY PARRY", "Steady", "Mop"],
   ["56", "Wet Rag", "0", "16", "10", "4", "+3 HP when played\nSTEADY PARRY", "Steady", "Mop"],

@@ -97,6 +97,8 @@ const infoboxTableHtml = [
       </div>
     </div>
 
+    {card.note && <p set:html={linkKeywords(card.note)} />}
+
     <div class="card-nav" id="card-nav-all">
       <a href={prevAll.href} class="card-nav-item">
         <img src={prevAll.image} alt={prevAll.title} />
