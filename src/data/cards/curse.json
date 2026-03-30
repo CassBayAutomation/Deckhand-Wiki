@@ -1,7 +1,6 @@
 [
   ["Asset Index", "Title", "Stamina Cost", "Description"],
   ["38", "The Black Spot", "0", "-3 HP\nEXHAUST\n\nAt end of turn ALL stances lose 1 PARRY if held in hand"],
-  ["39", "The Black Spot", "0", "-3 HP\nEXHAUST\n\nAt end of turn ALL stances lose 1 PARRY if held in hand"],
   ["40", "Cannon Ball", "1", "Play to dodge the cannonball. If held in hand ALL stances -1 PARRY at end of turn\nEXHAUST"],
   ["41", "Giant Pincer", "0", "-4 HP\nDRAW 2\nEXHAUST"],
   ["42", "Grappling Hook", "1", "Forces a SWITCH when held in hand.\nTo remove, BREAK a stance."],
