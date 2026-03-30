@@ -54,6 +54,13 @@ export const keywords: Keyword[] = [
     description: 'Stance deactivated and card returned to discard pile.',
   },
   {
+    name: 'Cargo',
+    slug: 'cargo',
+    terms: ['CARGO'],
+    appearsOn: 'Artefacts',
+    description: 'The starter artefacts you choose to bring on a voyage before setting sail.',
+  },
+  {
     name: 'Combo',
     slug: 'combo',
     terms: ['COMBO'],
