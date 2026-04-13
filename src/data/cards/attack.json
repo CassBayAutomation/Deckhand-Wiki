@@ -14,7 +14,7 @@
   ["11", "Fleeting clarity", "3", "PRIMARY x4\nSECONDARY x4\nEXHAUST\nTEMPORARY"],
   ["12", "Flurry", "1", "PRIMARY\nPRIMARY"],
   ["14", "Kick", "1", "PRIMARY\nInflict 1 OPEN"],
-  ["16", "Momentum", "2", "PRIMARY\ngain 1 STRENGTH"],
+  ["16", "Momentum", "2", "PRIMARY attack\ngain 1 STRENGTH"],
   ["17", "Overwhelm", "2", "PRIMARY\nSWITCH\nPRIMARY\nSECONDARY"],
   ["18", "Savage Flurry", "0", "-3 HP\nPIERCING PRIMARY\nPIERCING PRIMARY"],
   ["19", "Pierce", "1", "PIERCING PRIMARY bypassing armor"],
