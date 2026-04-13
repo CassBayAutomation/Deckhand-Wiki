@@ -1,5 +1,6 @@
 ---
 import WikiLayout from '../../layouts/WikiLayout.astro';
+import CardSortBar from '../../components/CardSortBar.astro';
 import { getAdvantageCards } from '../../lib/cards.js';
 
 const cards = getAdvantageCards();
@@ -9,9 +10,12 @@ const cards = getAdvantageCards();
     <h1>Advantage Cards</h1>
     <p>Advantage cards turn the tides of battle by inflicting status effects on enemies and triggering other combat-altering actions.</p>
 
-    <div class="card-grid">
+    <CardSortBar />
+    <div class="card-grid" data-sortable>
       {cards.map(card => (
-        <a href={`/cards/advantage/${card.slug}?from=advantage`} class="card-thumb">
+        <a href={`/cards/advantage/${card.slug}?from=advantage`} class="card-thumb"
+          data-title={card.title}
+          data-cost={card.staminaCost !== null ? String(card.staminaCost) : ''}>
           <img src={card.image} alt={card.title} loading="lazy" />
           <span class="card-thumb-name">{card.title}</span>
         </a>
@@ -25,7 +29,6 @@ const cards = getAdvantageCards();
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 1rem;
-    margin-top: 1.5rem;
   }
 
   .card-thumb {

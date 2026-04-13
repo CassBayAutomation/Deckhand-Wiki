@@ -1,0 +1,108 @@
+---
+interface Props {
+  modes?: string[];
+}
+const { modes = ['alpha', 'cost'] } = Astro.props;
+
+const labels: Record<string, string> = {
+  alpha: 'Alphabetical',
+  cost: 'Stamina Cost',
+  type: 'Type',
+};
+---
+
+<div class="sort-bar">
+  <span class="sort-label">Sort by</span>
+  {modes.map(mode => (
+    <button class={`sort-btn${mode === 'alpha' ? ' sort-btn--active' : ''}`} data-sort={mode}>
+      {labels[mode]}
+    </button>
+  ))}
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var sortBtns = document.querySelectorAll('.sort-btn');
+
+    function sortGrid(grid, mode) {
+      var typeOrder = { attack: 0, technique: 1, advantage: 2, curse: 3, stance: 4 };
+      var items = Array.from(grid.querySelectorAll('[data-title]'));
+      items.sort(function (a, b) {
+        if (mode === 'cost') {
+          var ca = a.dataset.cost === '' ? 999 : Number(a.dataset.cost);
+          var cb = b.dataset.cost === '' ? 999 : Number(b.dataset.cost);
+          if (ca !== cb) return ca - cb;
+        } else if (mode === 'type') {
+          var ta = typeOrder[a.dataset.type] !== undefined ? typeOrder[a.dataset.type] : 99;
+          var tb = typeOrder[b.dataset.type] !== undefined ? typeOrder[b.dataset.type] : 99;
+          if (ta !== tb) return ta - tb;
+        }
+        return a.dataset.title.localeCompare(b.dataset.title);
+      });
+      items.forEach(function (item) { grid.appendChild(item); });
+    }
+
+    function applySort(mode) {
+      document.querySelectorAll('[data-sortable]').forEach(function (grid) {
+        sortGrid(grid, mode);
+      });
+      sortBtns.forEach(function (btn) {
+        btn.classList.toggle('sort-btn--active', btn.dataset.sort === mode);
+      });
+    }
+
+    sortBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () { applySort(btn.dataset.sort); });
+    });
+
+    applySort('alpha');
+  });
+</script>
+
+<style>
+  .sort-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .sort-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-right: 0.15rem;
+  }
+
+  .sort-btn {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    line-height: 1.4;
+  }
+
+  .sort-btn:hover {
+    border-color: var(--gold);
+    color: var(--text);
+  }
+
+  .sort-btn--active {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  .sort-btn--active:hover {
+    background: var(--gold-dark);
+    border-color: var(--gold-dark);
+    color: var(--white);
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import WikiLayout from '../../layouts/WikiLayout.astro';
+import CardSortBar from '../../components/CardSortBar.astro';
 import { linkKeywords } from '../../utils/linkKeywords';
 import { getAllCards } from '../../lib/cards.js';
 
@@ -52,10 +53,14 @@ const allCards = [
     <p>See also: <a href="/keywords">Keywords</a> for a full glossary of terms like <span set:html={linkKeywords('EXHAUST')} />.</p>
 
     <h2>All Cards</h2>
-    <p class="all-cards-count">{allCards.length} cards, sorted alphabetically.</p>
-    <div class="all-cards-grid">
+    <p class="all-cards-count">{allCards.length} cards total</p>
+    <CardSortBar modes={['alpha', 'cost', 'type']} />
+    <div class="all-cards-grid" data-sortable>
       {allCards.map(card => (
-        <a href={card.href} class="all-cards-item">
+        <a href={card.href} class="all-cards-item"
+          data-title={card.title}
+          data-cost={card.staminaCost !== null ? String(card.staminaCost) : ''}
+          data-type={card.type}>
           <img src={card.image} alt={card.title} />
           <span class="all-cards-name">{card.title}</span>
           <span class={`tag tag-${card.type}`}>{card.type === 'stance' ? 'Stance' : card.type.charAt(0).toUpperCase() + card.type.slice(1)}</span>

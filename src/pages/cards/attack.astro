@@ -1,5 +1,6 @@
 ---
 import WikiLayout from '../../layouts/WikiLayout.astro';
+import CardSortBar from '../../components/CardSortBar.astro';
 import { getAttackCards } from '../../lib/cards.js';
 
 const cards = getAttackCards();
@@ -9,9 +10,12 @@ const cards = getAttackCards();
     <h1>Attack Cards</h1>
     <p>Attack cards deal direct damage to enemies. They cost stamina to play and are the primary source of offensive pressure in combat.</p>
 
-    <div class="card-grid">
+    <CardSortBar />
+    <div class="card-grid" data-sortable>
       {cards.map(card => (
-        <a href={`/cards/attack/${card.slug}?from=attack`} class="card-thumb">
+        <a href={`/cards/attack/${card.slug}?from=attack`} class="card-thumb"
+          data-title={card.title}
+          data-cost={card.staminaCost !== null ? String(card.staminaCost) : ''}>
           <img src={card.image} alt={card.title} loading="lazy" />
           <span class="card-thumb-name">{card.title}</span>
         </a>
@@ -25,7 +29,6 @@ const cards = getAttackCards();
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 1rem;
-    margin-top: 1.5rem;
   }
 
   .card-thumb {
