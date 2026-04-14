@@ -4,6 +4,7 @@ export interface Artefact {
   effect: string;
   upgradedEffect: string;
   image?: string;
+  inDemo?: boolean;
 }
 
 export const artefacts: Artefact[] = [
@@ -27,21 +28,21 @@ export const artefacts: Artefact[] = [
   { name: 'Miracle Elixir', slug: 'miracle-elixir', effect: 'At the start of combat apply OPEN to a random enemy.', upgradedEffect: 'At the start of combat apply OPEN to all enemies.', image: '/images/artefacts/miracle-elixir.png' },
   { name: 'Ornate Tea Set', slug: 'ornate-tea-set', effect: 'Enemies with OPEN take +50% damage from all attacks.', upgradedEffect: 'Enemies with OPEN take +100% damage from all attacks.', image: '/images/artefacts/ornate-tea-set.png' },
   { name: 'Peg Leg', slug: 'peg-leg', effect: 'Attacks from SECONDARY deal double damage.', upgradedEffect: 'Attacks from SECONDARY deal triple damage.', image: '/images/artefacts/peg-leg.png' },
-  { name: "Prophet's Mask", slug: 'prophets-mask', effect: 'When stances lose PARRY, they gain POISE.', upgradedEffect: '—' },
+  { name: "Prophet's Mask", slug: 'prophets-mask', effect: 'When stances lose PARRY, they gain POISE.', upgradedEffect: '—', inDemo: false },
   { name: 'Red Candle', slug: 'red-candle', effect: 'Whenever a card EXHAUSTS apply OPEN to a random enemy.', upgradedEffect: 'Whenever a card EXHAUSTS apply OPEN to all enemies.', image: '/images/artefacts/red-candle.png' },
   { name: 'Reef Serpent Fang', slug: 'reef-serpent-fang', effect: '+50% damage while poisoned.', upgradedEffect: 'Deal double damage while poisoned.', image: '/images/artefacts/reef-serpent-fang.png' },
   { name: 'Ring of Return', slug: 'ring-of-return', effect: 'Lethal counter-attacks grant +1 STAMINA next turn.', upgradedEffect: 'Lethal counter-attacks grant +2 STAMINA next turn.', image: '/images/artefacts/ring-of-return.png' },
   { name: 'Ring of Riposte', slug: 'ring-of-riposte', effect: 'Lethal counter-attacks grant 2 LEEWAY.', upgradedEffect: 'Lethal counter-attacks grant 2 LEEWAY and 2 POISE.', image: '/images/artefacts/ring-of-riposte.png' },
-  { name: 'Ring of Roi', slug: 'ring-of-roi', effect: 'Lethal counter-attacks increase coin looted.', upgradedEffect: 'Lethal counter-attacks increase coin looted by 2 per counter-attack.' },
+  { name: 'Ring of Roi', slug: 'ring-of-roi', effect: 'Lethal counter-attacks increase coin looted.', upgradedEffect: 'Lethal counter-attacks increase coin looted by 2 per counter-attack.', inDemo: false },
   { name: 'Scroll in a Jar', slug: 'scroll-in-a-jar', effect: 'Whenever you play The Black Spot, gain 2 STAMINA.', upgradedEffect: 'Whenever you draw The Black Spot, gain 1 STAMINA.', image: '/images/artefacts/scroll-in-a-jar.png' },
-  { name: 'Scrimshaw Charm', slug: 'scrimshaw-charm', effect: 'Playing a curse card clears all WEAK from your stances.', upgradedEffect: 'The bearer cannot be weakened.', image: '/images/artefacts/scrimshaw-charm.png' },
+  { name: 'Scrimshaw Charm', slug: 'scrimshaw-charm', effect: 'Playing a curse card clears all WEAK from your stances.', upgradedEffect: 'The bearer cannot be weakened.', image: '/images/artefacts/scrimshaw-charm.png', inDemo: false },
   { name: 'Scurvy Boost', slug: 'scurvy-boost', effect: 'Whenever you play a CURSE card, draw a card.', upgradedEffect: 'Whenever you draw a CURSE card, draw another card.', image: '/images/artefacts/scurvy-boost.png' },
   { name: 'Scurvy Cure', slug: 'scurvy-cure', effect: 'Whenever you play a CURSE card, primary stance gains 1 LEEWAY.', upgradedEffect: 'Whenever you draw a CURSE card, primary stance gains 1 LEEWAY.', image: '/images/artefacts/scurvy-cure.png' },
   { name: 'Scurvy Tonic', slug: 'scurvy-tonic', effect: 'Whenever you play a CURSE card, heal 1 HP.', upgradedEffect: 'Whenever you draw a CURSE card, heal 1 HP.', image: '/images/artefacts/scurvy-tonic.png' },
-  { name: "Shark's Tooth Necklace", slug: 'sharks-tooth-necklace', effect: 'When stances lose PARRY they gain POISE.', upgradedEffect: 'When stances lose PARRY they gain POISE and LEEWAY.' },
+  { name: "Shark's Tooth Necklace", slug: 'sharks-tooth-necklace', effect: 'When stances lose PARRY they gain POISE.', upgradedEffect: 'When stances lose PARRY they gain POISE and LEEWAY.', inDemo: false },
   { name: 'Sharpening Stone', slug: 'sharpening-stone', effect: 'Every 3rd counter-attack deals +100% damage. Resets each encounter.', upgradedEffect: 'Every 3rd counter-attack deals +100% damage.', image: '/images/artefacts/sharpening-stone.png' },
   { name: 'Sharpening Wheel', slug: 'sharpening-wheel', effect: 'Every 4th counter-attack deals +200% damage. Resets when taking damage.', upgradedEffect: 'Every 4th counter-attack deals +300% damage. Resets when taking damage.', image: '/images/artefacts/sharpening-wheel.png' },
-  { name: 'Shovel', slug: 'shovel', effect: 'Good for digging. Increases coin looted by 10%.', upgradedEffect: 'Good for digging. Increases coin looted by 20%.', image: '/images/artefacts/shovel.png' },
+  { name: 'Shovel', slug: 'shovel', effect: 'Good for digging. Increases coin looted by 10%.', upgradedEffect: 'Good for digging. Increases coin looted by 20%.', image: '/images/artefacts/shovel.png', inDemo: false },
   { name: "Stoker's Blade", slug: 'stokers-blade', effect: 'Dealing PIERCING damage heals 1 HP.', upgradedEffect: 'Dealing PIERCING damage heals 10% of damage inflicted.', image: '/images/artefacts/stokers-blade.png' },
   { name: 'Strange Trinket', slug: 'strange-trinket', effect: 'When The Black Spot is drawn, draw 2 more cards.', upgradedEffect: 'When The Black Spot is drawn or played, draw 2 cards.', image: '/images/artefacts/strange-trinket.png' },
   { name: 'Tentacle', slug: 'tentacle', effect: 'Whenever you take damage, draw a card.', upgradedEffect: 'Whenever you take damage, draw a card and heal 1 HP.', image: '/images/artefacts/tentacle.png' },

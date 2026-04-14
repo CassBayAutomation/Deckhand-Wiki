@@ -19,6 +19,7 @@ import { linkKeywords } from '../../utils/linkKeywords';
           <th>Name</th>
           <th>Effect</th>
           <th>Upgraded Effect</th>
+          <th class="demo-col">In Demo</th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +31,7 @@ import { linkKeywords } from '../../utils/linkKeywords';
             <td><span id={a.slug} class="artefact-anchor"></span><a href={`/artefacts/${a.slug}`}>{a.name}</a></td>
             <td set:html={linkKeywords(a.effect)} />
             <td set:html={linkKeywords(a.upgradedEffect)} />
+            <td class={`demo-cell ${a.inDemo === false ? 'demo-no' : 'demo-yes'}`}>{a.inDemo === false ? '✗' : '✓'}</td>
           </tr>
         ))}
       </tbody>
@@ -61,6 +63,21 @@ import { linkKeywords } from '../../utils/linkKeywords';
     scroll-margin-top: calc(var(--header-height) + 1rem);
   }
 
+  .demo-col {
+    text-align: center;
+    white-space: nowrap;
+    width: 1%;
+  }
+
+  .demo-cell {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .demo-yes { color: #3a9e5f; }
+  .demo-no  { color: #b94040; }
+
   @media (max-width: 640px) {
     .artefacts-table td:nth-child(3)::before {
       content: 'Effect: ';
@@ -73,5 +90,17 @@ import { linkKeywords } from '../../utils/linkKeywords';
       font-weight: 700;
       color: var(--text);
     }
+
+    .demo-cell {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 0.3rem;
+      margin-left: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .demo-yes::after { content: ' Available in demo'; }
+    .demo-no::after  { content: ' Not in demo'; }
   }
 </style>
