@@ -109,6 +109,26 @@ import { linkKeywords } from '../../utils/linkKeywords';
     .demo-yes::after { content: ' Available in demo'; }
     .demo-no::after  { content: ' Not in demo'; }
 
+    .stat-cell {
+      display: block !important;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+      text-align: left;
+    }
+
+    .weapons-table td:nth-child(3)::before {
+      content: 'Max HP: ';
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .weapons-table td:nth-child(4)::before {
+      content: 'Max Stamina: ';
+      font-weight: 700;
+      color: var(--text);
+    }
+
     .weapon-notes {
       display: block !important;
       margin-top: 0.3rem;
