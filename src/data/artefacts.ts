@@ -27,7 +27,7 @@ export const artefacts: Artefact[] = [
   { name: 'Lantern', slug: 'lantern', effect: 'Stances gain LEEWAY when switching into primary position.', upgradedEffect: 'Stances gain 2 LEEWAY when switching into primary position.', image: '/images/artefacts/lantern.png' },
   { name: 'Miracle Elixir', slug: 'miracle-elixir', effect: 'At the start of combat apply OPEN to a random enemy.', upgradedEffect: 'At the start of combat apply OPEN to all enemies.', image: '/images/artefacts/miracle-elixir.png' },
   { name: 'Ornate Tea Set', slug: 'ornate-tea-set', effect: 'Enemies with OPEN take +50% damage from all attacks.', upgradedEffect: 'Enemies with OPEN take +100% damage from all attacks.', image: '/images/artefacts/ornate-tea-set.png' },
-  { name: 'Peg Leg', slug: 'peg-leg', effect: 'Attacks from SECONDARY deal double damage.', upgradedEffect: 'Attacks from SECONDARY deal triple damage.', image: '/images/artefacts/peg-leg.png' },
+  { name: 'Peg Leg', slug: 'peg-leg', effect: 'Attacks from SECONDARY deal +100% damage.', upgradedEffect: 'Attacks from SECONDARY deal +150% damage.', image: '/images/artefacts/peg-leg.png' },
   { name: "Prophet's Mask", slug: 'prophets-mask', effect: 'When stances lose PARRY, they gain POISE.', upgradedEffect: '—', inDemo: false },
   { name: 'Red Candle', slug: 'red-candle', effect: 'Whenever a card EXHAUSTS apply OPEN to a random enemy.', upgradedEffect: 'Whenever a card EXHAUSTS apply OPEN to all enemies.', image: '/images/artefacts/red-candle.png' },
   { name: 'Reef Serpent Fang', slug: 'reef-serpent-fang', effect: '+50% damage while poisoned.', upgradedEffect: 'Deal double damage while poisoned.', image: '/images/artefacts/reef-serpent-fang.png' },
