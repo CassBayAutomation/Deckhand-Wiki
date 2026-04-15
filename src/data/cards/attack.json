@@ -17,7 +17,7 @@
   ["16", "Momentum", "2", "PRIMARY attack\ngain 1 STRENGTH"],
   ["17", "Overwhelm", "2", "PRIMARY\nSWITCH\nPRIMARY\nSECONDARY"],
   ["18", "Savage Flurry", "0", "-3 HP\nPIERCING PRIMARY\nPIERCING PRIMARY"],
-  ["19", "Pierce", "1", "PIERCING PRIMARY bypassing armor"],
+  ["19", "Pierce", "1", "PIERCING PRIMARY"],
   ["20", "Piercing Shadow", "1", "PIERCING SECONDARY bypassing armor"],
   ["21", "Piercing Sweep", "2", "PIERCING PRIMARY\nto ALL enemies"],
   ["22", "Piercing Combo", "2", "PIERCING PRIMARY\nPIERCING SECONDARY"],

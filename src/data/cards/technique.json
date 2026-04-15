@@ -34,7 +34,7 @@
   ["109", "Fury", "3", "Triple a stance's STRENGTH\nEXHAUST"],
   ["110", "Mighty Mop", "2", "STRENGTH +3"],
   ["111", "Power up", "1", "Apply 3 STRENGTH\nEXHAUST"],
-  ["112", "Spiral", "3", "Double a stance's STRENGTH\nEXHAUST"],
+  ["112", "Spiral", "4", "Double a stance's STRENGTH"],
   ["113", "Strengthen", "1", "Apply 1 STRENGTH"],
   ["114", "Quick Switch", "0", "SWITCH"],
   ["115", "Switch", "1", "SWITCH"],
