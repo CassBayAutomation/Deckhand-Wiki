@@ -4,7 +4,7 @@
   ["1", "Advance", "0", "SECONDARY\nSWITCH"],
   ["2", "All In", "4", "PRIMARY\nPRIMARY\nPRIMARY\nPRIMARY"],
   ["3", "Anger", "0", "PRIMARY x2\nEnemy gains 2 STRENGTH"],
-  ["4", "Annihilate", "4", "PRIMARY x3\nSECONDARY x3\nEXHAUST"],
+  ["4", "Annihilate", "4", "PRIMARY x3\nSECONDARYx3\nEXHAUST"],
   ["5", "Bleedin' Flurry", "0", "-3 HP\nPRIMARY x3"],
   ["6", "Combo", "1", "PRIMARY\nSECONDARY"],
   ["7", "Crab Sweeper", "4", "PIERCING PRIMARY x3\npierce ALL enemies... 3 times!"],

@@ -7,5 +7,5 @@
   ["43", "Pincer", "0", "-1 HP\nDRAW 1\nEXHAUST"],
   ["44", "Scum", "1", "EXHAUST\nTEMPORARY"],
   ["45", "Toad", "1", "If held in hand at end of turn, become POISONED\nEXHAUST"],
-  ["121", "Bullet", "1", "-5 HP if held in hand. Or PLAY to dodge (will EXHAUST a random card)\nEXHAUST"]
+  ["121", "Bullet", "1", "-10 HP if held in hand. Or PLAY to dodge (will EXHAUST a random card)\nEXHAUST"]
 ]

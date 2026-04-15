@@ -5,7 +5,7 @@
   ["77", "Switch and Draw", "0", "SWITCH\nDRAW +1"],
   ["78", "Triple Threat", "0", "DRAW +3\nEXHAUST"],
   ["79", "Cheat day", "4", "+HP equal to 50% STRENGTH of all stances\nEXHAUST"],
-  ["80", "Heal", "4", "+5 HP\nEXHAUST"],
+  ["80", "Heal", "3", "+5 HP\nEXHAUST"],
   ["81", "Quick Heal", "1", "+5 HP\nEXHAUST\nTEMPORARY"],
   ["82", "Recover", "2", "BREAK\n+3 HP\nEXHAUST"],
   ["83", "Terrifying Heal", "2", "+HP equal to 50% total enemy STRENGTH\n\nEXHAUST"],
@@ -41,5 +41,5 @@
   ["117", "Poise", "1", "Apply 2 POISE"],
   ["122", "Seaweed Smoothie", "1", "Tastes awful.\nClears POISON.\nEXHAUST"],
   ["123", "Mutagen", "3", "Add strength equal to your current POISON."],
-  ["124", "Find Footing", "0", "Find a STANCE in your draw or discard pile and put it in your hand."]
+  ["124", "Find Footing", "0", "Draw all inactive STANCE CARDS to hand."]
 ]

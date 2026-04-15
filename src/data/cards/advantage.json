@@ -2,7 +2,7 @@
   ["Asset Index", "Title", "Stamina Cost", "Description"],
   ["13", "Free shot", "0", "Inflict 1 OPEN"],
   ["15", "Marked Target", "1", "Inflict 5 OPEN\nEXHAUST"],
-  ["31", "Secret plan", "1", "Inflict 1 OPEN\nDRAW +2"],
+  ["31", "Secret plan", "2", "Inflict 1 OPEN\nDRAW +2"],
   ["35", "The Trickster", "1", "Inflict 2 OPEN"],
   ["116", "Weaken", "2", "Inflict 2 WEAK\nEXHAUST"],
   ["119", "Distraction", "2", "+1 WEAK to ALL enemies\nEXHAUST"],

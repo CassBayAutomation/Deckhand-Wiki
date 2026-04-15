@@ -4,7 +4,7 @@
   ["53", "Sloppy Joe", "0", "16", "6", "5", "", "Standard", "Mop", "This card is the NATURAL stance card for the Mop and Broken Mop weapons."],
   ["54", "The Crane", "1", "18", "8", "3", "Starts with 50% of MAX PARRY applied", "Standard", "Mop"],
   ["55", "The Emu", "3", "15", "4", "8", "STEADY PARRY", "Steady", "Mop"],
-  ["56", "Wet Rag", "0", "16", "10", "4", "+3 HP when played\nSTEADY PARRY", "Steady", "Mop"],
+  ["56", "Wet Rag", "0", "16", "10", "4", "+1 HP when played\nSTEADY PARRY", "Steady", "Mop"],
   ["57", "The Bastion", "2", "14", "7", "7", "Apply 1 OPEN to all enemies when played\nand 2 when stance BREAK's", "Standard", "Saber"],
   ["58", "Iaidō", "3", "24", "5", "3", "Gains LEEWAY when played\nand STRENGTH on counter-attack", "Piercing", "Saber"],
   ["59", "Middle Guard", "0", "16", "9", "6", "", "Standard", "Saber", "This card is the Natural stance card for the Saber weapon."],
