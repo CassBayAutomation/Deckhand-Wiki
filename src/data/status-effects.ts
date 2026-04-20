@@ -9,10 +9,18 @@ export interface StatusEffect {
 
 export const statusEffects: StatusEffect[] = [
   {
+    name: 'Bound',
+    slug: 'bound',
+    appliedTo: 'Stance',
+    description: 'Stance cannot attack for X turns.',
+    image: '/images/keywords/bound.png',
+  },
+  {
     name: 'Charm',
     slug: 'charm',
     appliedTo: 'Enemy',
     description: 'When you attack this enemy both stances get weakened.',
+    image: '/images/keywords/charm.png',
   },
   {
     name: 'Combo',
@@ -20,6 +28,20 @@ export const statusEffects: StatusEffect[] = [
     appliedTo: 'Enemy',
     description: 'Will perform a dangerous FINISHER when combo reaches zero. Can be cleared with a counter-attack.',
     image: '/images/keywords/combo.png',
+  },
+  {
+    name: 'Exposed',
+    slug: 'exposed',
+    appliedTo: 'Stance',
+    description: 'Stance cannot gain PARRY points for X turns.',
+    image: '/images/keywords/exposed.png',
+  },
+  {
+    name: 'Hexed',
+    slug: 'hexed',
+    appliedTo: 'Stance',
+    description: 'Attacks from this stance cause X HP damage. Stack reduced at end of turn.',
+    image: '/images/keywords/hexed.png',
   },
   {
     name: 'Leeway',
@@ -70,6 +92,7 @@ export const statusEffects: StatusEffect[] = [
     slug: 'toxic',
     appliedTo: 'Enemy',
     description: 'When you attack this enemy you get poisoned. Clears after their next attack.',
+    image: '/images/keywords/toxic.png',
   },
   {
     name: 'Weak',
