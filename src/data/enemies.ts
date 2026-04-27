@@ -119,6 +119,13 @@ export const enemies: Enemy[] = [
     image: '/images/Enemies/Strongman_Idle.png',
   },
   {
+    name: 'Thessaly the Sea Witch',
+    slug: 'thessaly',
+    image: '/images/Enemies/Sea_Witch_Idle.png',
+    images: ['/images/Enemies/Sea_Witch_Idle.png', '/images/Enemies/Sea_Witch_Conjuring.png'],
+    boss: true,
+  },
+  {
     name: 'Wokou',
     slug: 'wokou',
     image: '/images/Enemies/Wokou_Idle.png',
