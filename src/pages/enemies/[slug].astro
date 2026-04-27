@@ -3,13 +3,21 @@ import WikiLayout from '../../layouts/WikiLayout.astro';
 import { enemies } from '../../data/enemies';
 
 export function getStaticPaths() {
-  return enemies.map(e => ({ params: { slug: e.slug }, props: { enemy: e } }));
+  const bosses = enemies.filter(e => e.boss);
+  return enemies.map(e => {
+    const index = enemies.findIndex(x => x.slug === e.slug);
+    const prev = index > 0 ? enemies[index - 1] : enemies[enemies.length - 1];
+    const next = index < enemies.length - 1 ? enemies[index + 1] : enemies[0];
+
+    const bossIndex = bosses.findIndex(x => x.slug === e.slug);
+    const prevBoss = bossIndex >= 0 ? (bossIndex > 0 ? bosses[bossIndex - 1] : bosses[bosses.length - 1]) : null;
+    const nextBoss = bossIndex >= 0 ? (bossIndex < bosses.length - 1 ? bosses[bossIndex + 1] : bosses[0]) : null;
+
+    return { params: { slug: e.slug }, props: { enemy: e, prev, next, prevBoss, nextBoss } };
+  });
 }
 
-const { enemy } = Astro.props;
-const index = enemies.findIndex(e => e.slug === enemy.slug);
-const prev = index > 0 ? enemies[index - 1] : enemies[enemies.length - 1];
-const next = index < enemies.length - 1 ? enemies[index + 1] : enemies[0];
+const { enemy, prev, next, prevBoss, nextBoss } = Astro.props;
 const metaDescription = `${enemy.name} is ${enemy.boss ? 'a boss enemy' : 'an enemy'} in Davy Jones' Deckhand. Learn their attack patterns and how to survive this encounter in the pirate roguelike deckbuilder.`;
 ---
 <WikiLayout title={enemy.name} section="enemies" description={metaDescription} ogImage={enemy.image}>
@@ -31,7 +39,7 @@ const metaDescription = `${enemy.name} is ${enemy.boss ? 'a boss enemy' : 'an en
     <h1>{enemy.name}</h1>
     <div class="stub-notice">More detail about this enemy will be added as the game develops.</div>
 
-    <div class="enemy-nav">
+    <div id="enemy-nav-all" class="enemy-nav">
       <a href={`/enemies/${prev.slug}`} class="enemy-nav-card">
         {prev.image && <img src={prev.image} alt={prev.name} />}
         <span>← {prev.name}</span>
@@ -42,8 +50,31 @@ const metaDescription = `${enemy.name} is ${enemy.boss ? 'a boss enemy' : 'an en
         <span>{next.name} →</span>
       </a>
     </div>
+
+    {enemy.boss && prevBoss && nextBoss && (
+      <div id="enemy-nav-bosses" class="enemy-nav" style="display:none">
+        <a href={`/enemies/${prevBoss.slug}?from=bosses`} class="enemy-nav-card">
+          {prevBoss.image && <img src={prevBoss.image} alt={prevBoss.name} />}
+          <span>← {prevBoss.name}</span>
+        </a>
+        <a href="/enemies/bosses" class="enemy-nav-all">All Bosses</a>
+        <a href={`/enemies/${nextBoss.slug}?from=bosses`} class="enemy-nav-card enemy-nav-card--next">
+          {nextBoss.image && <img src={nextBoss.image} alt={nextBoss.name} />}
+          <span>{nextBoss.name} →</span>
+        </a>
+      </div>
+    )}
   </div>
 </WikiLayout>
+
+<script>
+  if (new URLSearchParams(window.location.search).get('from') === 'bosses') {
+    const navAll = document.getElementById('enemy-nav-all');
+    const navBosses = document.getElementById('enemy-nav-bosses');
+    if (navAll) navAll.style.display = 'none';
+    if (navBosses) navBosses.style.display = '';
+  }
+</script>
 
 <style>
   .boss-badge {

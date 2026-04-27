@@ -23,7 +23,7 @@ const bosses = enemies.filter(e => e.boss);
             <td class="enemy-img-cell">
               {e.image && <img src={e.image} alt={e.name} />}
             </td>
-            <td><a href={`/enemies/${e.slug}`}>{e.name}</a></td>
+            <td><a href={`/enemies/${e.slug}?from=bosses`}>{e.name}</a></td>
           </tr>
         ))}
       </tbody>
