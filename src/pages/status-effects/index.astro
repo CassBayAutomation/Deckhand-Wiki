@@ -15,7 +15,7 @@ import { linkKeywords } from '../../utils/linkKeywords';
       <thead>
         <tr>
           <th></th>
-          <th>Name</th>
+          <th class="name-col">Name</th>
           <th class="applied-to-col">Applied To</th>
           <th>Description</th>
         </tr>
@@ -56,6 +56,10 @@ import { linkKeywords } from '../../utils/linkKeywords';
     object-fit: contain;
     display: block;
     margin: 0 auto;
+  }
+
+  .name-col {
+    min-width: 200px;
   }
 
   .applied-to-col {
