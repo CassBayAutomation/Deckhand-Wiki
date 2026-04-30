@@ -16,7 +16,7 @@ import { linkKeywords } from '../../utils/linkKeywords';
         <tr>
           <th></th>
           <th>Name</th>
-          <th>Applied To</th>
+          <th class="applied-to-col">Applied To</th>
           <th>Description</th>
         </tr>
       </thead>
@@ -56,6 +56,18 @@ import { linkKeywords } from '../../utils/linkKeywords';
     object-fit: contain;
     display: block;
     margin: 0 auto;
+  }
+
+  .applied-to-col {
+    white-space: nowrap;
+  }
+
+  @media (min-width: 641px) {
+    .status-effects-table thead th {
+      position: sticky;
+      top: var(--header-height);
+      z-index: 10;
+    }
   }
 
   .applied-to {
