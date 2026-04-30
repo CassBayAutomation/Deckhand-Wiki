@@ -126,4 +126,11 @@ export const devlogEntries: DevlogEntry[] = [
     summary: "Our first public Steam demo is coming to Steam Deckbuilder Fest in May. Plus: a behind-the-scenes look at the new Davy Jones' Locker environment.",
     thumbnail: '/images/devlog/march-2026/thumbnail.png',
   },
+  {
+    slug: 'april-2026',
+    title: 'Demo launch next week',
+    date: 'April 2026',
+    summary: "The demo drops 4th May alongside Steam Deck Builder Fest. Plus: a sneak peek at upcoming merchant ships and our new official wiki.",
+    thumbnail: '/images/devlog/april-2026/thumbnail.png',
+  },
 ];
