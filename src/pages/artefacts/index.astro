@@ -78,6 +78,14 @@ import { linkKeywords } from '../../utils/linkKeywords';
   .demo-yes { color: #3a9e5f; }
   .demo-no  { color: #b94040; }
 
+  @media (min-width: 641px) {
+    .artefacts-table thead th {
+      position: sticky;
+      top: var(--header-height);
+      z-index: 10;
+    }
+  }
+
   @media (max-width: 640px) {
     .artefacts-table td:nth-child(3)::before {
       content: 'Effect: ';
