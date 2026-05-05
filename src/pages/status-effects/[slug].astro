@@ -1,0 +1,163 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import { statusEffects } from '../../data/status-effects';
+import { linkKeywords } from '../../utils/linkKeywords';
+
+export function getStaticPaths() {
+  return statusEffects.map((effect, index) => {
+    const prev = index > 0 ? statusEffects[index - 1] : statusEffects[statusEffects.length - 1];
+    const next = index < statusEffects.length - 1 ? statusEffects[index + 1] : statusEffects[0];
+    return { params: { slug: effect.slug }, props: { effect, prev, next } };
+  });
+}
+
+const { effect, prev, next } = Astro.props;
+const title = effect.variant ? `${effect.name} (${effect.variant})` : effect.name;
+const metaDescription = `${title} — ${effect.description} Learn all status effects in Davy Jones' Deckhand.`;
+---
+<WikiLayout title={title} section="status-effects" description={metaDescription} ogImage={effect.image}>
+  <div class="wiki-content">
+    <div class="infobox">
+      <div class="infobox-title">{effect.name}</div>
+      {effect.variant && <div class="variant-badge">{effect.variant}</div>}
+      {effect.image
+        ? <img src={effect.image} alt={effect.name} class="effect-img" />
+        : <div class="infobox-image-placeholder">✦</div>
+      }
+      <table>
+        <tr><td>Applied To</td><td>{effect.appliedTo}</td></tr>
+      </table>
+    </div>
+
+    <h1>{title}</h1>
+    <p set:html={linkKeywords(effect.description)} />
+    <div class="stub-notice">More detail about this status effect will be added as the game develops.</div>
+
+    <div class="effect-nav">
+      <a href={`/status-effects/${prev.slug}`} class="effect-nav-card">
+        {prev.image && <img src={prev.image} alt={prev.name} />}
+        <span>← {prev.variant ? `${prev.name} (${prev.variant})` : prev.name}</span>
+      </a>
+      <a href="/status-effects" class="effect-nav-all">All Status Effects</a>
+      <a href={`/status-effects/${next.slug}`} class="effect-nav-card effect-nav-card--next">
+        {next.image && <img src={next.image} alt={next.name} />}
+        <span>{next.variant ? `${next.name} (${next.variant})` : next.name} →</span>
+      </a>
+    </div>
+  </div>
+</WikiLayout>
+
+<style>
+  .variant-badge {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    margin: 0.25rem auto 0;
+    text-align: center;
+  }
+
+  .effect-img {
+    display: block;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin: 1rem auto;
+  }
+
+  .effect-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    clear: both;
+  }
+
+  .effect-nav-card {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s;
+    max-width: 220px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .effect-nav-card span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .effect-nav-card:hover {
+    border-color: var(--gold);
+    background: rgba(240, 168, 0, 0.06);
+    color: var(--text);
+  }
+
+  .effect-nav-card img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .effect-nav-card--next {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .effect-nav-all {
+    font-size: 0.85rem;
+    color: rgba(0,0,0,0.45);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .effect-nav-all:hover {
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    .effect-nav {
+      flex-wrap: wrap;
+    }
+
+    .effect-nav-all {
+      order: -1;
+      width: 100%;
+      text-align: center;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.6rem;
+    }
+
+    .effect-nav-card {
+      flex: 1;
+      max-width: 100%;
+    }
+
+    .effect-nav-card--next {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+</style>

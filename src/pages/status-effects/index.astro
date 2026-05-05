@@ -28,7 +28,7 @@ import { linkKeywords } from '../../utils/linkKeywords';
             </td>
             <td>
               <span id={effect.slug} class="status-anchor"></span>
-              <strong>{effect.name}</strong>
+              <a href={`/status-effects/${effect.slug}`} class="effect-link"><strong>{effect.name}</strong></a>
               {effect.variant && <span class="status-variant">{effect.variant}</span>}
             </td>
             <td class="applied-to">{effect.appliedTo}</td>
@@ -79,6 +79,15 @@ import { linkKeywords } from '../../utils/linkKeywords';
     font-size: 0.85rem;
     color: var(--text-muted);
     font-weight: 600;
+  }
+
+  .effect-link {
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .effect-link:hover {
+    color: var(--gold);
   }
 
   .status-anchor {
