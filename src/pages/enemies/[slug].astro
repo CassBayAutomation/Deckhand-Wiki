@@ -37,6 +37,7 @@ const metaDescription = `${enemy.name} is ${enemy.boss ? 'a boss enemy' : 'an en
     </div>
 
     <h1>{enemy.name}</h1>
+    {enemy.notes && <p set:html={enemy.notes} />}
     <div class="stub-notice">More detail about this enemy will be added as the game develops.</div>
 
     <div id="enemy-nav-all" class="enemy-nav">

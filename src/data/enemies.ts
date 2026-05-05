@@ -9,6 +9,8 @@ export interface Enemy {
   /** Turn pattern description — to be added */
   turnPattern?: string;
   boss?: boolean;
+  /** HTML string shown as a note on the enemy detail page */
+  notes?: string;
 }
 
 export const enemies: Enemy[] = [
@@ -124,6 +126,7 @@ export const enemies: Enemy[] = [
     image: '/images/Enemies/Sea_Witch_Idle.png',
     images: ['/images/Enemies/Sea_Witch_Idle.png', '/images/Enemies/Sea_Witch_Conjuring.png'],
     boss: true,
+    notes: 'This boss unlocks after defeating both the <a href="/enemies/sea-swine">Sea Swine</a> and <a href="/enemies/butterbiscuit">Admiral Butterbiscuit</a>.',
   },
   {
     name: 'Wokou',
