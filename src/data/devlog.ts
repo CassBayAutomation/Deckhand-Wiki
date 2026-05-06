@@ -133,4 +133,11 @@ export const devlogEntries: DevlogEntry[] = [
     summary: "The demo drops 4th May alongside Steam Deck Builder Fest. Plus: a sneak peek at upcoming merchant ships and our new official wiki.",
     thumbnail: '/images/devlog/april-2026/thumbnail.png',
   },
+  {
+    slug: 'demo-launch',
+    title: 'The demo is live!',
+    date: 'May 2026',
+    summary: "The free demo for Davy Jones' Deckhand is now live on Steam. Play it, leave a review, and help a small indie team get found.",
+    thumbnail: '/images/devlog/demo-launch/demo-poster.png',
+  },
 ];

@@ -1,0 +1,74 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — The demo is live!"
+  section="devlog"
+  description="The free demo for Davy Jones' Deckhand is live on Steam right now. Play it, leave a review, and help a small indie team get found."
+  ogImage="/images/devlog/demo-launch/demo-poster.png"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">May 2026</span>
+    </div>
+
+    <h1>The demo is live! 🎉🏴‍☠️</h1>
+
+    <p>Ahoy matey!</p>
+    <p>Today's the day. The free demo for <strong>Davy Jones' Deckhand</strong> is live on Steam right now.</p>
+
+    <p>Whether you've been checking out the playtests or this will be your first voyage, now is your chance to set sail. No purchase needed. Just download, play, and let us know what you think. Leaving a review on Steam helps us immensely!</p>
+
+    <a href="https://store.steampowered.com/app/3544900/Davy_Jones_Deckhand/?utm_source=wiki&utm_medium=website&utm_campaign=devlog_demo_launch" target="_blank" rel="noopener">
+      <img src="/images/devlog/demo-launch/demo-poster.png" alt="Davy Jones' Deckhand — Demo Out Now" class="devlog-img" />
+    </a>
+
+    <p>The demo gives you a full taste of the game: the parry system, tonnes of artefacts, deckbuilding, and the story that sets it all in motion. If you play it and like what you find, <strong>the single most helpful thing you can do</strong> is play for at least an hour and leave a Steam review. It makes an enormous difference for a small indie team.</p>
+
+    <p>We've put everything into this game and we can't wait for you to finally get your hands on it. Fair winds and following seas.</p>
+
+    <p>Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="demo-launch" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+</style>
