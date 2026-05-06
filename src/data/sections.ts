@@ -127,6 +127,7 @@ export const sections: Section[] = [
     icon: '📋',
     subsections: [
       { label: 'All Devlogs', href: '/devlog' },
+      { label: 'April 2026', href: '/devlog/april-2026', mobileHide: true },
       { label: 'March 2026', href: '/devlog/march-2026', mobileHide: true },
       { label: 'February 2026', href: '/devlog/february-2026', mobileHide: true },
       { label: 'November 2025', href: '/devlog/november-2025', mobileHide: true },
