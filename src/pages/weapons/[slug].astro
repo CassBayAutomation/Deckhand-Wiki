@@ -6,6 +6,7 @@ const weapons = [
   { slug: 'the-claw',   name: 'The Claw' },
   { slug: 'rapier',     name: 'Rapier' },
   { slug: 'dual-buckets', name: 'Dual Buckets' },
+  { slug: 'devils-pair',  name: "Devil's Pair" },
 ];
 
 export function getStaticPaths() {
@@ -14,6 +15,7 @@ export function getStaticPaths() {
     { params: { slug: 'the-claw' } },
     { params: { slug: 'rapier' } },
     { params: { slug: 'dual-buckets' } },
+    { params: { slug: 'devils-pair' } },
   ];
 }
 
