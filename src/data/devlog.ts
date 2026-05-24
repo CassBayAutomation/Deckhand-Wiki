@@ -140,4 +140,11 @@ export const devlogEntries: DevlogEntry[] = [
     summary: "The free demo for Davy Jones' Deckhand is now live on Steam. Play it, leave a review, and help a small indie team get found.",
     thumbnail: '/images/devlog/demo-launch/demo-poster.png',
   },
+  {
+    slug: 'may-2026',
+    title: "Davy Jones' Deckhand demo post-mortem",
+    date: 'May 2026',
+    summary: "320+ players, 700+ wishlists gained, and a full breakdown of the demo stats — plus what's coming next for Davy Jones' Deckhand.",
+    thumbnail: '/images/devlog/may-2026/thumbnail.png',
+  },
 ];
