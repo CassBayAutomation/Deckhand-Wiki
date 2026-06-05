@@ -6,5 +6,6 @@
   ["35", "The Trickster", "1", "Inflict 2 OPEN"],
   ["116", "Weaken", "2", "Inflict 2 WEAK\nEXHAUST"],
   ["119", "Distraction", "2", "+1 WEAK to ALL enemies\nEXHAUST"],
-  ["120", "Spinning Kick", "3", "+3 WEAK to ALL enemies\nEXHAUST"]
+  ["120", "Spinning Kick", "3", "+3 WEAK to ALL enemies\nEXHAUST"],
+  ["126", "Insult", "2", "Double an enemy's WEAK\nEXHAUST"]
 ]

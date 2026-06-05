@@ -34,5 +34,6 @@
   ["34", "Sweeping Retreat", "1", "PRIMARY\nto ALL enemies\nSWITCH"],
   ["36", "Trader Joe", "0", "PRIMARY\nto ALL enemies\n\nALL stances -1 PARRY"],
   ["37", "Wake the beast", "2", "PRIMARY x4\nDouble the enemies STRENGTH"],
-  ["118", "Piercing Flurry", "1", "PIERCING PRIMARY\nPIERCING PRIMARY"]
+  ["118", "Piercing Flurry", "1", "PIERCING PRIMARY\nPIERCING PRIMARY"],
+  ["125", "Bash", "1", "PRIMARY\nInflict 1 WEAK"]
 ]
