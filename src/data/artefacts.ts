@@ -23,6 +23,7 @@ export const artefacts: Artefact[] = [
   { name: 'Flotsam', slug: 'flotsam', effect: 'Heal 2 HP at the end of each encounter.', upgradedEffect: 'Heal 10% of Max HP at the end of each encounter.', image: '/images/artefacts/flotsam.png' },
   { name: 'Green Candle', slug: 'green-candle', effect: 'Whenever a card EXHAUSTS heal 1 HP.', upgradedEffect: 'Whenever a card EXHAUSTS heal 2 HP.', image: '/images/artefacts/green-candle.png' },
   { name: 'Hardtack', slug: 'hardtack', effect: 'Increase Max HP by 10.', upgradedEffect: 'Increase Max HP by 15.', image: '/images/artefacts/hardtack.png' },
+  { name: 'Imperial Tea', slug: 'imperial-tea', effect: 'Enemies with WEAK take +50% damage from all attacks.', upgradedEffect: 'Enemies with WEAK take +100% damage from all attacks.', image: '/images/artefacts/imperial-tea.png', inDemo: false },
   { name: 'Jetsam', slug: 'jetsam', effect: 'Heal 1 HP at the end of each wave.', upgradedEffect: 'Heal 5% of max HP at the end of each wave.', image: '/images/artefacts/jetsam.png' },
   { name: 'Lantern', slug: 'lantern', effect: 'Stances gain LEEWAY when switching into primary position.', upgradedEffect: 'Stances gain 2 LEEWAY when switching into primary position.', image: '/images/artefacts/lantern.png' },
   { name: 'Miracle Elixir', slug: 'miracle-elixir', effect: 'At the start of combat apply OPEN to a random enemy.', upgradedEffect: 'At the start of combat apply OPEN to all enemies.', image: '/images/artefacts/miracle-elixir.png' },
