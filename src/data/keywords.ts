@@ -187,6 +187,14 @@ export const keywords: Keyword[] = [
     image: '/images/keywords/parry.png',
   },
   {
+    name: 'Parry Meter',
+    slug: 'parry-meter',
+    terms: ['PARRY METER'],
+    appearsOn: 'Stances',
+    description: 'Parry points currently applied to stance.',
+    image: '/images/keywords/parry.png',
+  },
+  {
     name: 'Piercing',
     slug: 'piercing',
     terms: ['PIERCING'],
