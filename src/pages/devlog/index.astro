@@ -13,7 +13,9 @@ const entries = [...devlogEntries].reverse();
       {entries.map(entry => (
         <a href={`/devlog/${entry.slug}`} class="entry-card">
           {entry.thumbnail && (
-            <img src={entry.thumbnail} alt={entry.title} class="entry-thumb" />
+            <div class="entry-thumb-wrap">
+              <img src={entry.thumbnail} alt={entry.title} class="entry-thumb" />
+            </div>
           )}
           <div class="entry-body">
             <span class="entry-date">{entry.date}</span>
@@ -53,13 +55,25 @@ const entries = [...devlogEntries].reverse();
     color: var(--text);
   }
 
-  .entry-thumb {
+  .entry-thumb-wrap {
     width: 300px;
     flex-shrink: 0;
+    align-self: stretch;
+    overflow: hidden;
+    clip-path: inset(0 2% 0 0);
+    position: relative;
+    min-height: 140px;
+  }
+
+  .entry-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: left center;
     display: block;
-    clip-path: inset(0 2% 0 0);
   }
 
   .entry-body {
@@ -109,7 +123,7 @@ const entries = [...devlogEntries].reverse();
       flex-direction: column;
     }
 
-    .entry-thumb {
+    .entry-thumb-wrap {
       width: 100%;
       height: 180px;
     }
