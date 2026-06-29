@@ -147,4 +147,11 @@ export const devlogEntries: DevlogEntry[] = [
     summary: "320+ players, 700+ wishlists gained, and a full breakdown of the demo stats — plus what's coming next for Davy Jones' Deckhand.",
     thumbnail: '/images/devlog/may-2026/thumbnail.png',
   },
+  {
+    slug: 'june-2026',
+    title: 'UI changes, souls & a secret mini-game',
+    date: 'June 2026',
+    summary: "3,000 wishlists milestone, a UI overhaul that moves enemy HP bars, a new souls currency for mid-voyage spending, and a secret mini-game hiding in the beta branch.",
+    thumbnail: '/images/devlog/june-2026/thumbnail.png',
+  },
 ];

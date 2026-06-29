@@ -1,0 +1,133 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — June 2026"
+  section="devlog"
+  description="UI overhaul, a new souls currency, and a secret mini-game — plus 3,000 wishlists! June 2026 devlog for Davy Jones' Deckhand."
+  ogImage="/images/devlog/june-2026/thumbnail.png"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">June 2026</span>
+    </div>
+
+    <h1>UI changes, souls & a secret mini-game 🏴‍☠️</h1>
+
+    <p>Ahoy crew, welcome below deck!</p>
+
+    <p>We hit another milestone — <strong>thank you for 3,000 wishlists!</strong> We gained more than 1,000 new wishlists since last month, thanks in no small part to Frosty Fest. We weren't in the actual showcase, but we still enjoyed our best month of growth so far.</p>
+
+    <p>The <a href="https://youtu.be/6mmuYcEEEJU?si=okT70KHql15TjdV2" target="_blank" rel="noopener">Frosty Games Fest showcase is on YouTube</a> if you want to check out some awesome ANZ indie games. A favourite of ours was the beautifully hand-drawn <a href="https://store.steampowered.com/app/3449530/Apothecurse/" target="_blank" rel="noopener"><em>Apothecurse</em></a> by Lesser Key Studios in Dunedin.</p>
+
+    <h2>Demo clip competition winner!</h2>
+
+    <p>Congratulations to Wade for winning the demo clips competition! We put the best community clips of the Davy Jones' Deckhand demo to a vote in our Discord, and Wade's outrageous overkill clip took the win. I mean look at that damage, the poor crab. Wade's prize was a custom avatar in the style of the game, hand-drawn by our character artist Nik Scarr. Wade's a lawyer, can you tell?</p>
+
+    <div class="img-pair">
+      <img src="/images/devlog/june-2026/wade-avatar.png" alt="Wade's custom lawyer avatar" class="devlog-img" />
+      <img src="/images/devlog/june-2026/wade-crab-overkill.png" alt="Wade's overkill clip — 42,734 damage to the crab" class="devlog-img" />
+    </div>
+
+    <h2>UI rework</h2>
+
+    <p>After the demo launch, we've been slowing down to experiment with new features, make UI improvements, and build some of the foundations for the next major evolution of Davy Jones' Deckhand. The biggest change: <strong>we've moved enemy HP bars to sit below the enemies.</strong></p>
+
+    <img src="/images/devlog/june-2026/ui-comparison.png" alt="UI comparison — enemy HP bars before and after the redesign" class="devlog-img" />
+
+    <p>Watching lots of recorded playthroughs made it clear that the enemy HP bar positioning wasn't intuitive. To accommodate this shift the entire ship and horizon line had to be raised upwards, the dashboard lowered, and the HUD size reduced. The change connects enemies to their key stats more clearly and brings key info into the centre of the screen.</p>
+
+    <p>We also reworked how enemies are highlighted to show their selection and targeted status. Many players may not even notice this change, but that's probably a good thing — we're confident the new system is more intuitive and clear.</p>
+
+    <p>We've also been designing a new and improved HUD. The goal is to simplify and reduce the amount of screen space it takes up. Here's an early mockup:</p>
+
+    <img src="/images/devlog/june-2026/hud-redesign-mockup.png" alt="HUD redesign mockup" class="devlog-img" />
+
+    <h2>Souls currency</h2>
+
+    <p>The HUD mockup also reveals an upcoming change to the overall currency design of Davy Jones' Deckhand. So far playtesters have been building up coin coffers with nowhere to spend them. The plan: players will be able to spend coin at merchant ships during voyages, on cards and artefacts for their current run. Leftover coin persists between runs, minus a cut from Davy Jones if you die.</p>
+
+    <p>The design risk is that players feel compelled to save coin for permanent out-of-run upgrades rather than actually spending during voyages. So we're introducing a second currency: <strong>souls</strong>. This is your temporary, mid-voyage currency, acquired by defeating enemies. The mid-voyage merchant will now be a fellow undead sailor who trades in souls — and all remaining souls at the end of your voyage are claimed by Davy, so use it or lose it!</p>
+
+    <p>The latest beta build already has an early implementation of souls, letting players spend them to redraw or skip their card rewards.</p>
+
+    <h2>A secret mini-game</h2>
+
+    <p>Ben needed a change of pace after the demo launch and a big funding application push. So he gave himself a few days to explore something entirely unnecessary — call it a holiday.</p>
+
+    <p>The first iteration of that something is already in the beta branch for those who can find it. Eventually you'll click on to it.</p>
+
+    <h2>What next?</h2>
+
+    <p>We're now working on the foundations of the mid-voyage merchant. Simon is exploring new HUD designs. We're powering through side-quests like Steam Cloud Save integration and seeded RNG improvements — foundations that will serve us well should we receive funding later in the year.</p>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="june-2026" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .img-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+  }
+
+  .img-pair .devlog-img {
+    margin: 0;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+
+  li a {
+    color: var(--gold);
+  }
+</style>
