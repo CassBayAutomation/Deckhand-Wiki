@@ -144,7 +144,7 @@ export const devlogEntries: DevlogEntry[] = [
     slug: 'may-2026',
     title: "Davy Jones' Deckhand demo post-mortem",
     date: 'May 2026',
-    summary: "320+ players, 700+ wishlists gained, and a full breakdown of the demo stats — plus what's coming next for Davy Jones' Deckhand.",
+    summary: "320+ players, 700+ wishlists gained, and a full breakdown of the demo stats — weapon win rates, most lethal enemies, favourite cards picked, and what's coming next for Davy Jones' Deckhand.",
     thumbnail: '/images/devlog/may-2026/thumbnail.png',
   },
   {
