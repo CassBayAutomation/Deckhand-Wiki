@@ -154,4 +154,11 @@ export const devlogEntries: DevlogEntry[] = [
     summary: "3,000 wishlists milestone, a UI overhaul that moves enemy HP bars, a new souls currency for mid-voyage spending, and a secret mini-game hiding in the beta branch.",
     thumbnail: '/images/devlog/june-2026/thumbnail.png',
   },
+  {
+    slug: 'july-2026',
+    title: 'New Ship Log will have EVERYTHING',
+    date: 'July 2026',
+    summary: "A deep-dive into the new 3D Ship Log menu — curved, flippable pages built as a real 3D object in Unity — plus Steam Cloud saves and a July progress update.",
+    thumbnail: '/images/devlog/july-2026/thumbnail.png',
+  },
 ];

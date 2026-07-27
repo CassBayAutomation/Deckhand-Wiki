@@ -1,0 +1,153 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck — July 2026"
+  section="devlog"
+  description="A deep-dive into the new 3D Ship Log menu — curved, flippable pages built as a real 3D object — plus Steam Cloud saves and a July progress update."
+  ogImage="/images/devlog/july-2026/thumbnail.png"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">July 2026</span>
+    </div>
+
+    <h1>New Ship Log will have EVERYTHING 🏴‍☠️</h1>
+
+    <p>Ahoy crew, welcome below deck!</p>
+
+    <p>Another month has flown by. I'm rapidly approaching the due date of my third child now. While we're in a bit of a development limbo period, I've been busily chipping away at the game. In this month's newsletter I'll share a summary of progress and a deep-dive into an upcoming new feature: the "Ship Log" menu.</p>
+
+    <p>Smooth sailing,<br /><b>Ben</b></p>
+
+    <h2>July summary</h2>
+
+    <ul>
+      <li>Steam Cloud saves working on the playtest beta branch</li>
+      <li>Rework of card visual prefabs to allow for a selection outline</li>
+      <li>Ship Log begun:
+        <ul>
+          <li>3D system</li>
+          <li>Sorting/Filtering system to allow deep player control</li>
+          <li>Controller navigation</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>The upcoming "Ship Log" feature</h2>
+
+    <img src="/images/devlog/july-2026/ship-log-history.gif" alt="The Ship Log book opening from the main menu" class="devlog-img" />
+
+    <p>This has been a big piece of work over the past month. Most of the time game menus are flat, with 2D images, text and panels drawn straight onto your screen. But Davy Jones' Deckhand is a bit of an outlier, in that so far we have done almost everything in screen-space UI. But the new Ship Log I've been working on isn't built that way at all, and that choice came with some challenges that are interesting to explain.</p>
+
+    <p>I decided to make the Ship Log menu a real 3D object, so we could have the pages naturally curved and flippable. To achieve this, instead of drawing the menu as a flat picture, I've built an actual little 3D scene, a physical book model sitting in its own miniature space.</p>
+
+    <img src="/images/devlog/july-2026/ship-log-2.png" alt="The Ship Log 3D book, shown in the Unity editor's curved page mesh view" class="devlog-img" />
+
+    <p>The trouble with doing this as a 3D scene is that Unity Engine naturally draws UI overtop of that world-space stuff. This is particularly difficult for our game because almost nothing is world-space and everything is UI, including our main combat. So to have our 3D Ship Log menu render over-top of the combat scene, we use a hidden camera that "films" the book continuously, and the live footage is pasted onto a flat UI, like a photograph being updated 60 times a second. It sounds like a roundabout way to show a menu, but it's the trick that lets the 3D style journal pop up on top of absolutely everything else.</p>
+
+    <p><b>So the flow is:</b></p>
+
+    <ul>
+      <li>The content on the book pages is created on a flat 2D UI canvas</li>
+      <li>That 2D canvas for the page content gets captured by its own hidden camera</li>
+      <li>That camera renders what it sees to a texture that is applied to the 3D page mesh</li>
+      <li>The 3D object is captured by another hidden camera</li>
+      <li>That camera capturing the 3D object renders what it sees to an image on a 2D UI panel</li>
+      <li>We see that final 2D UI panel</li>
+    </ul>
+
+    <img src="/images/devlog/july-2026/ship-log-1.png" alt="The Ship Log Artefacts tab, in-game" class="devlog-img" />
+
+    <p>The pages actually bend like paper. Each page isn't a flat rectangle, it's built from a flexible grid that curves and peels in real time as you turn it, the way a real page in a physical book curls near the spine. There's even a "corner peel" effect like when you dog-ear a book, and each page has a genuinely different texture printed on its front versus its back.</p>
+
+    <p>This whole system caused another headache when it came to making the mouse position detection work. Because the pages are curved rather than flat, we had to work out where in 3D space your mouse click actually lands on the curved surface, not just where it looks like it lands on your flat screen. For a while, the invisible "click detector" for each page was using a flattened stand-in shape instead of the true curved shape, which meant clicks landed slightly wrong, and this was worse the further from the center of the page, since that's where the curve bends away from flat the most. So the click detection had to account for that true page curvature in real time to make it feel accurate.</p>
+
+    <p><b>What will the new Ship Log actually contain?</b></p>
+
+    <p>The log will contain main "tabs" to access game information. So far I've begun implementing the first 3 tabs, which are Artefacts, Cards and Voyage History. The first two are simple, they are a way to browse through all your discovered cards and artefacts.</p>
+
+    <p>The history tab is new though. If you've played the game yourself, you will be familiar with the summary screen you get at the end of voyages, showing key information about your run: total kills, total counter-attacks, total cards played, favourite artefact etc. All this information for every single run has been stored in your save files for a long time now, but there has been no way for you to access this data so far. The Voyage History tab will do exactly that. It presents every single run you have done in a list that is sortable by date, boss, and outcome (success or death). Hovering these voyage entries will then give you the full summary for that voyage.</p>
+
+    <p>The log will eventually also include evolving lists of encountered enemies, bestiary, the world map, characters and lore, and your quest log. Basically it's your one-stop shop for deeper game information.</p>
+
+    <h2>What next?</h2>
+
+    <ul>
+      <li>Completing the first 3 Ship Log tabs</li>
+      <li>Image export system (download images of your voyage summaries)</li>
+      <li>First version of Ship Log on playtest beta branch</li>
+      <li>Enemy tab</li>
+      <li>Language localisation systems</li>
+    </ul>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="july-2026" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .img-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+  }
+
+  .img-pair .devlog-img {
+    margin: 0;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+
+  li a {
+    color: var(--gold);
+  }
+</style>
