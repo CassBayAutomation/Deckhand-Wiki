@@ -161,4 +161,11 @@ export const devlogEntries: DevlogEntry[] = [
     summary: "A deep-dive into the new 3D Ship Log menu — curved, flippable pages built as a real 3D object in Unity — plus Steam Cloud saves and a July progress update.",
     thumbnail: '/images/devlog/july-2026/thumbnail.png',
   },
+  {
+    slug: 'august-2026',
+    title: 'Dynamic World Map and Voyage Manifest',
+    date: 'August 2026',
+    summary: 'The world map rebuilt from scratch with full scroll and zoom control, reactive pathfinding for voyage routes, and a new Voyage Manifest screen for setting up each voyage.',
+    thumbnail: '/images/devlog/august-2026/thumbnail.png',
+  },
 ];
