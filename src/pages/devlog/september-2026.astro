@@ -1,0 +1,110 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+import DevlogNav from '../../components/DevlogNav.astro';
+---
+<WikiLayout
+  title="Below Deck: September 2026"
+  section="devlog"
+  description="Our $250,000 CODE StartUp grant application was successful, and Ben is heading to the Montreal International Game Summit to pitch to publishers."
+  ogImage="/images/devlog/september-2026/thumbnail.png"
+>
+  <div class="wiki-content devlog-entry">
+
+    <div class="entry-meta">
+      <a href="/devlog" class="back-link">← All Devlogs</a>
+      <span class="entry-date">September 2026</span>
+    </div>
+
+    <h1>StartUp grant success & Montreal International Game Summit 🏴‍☠️</h1>
+
+    <p>Ahoy crew, welcome below deck!</p>
+
+    <p>Forgive me for cutting it <em>very</em> fine getting a newsletter out this month. My son Henry was born three weeks ago, so I've been completely switched off from the game for a while. I am about to return to work though, and for the first time I will be truly full-time! Which leads into the first piece of exciting news to share in this edition of Below Deck...</p>
+
+    <h2>$250,000 CODE StartUp Grant</h2>
+
+    <p>We're very pleased to announce that our CODE StartUp grant application has been successful. This is a pivotal moment for the studio, allowing us to operate for the next 14 months with the full team at various capacities. I am especially excited for fresh art assets from our amazing art team, and to begin working in a more official capacity with sound designers, Erin and Sarah, who previously interned with Cass Bay Games as part of their master's studies.</p>
+
+    <p>Over the next year we plan to reveal a schedule of playtests in advance, so keep an eye out for an announcement and roadmap in the not-too-distant future. I will also be looking for ways to offer more interaction with the team on Discord. It's going to be a big year!</p>
+
+    <img src="/images/devlog/september-2026/startup-recipients.jpg" alt="The six 2026 CODE StartUp Funding recipients, including Davy Jones' Deckhand" class="devlog-img" />
+
+    <p><a href="https://www.nz-code.nz/post/21-studios-awarded-over-2m-in-code-funding" target="_blank" rel="noopener noreferrer"><b>Read more about the CODE funding decisions in the official press release.</b></a></p>
+
+    <h2>Montreal International Game Summit</h2>
+
+    <img src="/images/devlog/september-2026/migs.jpg" alt="MIGS 2026, Montreal, Canada, 10-11 November" class="devlog-img" />
+
+    <p>One final piece of news for this very brief newsletter: I will be attending MIGS in Canada as part of the CODE NZ cohort. I will have the opportunity to pitch to a room full of publishers at an event run by Representing Games, and to take individual pitch meetings during the two-day conference. Our CODE grant thankfully gets us <em>most</em> of the way through production, but I will still be looking for a publishing partner to invest in our marketing, porting, localization, etc.</p>
+
+    <p>Thanks for sticking around through a slow month! I look forward to sharing many more exciting updates soon.</p>
+
+    <p>As always, why is the rum gone? (Please respond)<br /><b>Ben</b></p>
+
+    <p>Until next time me hearties, yo ho!<br /><br />Ben and the Cass Bay Games Team</p>
+
+    <DevlogNav currentSlug="september-2026" />
+
+  </div>
+</WikiLayout>
+
+<style>
+  .devlog-entry {
+    max-width: 720px;
+  }
+
+  .entry-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+  }
+
+  .back-link {
+    color: var(--ocean);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: var(--gold-dark);
+  }
+
+  .entry-date {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .devlog-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .img-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+  }
+
+  .img-pair .devlog-img {
+    margin: 0;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  li {
+    margin-bottom: 0.4rem;
+    line-height: 1.7;
+  }
+
+  li a {
+    color: var(--gold);
+  }
+</style>

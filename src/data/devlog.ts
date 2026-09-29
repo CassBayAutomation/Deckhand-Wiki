@@ -168,4 +168,11 @@ export const devlogEntries: DevlogEntry[] = [
     summary: 'The world map rebuilt from scratch with full scroll and zoom control, reactive pathfinding for voyage routes, and a new Voyage Manifest screen for setting up each voyage.',
     thumbnail: '/images/devlog/august-2026/thumbnail.png',
   },
+  {
+    slug: 'september-2026',
+    title: 'StartUp grant success & Montreal International Game Summit',
+    date: 'September 2026',
+    summary: 'Our $250,000 CODE StartUp grant application was successful, and Ben is heading to the Montreal International Game Summit to pitch to publishers.',
+    thumbnail: '/images/devlog/september-2026/thumbnail.png',
+  },
 ];
