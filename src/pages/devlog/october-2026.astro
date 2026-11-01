@@ -33,9 +33,9 @@ import DevlogNav from '../../components/DevlogNav.astro';
 
     <p>I had the pleasure of being a guest on the Quest Unplayed podcast. I dressed for the occasion and overshared about my personal journey getting into game development.</p>
 
-    <img src="/images/devlog/october-2026/quest-unplayed.png" alt="Quest Unplayed podcast - Chapter 102: You have never seen a deckbuilder like this" class="devlog-img" />
+    <div class="video-wrap"><iframe width="560" height="315" src="https://www.youtube.com/embed/J-aMyJSoylc" title="Quest Unplayed podcast" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
 
-    <p>You can watch the interview on <a href="https://youtu.be/J-aMyJSoylc" target="_blank" rel="noopener noreferrer"><b>YouTube</b></a> or <a href="https://open.spotify.com/episode/4uCXbXnv1fKuIC52hllnia" target="_blank" rel="noopener noreferrer"><b>Spotify</b></a>.</p>
+    <p>You can also <a href="https://open.spotify.com/episode/4uCXbXnv1fKuIC52hllnia" target="_blank" rel="noopener noreferrer"><b>listen on Spotify</b></a>.</p>
 
     <h2>Welcoming Erin and Sarah to the team (officially)</h2>
 
@@ -45,9 +45,14 @@ import DevlogNav from '../../components/DevlogNav.astro';
 
     <h2>Taking Deckhand on another overseas voyage!</h2>
 
-    <img src="/images/devlog/october-2026/migs.png" alt="See you in Montreal - MIGS 2026, 10-11 November" class="devlog-img" />
-
-    <p>I'm heading to the Montreal International Games Summit with the CODE NZ cohort. I'll be looking for publishing partners/project-based investors for the game. With our recent CODE StartUp grant we are in full production mode for the next 13 months, but we're still seeking a publisher or project-based investor who can invest in our marketing, and provide finishing funds. I fly 30+ hours on Sunday, spend 3 nights in Canada, then straight back home. This is the way when juggling game business ambition with busy family life!</p>
+    <div class="two-col">
+      <div class="two-col-text">
+        <p>I'm heading to the Montreal International Games Summit with the CODE NZ cohort. I'll be looking for publishing partners/project-based investors for the game. With our recent CODE StartUp grant we are in full production mode for the next 13 months, but we're still seeking a publisher or project-based investor who can invest in our marketing, and provide finishing funds. I fly 30+ hours on Sunday, spend 3 nights in Canada, then straight back home. This is the way when juggling game business ambition with busy family life!</p>
+      </div>
+      <div class="two-col-img">
+        <img src="/images/devlog/october-2026/migs.png" alt="See you in Montreal - MIGS 2026, 10-11 November" class="devlog-img" />
+      </div>
+    </div>
 
     <p>I look forward to returning from the big trip and settling into more of a development flow.</p>
 
@@ -116,5 +121,43 @@ import DevlogNav from '../../components/DevlogNav.astro';
 
   li a {
     color: var(--gold);
+  }
+
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin: 1.25rem 0;
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    margin: 1.25rem 0;
+  }
+
+  .two-col-text p {
+    margin: 0;
+  }
+
+  .two-col-img .devlog-img {
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
