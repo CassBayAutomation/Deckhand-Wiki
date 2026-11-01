@@ -135,12 +135,40 @@ const devlogYears = Object.keys(devlogByYear).map(Number).sort((a, b) => b - a);
     collapsible?.classList.toggle('open');
   });
 
-  // Year group toggles for devlog sidebar
-  document.querySelectorAll('.year-toggle').forEach(btn => {
+  // Year group toggles for devlog sidebar with sessionStorage persistence
+  const yearToggles = document.querySelectorAll('.year-toggle');
+  const STORAGE_KEY = 'devlog-year-groups';
+
+  // Restore state from sessionStorage on page load
+  const savedState = sessionStorage.getItem(STORAGE_KEY);
+  if (savedState) {
+    const openYears = JSON.parse(savedState) as number[];
+    yearToggles.forEach(btn => {
+      const year = parseInt(btn.getAttribute('data-year') || '0');
+      const isOpen = openYears.includes(year);
+      btn.setAttribute('aria-expanded', String(isOpen));
+      if (isOpen) {
+        btn.nextElementSibling?.classList.add('open');
+      } else {
+        btn.nextElementSibling?.classList.remove('open');
+      }
+    });
+  }
+
+  // Save state to sessionStorage on toggle
+  yearToggles.forEach(btn => {
     btn.addEventListener('click', () => {
       const open = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!open));
       btn.nextElementSibling?.classList.toggle('open');
+
+      // Save all open years to sessionStorage
+      const openYears: number[] = [];
+      document.querySelectorAll('.year-toggle[aria-expanded="true"]').forEach(openBtn => {
+        const year = parseInt(openBtn.getAttribute('data-year') || '0');
+        if (year) openYears.push(year);
+      });
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(openYears));
     });
   });
 
