@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { sections, getSectionBySlug } from '../data/sections';
+import { devlogEntries } from '../data/devlog';
 
 interface Props {
   title: string;
@@ -12,6 +13,19 @@ interface Props {
 const { title, section: sectionSlug, description, ogImage } = Astro.props;
 const section = getSectionBySlug(sectionSlug);
 const currentPath = Astro.url.pathname;
+
+// Group devlog entries by year for collapsible sidebar
+const currentYear = new Date().getFullYear();
+const devlogByYear = sectionSlug === 'devlog'
+  ? [...devlogEntries].reverse().reduce((acc, entry) => {
+      const match = entry.date.match(/(\d{4})$/);
+      const year = match ? parseInt(match[1]) : currentYear;
+      if (!acc[year]) acc[year] = [];
+      acc[year].push(entry);
+      return acc;
+    }, {} as Record<number, typeof devlogEntries>)
+  : {};
+const devlogYears = Object.keys(devlogByYear).map(Number).sort((a, b) => b - a);
 ---
 
 <BaseLayout title={title} description={description} ogImage={ogImage}>
@@ -38,14 +52,44 @@ const currentPath = Astro.url.pathname;
       <aside class="wiki-sidebar">
         <div class="sidebar-section">
           <p class="sidebar-title">{section?.name}</p>
-          {section?.subsections?.map(sub => (
-            <a
-              href={sub.href}
-              class:list={['sidebar-link', { active: currentPath === sub.href, 'desktop-only': sub.mobileHide }]}
-            >
-              {sub.label}
-            </a>
-          ))}
+          {sectionSlug === 'devlog' ? (
+            <>
+              <a href="/devlog" class:list={['sidebar-link', { active: currentPath === '/devlog' }]}>
+                All Devlogs
+              </a>
+              {devlogYears.map(year => (
+                <div class="year-group">
+                  <button
+                    class="year-toggle"
+                    data-year={year}
+                    aria-expanded={year === currentYear ? 'true' : 'false'}
+                  >
+                    <span>{year}</span>
+                    <span class="toggle-arrow">▼</span>
+                  </button>
+                  <div class:list={['year-entries', { open: year === currentYear }]}>
+                    {devlogByYear[year].map(entry => (
+                      <a
+                        href={`/devlog/${entry.slug}`}
+                        class:list={['sidebar-link', 'desktop-only', { active: currentPath === `/devlog/${entry.slug}` }]}
+                      >
+                        {entry.date.replace(` ${year}`, '')}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            section?.subsections?.map(sub => (
+              <a
+                href={sub.href}
+                class:list={['sidebar-link', { active: currentPath === sub.href, 'desktop-only': sub.mobileHide }]}
+              >
+                {sub.label}
+              </a>
+            ))
+          )}
         </div>
         <div class="sidebar-section sidebar-all-sections">
           <button class="sidebar-toggle" id="sections-toggle" aria-expanded="false">
@@ -89,6 +133,15 @@ const currentPath = Astro.url.pathname;
     const open = toggle.getAttribute('aria-expanded') === 'true';
     toggle.setAttribute('aria-expanded', String(!open));
     collapsible?.classList.toggle('open');
+  });
+
+  // Year group toggles for devlog sidebar
+  document.querySelectorAll('.year-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.nextElementSibling?.classList.toggle('open');
+    });
   });
 
   // Lightbox
@@ -476,6 +529,53 @@ const currentPath = Astro.url.pathname;
 
   .sidebar-all-sections {
     display: none;
+  }
+
+  .year-group {
+    margin-top: 0.25rem;
+  }
+
+  .year-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.45rem 1rem;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .year-toggle:hover {
+    background: rgba(255,255,255,0.06);
+    color: var(--white);
+  }
+
+  .year-toggle .toggle-arrow {
+    font-size: 0.6rem;
+    transition: transform 0.2s;
+  }
+
+  .year-toggle[aria-expanded="true"] .toggle-arrow {
+    transform: rotate(180deg);
+  }
+
+  .year-entries {
+    display: none;
+    padding-left: 0.5rem;
+  }
+
+  .year-entries.open {
+    display: block;
+  }
+
+  .year-entries .sidebar-link {
+    font-size: 0.82rem;
+    padding: 0.35rem 1rem;
   }
 
   .sidebar-toggle {
