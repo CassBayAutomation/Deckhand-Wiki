@@ -175,4 +175,11 @@ export const devlogEntries: DevlogEntry[] = [
     summary: 'Our $250,000 CODE StartUp grant application was successful, and Ben is heading to the Montreal International Game Summit to pitch to publishers.',
     thumbnail: '/images/devlog/september-2026/thumbnail.png',
   },
+  {
+    slug: 'october-2026',
+    title: 'Official production kickoff',
+    date: 'October 2026',
+    summary: 'Official production kickoff with the full team, Quest Unplayed podcast appearance, welcoming Erin and Sarah to sound crew, and heading to MIGS in Montreal.',
+    thumbnail: '/images/devlog/october-2026/thumbnail.png',
+  },
 ];
